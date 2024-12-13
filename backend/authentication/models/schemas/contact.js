@@ -29,6 +29,6 @@ const contactSchema = new mongoose.Schema({
         type: addressSchema,
         required: false
     }
-});
+}, { _id: false });
 
 module.exports = contactSchema;

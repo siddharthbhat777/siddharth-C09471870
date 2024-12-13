@@ -40,6 +40,6 @@ const addressSchema = new mongoose.Schema({
         required: true,
         trim: true
     }
-});
+}, { _id: false });
 
 module.exports = addressSchema;
