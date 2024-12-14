@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const userRoutes = require('./routers/user');
-
 const app = express();
 app.use(express.json());
 
@@ -12,10 +10,10 @@ const DATABASE_URL = "mongodb+srv://siddharthC09471870:C09471870@pizzeria.vsmlx.
 const SERVER_PORT = 5001;
 
 // Setting headers
-app.use(cors({ methods: ['POST', 'PUT'] }));
+app.use(cors({ methods: ['GET', 'POST'] }));
 
 // Setting up routes
-app.use('/user', userRoutes);
+// app.use('/path', );
 
 // Error logging format
 app.use((error, _, res) => {
