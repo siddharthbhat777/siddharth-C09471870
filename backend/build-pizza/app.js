@@ -27,7 +27,7 @@ app.use((error, _, res) => {
 // Connecting database
 mongoose.connect(DATABASE_URL).then(() => {
     app.listen(SERVER_PORT, () => {
-        console.log("Authentication server is running on port: " + SERVER_PORT);
+        console.log("Build pizza server is running on port: " + SERVER_PORT);
     });
 }).catch((error) => {
     console.log("Failed to connect to mongoDB.\nError reference:\n", error);
