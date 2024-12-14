@@ -2,18 +2,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const cartRoutes = require('./routes/cart');
+
 const app = express();
 app.use(express.json());
 
 // Constants
 const DATABASE_URL = "mongodb+srv://siddharthC09471870:C09471870@pizzeria.vsmlx.mongodb.net/pizzeria";
-const SERVER_PORT = 5001;
+const SERVER_PORT = 5004;
 
 // Setting headers
 app.use(cors({ methods: ['GET', 'POST', 'PUT', 'DELETE'] }));
 
 // Setting up routes
-// app.use('/path', );
+app.use('/cart', cartRoutes);
 
 // Error logging format
 app.use((error, _, res) => {
