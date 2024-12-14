@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const pizzaSchema = new mongoose.Schema({
-  pizzaId: {
-    type: mongoose.Types.ObjectId,
-    required: true
-  },
   type: {
     type: String,
     required: true,

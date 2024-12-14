@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const ingredientRoutes = require('./routes/ingredient');
+const buildRoutes = require('./routes/build');
 
 const app = express();
 app.use(express.json());
@@ -15,7 +15,7 @@ const SERVER_PORT = 5003;
 app.use(cors({ methods: ['GET', 'PUT'] }));
 
 // Setting up routes
-app.use('/ingredient', ingredientRoutes);
+app.use('/build', buildRoutes);
 
 // Error logging format
 app.use((error, _, res) => {

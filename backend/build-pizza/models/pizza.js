@@ -35,6 +35,6 @@ const pizzaSchema = new mongoose.Schema({
       required: true
     }
   ]
-}, { _id: false });
+});
 
-module.exports = pizzaSchema;
+module.exports = mongoose.model('Pizza', pizzaSchema);

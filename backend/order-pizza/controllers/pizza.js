@@ -1,9 +1,10 @@
 const Cart = require("../models/cart");
+require("../models/ingredient");
 const Pizza = require("../models/pizza");
 
 exports.getPizzas = async (_, res, next) => {
     try {
-        const pizzas = await Pizza.find();
+        const pizzas = await Pizza.find().populate('ingredients');
         res.status(200).json({ message: 'Pizzas fetched successfully', pizzas });
     } catch (error) {
         if (!error.statusCode) {
@@ -27,10 +28,8 @@ exports.addToCart = async (req, res, next) => {
         if (cartExistence) {
             cartExistence.cartItems.push({
                 quantity: 1,
-                pizzaData: {
-                    ...pizza,
-                    pizzaId: pizza._id
-                }
+                pizzaId,
+                pizzaData: pizza
             });
             res.status(200).json({ message: 'Added item to cart', cart: cartExistence });
         } else {
@@ -39,10 +38,8 @@ exports.addToCart = async (req, res, next) => {
                 cartItems: [
                     {
                         quantity: 1,
-                        pizzaData: {
-                            ...pizza,
-                            pizzaId: pizza._id
-                        }
+                        pizzaId,
+                        pizzaData: pizza
                     }
                 ]
             });
