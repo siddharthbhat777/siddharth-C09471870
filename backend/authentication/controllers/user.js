@@ -24,14 +24,12 @@ exports.loginUser = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             const error = new Error('Incorrect password');
             error.statusCode = 401;
             throw error;
         }
-
         const accessToken = jwt.sign(
             { email: user.contactDetails.email, userId: user._id },
             'somesupersecretsecret',
@@ -42,10 +40,8 @@ exports.loginUser = async (req, res, next) => {
             'refreshsupersecretsecret',
             { expiresIn: '7d' }
         );
-
         user.refreshToken = refreshToken;
         await user.save();
-
         res.status(200).json({ accessToken, refreshToken });
     } catch (error) {
         if (!error.statusCode) {
@@ -57,23 +53,19 @@ exports.loginUser = async (req, res, next) => {
 
 exports.refreshToken = async (req, res, next) => {
     const { refreshToken } = req.body;
-
     try {
         const decoded = jwt.verify(refreshToken, 'refreshsupersecretsecret');
         const user = await User.findById(decoded.userId);
-
         if (!user || user.refreshToken !== refreshToken) {
             const error = new Error('Invalid refresh token');
             error.statusCode = 403;
             throw error;
         }
-
         const newAccessToken = jwt.sign(
             { email: user.contactDetails.email, userId: user._id },
             'somesupersecretsecret',
             { expiresIn: '1h' }
         );
-
         res.status(200).json({ accessToken: newAccessToken });
     } catch (error) {
         if (!error.statusCode) {
