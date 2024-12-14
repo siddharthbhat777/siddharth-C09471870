@@ -27,7 +27,10 @@ exports.addToCart = async (req, res, next) => {
         if (cartExistence) {
             cartExistence.cartItems.push({
                 quantity: 1,
-                pizzaData: pizza
+                pizzaData: {
+                    ...pizza,
+                    pizzaId: pizza._id
+                }
             });
             res.status(200).json({ message: 'Added item to cart', cart: cartExistence });
         } else {
@@ -36,7 +39,10 @@ exports.addToCart = async (req, res, next) => {
                 cartItems: [
                     {
                         quantity: 1,
-                        pizzaData: pizza
+                        pizzaData: {
+                            ...pizza,
+                            pizzaId: pizza._id
+                        }
                     }
                 ]
             });
