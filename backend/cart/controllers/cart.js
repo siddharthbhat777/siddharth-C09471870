@@ -8,12 +8,7 @@ exports.getCart = async (req, res, next) => {
             path: 'cartItems.pizzaData.ingredients',
             model: 'Ingredient'
         });
-        if (!cart) {
-            const error = new Error('Cart not found');
-            error.statusCode = 404;
-            throw error;
-        }
-        res.status(200).json({ message: 'Cart data fetched successfully', cartItems: cart.cartItems });
+        res.status(200).json({ message: 'Cart data fetched successfully', cartItems: cart ? cart.cartItems : [] });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;
@@ -55,6 +50,36 @@ exports.updateCart = async (req, res, next) => {
         }
         await cart.save();
         res.status(200).json({ message: 'Updated cart successfully', cart })
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
+    }
+};
+
+exports.deleteCartItem = async (req, res, next) => {
+    const { userId, pizzaId } = req.params;
+    try {
+        const cart = await Cart.findOne({ userId });
+        if (!cart) {
+            const error = new Error('Cart not found');
+            error.statusCode = 404;
+            throw error;
+        }
+        if (cart.cartItems.length < 2) {
+            await Cart.findByIdAndDelete(cart._id);
+            return res.status(200).json({ message: 'Cart deleted successfully' });
+        }
+        const pizza = cart.cartItems.find((item) => item.pizzaId.toString() === pizzaId);
+        if (!pizza) {
+            const error = new Error('Pizza not found in the cart');
+            error.statusCode = 404;
+            throw error;
+        }
+        cart.cartItems = cart.cartItems.filter(item => item.pizzaId.toString() !== pizzaId);
+        await cart.save();
+        res.status(200).json({ message: 'Pizza removed from the cart successfully', cart });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;

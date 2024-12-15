@@ -30,6 +30,7 @@ exports.addToCart = async (req, res, next) => {
                 pizzaId,
                 pizzaData: pizza
             });
+            await cartExistence.save();
             res.status(200).json({ message: 'Added item to cart', cart: cartExistence });
         } else {
             const cart = await Cart.create({
