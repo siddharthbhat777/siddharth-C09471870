@@ -15,9 +15,8 @@ exports.getIngredients = async (_, res, next) => {
 }
 
 exports.customizePizza = async (req, res, next) => {
-    const userId = req.params.userId;
-    const pizzaId = req.params.pizzaId;
-    const ingredients = req.body.ingredients;
+    const { userId, pizzaId } = req.params;
+    const { ingredients } = req.body;
     try {
         const cart = await Cart.findOne({ userId });
         if (!cart) {

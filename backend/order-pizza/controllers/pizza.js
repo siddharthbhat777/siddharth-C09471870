@@ -15,8 +15,7 @@ exports.getPizzas = async (_, res, next) => {
 };
 
 exports.addToCart = async (req, res, next) => {
-    const userId = req.params.userId;
-    const pizzaId = req.params.pizzaId;
+    const { userId, pizzaId } = req.params;
     try {
         const cartExistence = await Cart.findOne({ userId });
         const pizza = await Pizza.findById(pizzaId);
