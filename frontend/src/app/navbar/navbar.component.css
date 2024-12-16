@@ -80,7 +80,7 @@
 
 .nav-actions button:hover {
     background-color: var(--secondary-light-color);
-    color: var(--dark-gray-color);
+    color: var(--darker-gray-color);
 }
 
 .nav-actions .logout {
