@@ -4,7 +4,7 @@ const Pizza = require("../models/pizza");
 
 exports.getPizzas = async (_, res, next) => {
     try {
-        const pizzas = await Pizza.find();
+        const pizzas = await Pizza.find({}, { id: 0 });
         res.status(200).json({ message: 'Pizzas fetched successfully', pizzas });
     } catch (error) {
         if (!error.statusCode) {

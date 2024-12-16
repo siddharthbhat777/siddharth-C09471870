@@ -5,7 +5,8 @@ exports.getCart = async (req, res, next) => {
     try {
         const { userId } = req.params;
         const cart = await Cart.findOne({ userId }, { _id: 0, cartItems: 1 }).populate({
-            path: 'cartItems.pizzaData.ingredients',
+            path: 'cartItems.pizzaData.extraIngredients',
+            select: '-id',
             model: 'Ingredient'
         });
         res.status(200).json({ message: 'Cart data fetched successfully', cartItems: cart ? cart.cartItems : [] });

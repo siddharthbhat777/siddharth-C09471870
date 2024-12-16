@@ -4,7 +4,7 @@ const Pizza = require("../models/pizza");
 
 exports.getIngredients = async (_, res, next) => {
     try {
-        const ingredients = await Ingredient.find();
+        const ingredients = await Ingredient.find({}, { id: 0 });
         res.status(200).json({ message: 'Ingredients fetched successfully', ingredients });
     } catch (error) {
         if (!error.statusCode) {
@@ -30,13 +30,14 @@ exports.customizePizza = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        const defaultPizza = (await Pizza.findById(pizzaId).select('ingredients -_id'));
+        const defaultPizza = await Pizza.findById(pizzaId, { id: 0 });
         if (!defaultPizza) {
-            const error = new Error('Default pizza ingredients not found');
+            const error = new Error('Default pizza not found');
             error.statusCode = 404;
             throw error;
         }
-        pizza.pizzaData.ingredients = [...defaultPizza.ingredients, ...ingredients];
+        pizza.pizzaData = { ...defaultPizza, extraIngredients: ingredients };
+        // pizza.pizzaData.ingredients = [...defaultPizza.ingredients, ...ingredients];
         await cart.save();
         res.status(200).json({ message: 'Built pizza successfully', cart: cart });
     } catch (error) {
