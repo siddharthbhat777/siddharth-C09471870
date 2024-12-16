@@ -25,6 +25,12 @@ exports.addToCart = async (req, res, next) => {
             throw error;
         }
         if (cartExistence) {
+            const pizzaCartExistence = cartExistence.cartItems.find((item) => item.pizzaId.toString() === pizzaId);
+            if (pizzaCartExistence) {
+                const error = new Error('Pizza in cart already exists');
+                error.statusCode = 409;
+                throw error;
+            }
             cartExistence.cartItems.push({
                 quantity: 1,
                 pizzaId,

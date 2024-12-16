@@ -18,7 +18,7 @@ app.use(cors({ methods: ['POST', 'PUT'] }));
 app.use('/user', userRoutes);
 
 // Error logging format
-app.use((error, _, res) => {
+app.use((error, _, res, ignoreLint) => {
     console.log(error);
     const status = error.statusCode || 500;
     const message = error.message;

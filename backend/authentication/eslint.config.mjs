@@ -15,5 +15,15 @@ export default [
       globals: globals.node 
     } 
   },
-  pluginJs.configs.recommended
+  pluginJs.configs.recommended,
+  {
+    rules: {
+      "no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^ignoreLint"
+        }
+      ]
+    }
+  }
 ];
