@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+}
+
+:root {
+    --black-color: black;
+    --white-color: white;
+    --shaded-white-color: #efefef;
+    --lightest-gray-color: #c9c9c9;
+    --lighter-gray-color: #9b9b9b;
+    --gray-color: #6b6b6b;
+    --primary-color: #141414;
+    --secondary-color: #FFB128;
+    --secondary-light-color: #ffbc49;
+}
