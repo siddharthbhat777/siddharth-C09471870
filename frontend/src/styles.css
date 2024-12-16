@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 :root {
@@ -10,7 +12,7 @@ body {
     --lightest-gray-color: #c9c9c9;
     --lighter-gray-color: #9b9b9b;
     --gray-color: #6b6b6b;
-    --dark-gray-color: #474747;
+    --dark-gray-color: #4f4f4f;
     --darker-gray-color: #313131;
     --primary-color: #141414;
     --secondary-color: #FFB128;
