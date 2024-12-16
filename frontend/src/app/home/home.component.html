@@ -30,6 +30,10 @@
         </div>
     </div>
     <div class="content">
+        @if (isMobile) {
+            <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
+            alt="chef">
+        }
         <div class="content-text">
             <h3 class="content-heading">Our Chef</h3>
             <p class="content-data">
@@ -38,8 +42,10 @@
                 know what to do with itself. We do though. We send it to you.
             </p>
         </div>
-        <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
+        @if (!isMobile) {
+            <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
             alt="chef">
+        }
     </div>
     <div class="content">
         <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/669255385/display_1500/stock-photo-vintage-analog-kitchen-countdown-timer-with-classical-clock-face-and-red-remaining-time-display-669255385.jpg"
