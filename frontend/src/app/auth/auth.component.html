@@ -1,3 +1,28 @@
 <app-modal>
-    hello there
+    <h1>{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
+    @if (isLoginSelected()) {
+        <form>
+            <input type="email" placeholder="E-Mail">
+            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password">
+            <button type="button" (click)="setPasswordVisibility()">Eye</button>
+            <button type="submit">Sign in</button>
+            <button type="reset">Clear</button>
+            <h3>First time here?</h3>
+            <a (click)="selectSignUp()">Create user</a>
+        </form>
+    } @else {
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="E-Mail">
+            <input type="number" placeholder="Age">
+            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password">
+            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm">
+            <button type="button" (click)="setPasswordVisibility()">Eye</button>
+            <button type="submit">Sign up</button>
+            <button type="reset">Clear</button>
+            <h3>Existing user?</h3>
+            <a (click)="selectSignIn()">Sign in</a>
+        </form>
+    }
+    <button (click)="closeAuth()">Cancel</button>
 </app-modal>
