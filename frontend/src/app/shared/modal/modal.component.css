@@ -15,11 +15,11 @@
     display: flex;
     flex-direction: column;
     background-color: var(--white-color);
-    padding: 20px;
-    border-radius: 8px;
+    padding: 1.25rem;
+    border-radius: .5rem;
     width: 90%;
-    max-width: 600px;
-    box-shadow: 0 4px 8px #0000001a;
+    max-width: 37.5rem;
+    box-shadow: 0 .25rem .5rem #0000001a;
     text-align: left;
     overflow-y: auto;
     max-height: 80vh;
