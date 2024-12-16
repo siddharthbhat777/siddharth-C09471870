@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const pizzaSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+    unique: true
+  },
   type: {
     type: String,
     required: true,
@@ -22,13 +27,10 @@ const pizzaSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  ingredients: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Ingredient',
-      required: true
-    }
-  ],
+  ingredients: {
+    type: [String],
+    required: true
+  },
   topping: [
     {
       type: String,
