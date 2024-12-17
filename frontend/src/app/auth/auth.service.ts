@@ -62,8 +62,6 @@ export class AuthService {
 
   logout() {
     this.userData.set(null);
-    // this.router.navigate(['/auth']);
-    // localStorage.clear();
     localStorage.removeItem('tokens');
     if (this.tokenExpirationTimer()) {
       clearTimeout(this.tokenExpirationTimer()!);
@@ -82,6 +80,15 @@ export class AuthService {
       }, expirationDuration);
       this.tokenExpirationTimer.set(timerId);
     }
+  }
+
+  get token() {
+    const storageData = localStorage.getItem('tokens');
+    if (storageData) {
+      const parsedData = JSON.parse(storageData);
+      return parsedData.accessToken;
+    }
+    return this.logout();
   }
 
   private handleAuthentication(resData: LoginResponse) {

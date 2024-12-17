@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Pizza } from '../pizza.model';
 
 @Component({
   selector: 'app-pizza',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './pizza.component.css'
 })
 export class PizzaComponent {
-
+  pizza = input.required<Pizza>();
 }
