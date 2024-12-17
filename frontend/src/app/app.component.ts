@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthComponent } from './auth/auth.component';
@@ -11,8 +11,14 @@ import { AuthService } from './auth/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  showAuth = signal(true);
+  showAuth = signal(false);
   private authService = inject(AuthService);
+
+  constructor() {
+    effect(() => {
+      this.showAuth.set(this.authService.showLoginDialog());
+    });
+  }
 
   ngOnInit(): void {
     this.authService.autoLogin();
@@ -20,5 +26,6 @@ export class AppComponent implements OnInit {
 
   closeAuth() {
     this.showAuth.set(false);
+    this.authService.showLoginDialog.set(false);
   }
 }

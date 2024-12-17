@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   userData = signal<User | null>(null);
   private tokenExpirationTimer = signal<ReturnType<typeof setTimeout> | null>(null);
+  showLoginDialog = signal(false);
 
   private http = inject(HttpClient);
 
