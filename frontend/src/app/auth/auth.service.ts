@@ -8,7 +8,8 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  userData = signal<User | null>(null);
+  private userData = signal<User | null>(null);
+  sharableData = this.userData.asReadonly();
   private tokenExpirationTimer = signal<ReturnType<typeof setTimeout> | null>(null);
   showLoginDialog = signal(false);
 

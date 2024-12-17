@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, DestroyRef, inject, input } from '@angular/core';
 import { Pizza } from '../pizza.model';
+import { PizzaService } from '../pizza.service';
 
 @Component({
   selector: 'app-pizza',
@@ -10,4 +11,17 @@ import { Pizza } from '../pizza.model';
 })
 export class PizzaComponent {
   pizza = input.required<Pizza>();
+  
+  private pizzaService = inject(PizzaService);
+  private destroyRef = inject(DestroyRef);
+
+  onAddToCart(pizzaId: string) {
+    const subscription = this.pizzaService.addToCart(pizzaId).subscribe({
+      next: (cart) => console.log(cart),
+      error: (error) => {
+        console.log(error);
+      }
+    });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
 }

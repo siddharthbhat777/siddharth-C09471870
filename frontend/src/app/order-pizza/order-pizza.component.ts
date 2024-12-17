@@ -20,7 +20,6 @@ export class OrderPizzaComponent implements OnInit {
   ngOnInit(): void {
     const subscription = this.pizzaService.pizzaData.subscribe({
       next: (pizzas: Pizza[]) => {
-        console.log(pizzas);
         this.pizzas.update(() => pizzas);
       },
       error: (error) => {

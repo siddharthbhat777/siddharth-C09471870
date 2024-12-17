@@ -33,6 +33,6 @@
         <div class="pizza-image">
             <img [src]="pizza().image" alt="Paneer Tikka Pizza">
         </div>
-        <button class="add-to-cart-btn">Add to Cart</button>
+        <button class="add-to-cart-btn" (click)="onAddToCart(pizza()._id)">Add to Cart</button>
     </div>
 </div>

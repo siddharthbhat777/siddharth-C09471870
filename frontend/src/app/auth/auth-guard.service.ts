@@ -10,7 +10,7 @@ export class AuthGuardService implements CanActivate {
   private router = inject(Router);
 
   canActivate(): MaybeAsync<GuardResult> {
-    if (this.authService.userData()) {
+    if (this.authService.sharableData()) {
       return true;
     }
     this.authService.showLoginDialog.set(true);
