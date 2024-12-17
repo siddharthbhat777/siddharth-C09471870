@@ -2,10 +2,11 @@
     <h1>{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
     @if (isLoginSelected()) {
         <form>
-            <input type="email" placeholder="E-Mail">
-            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password">
+            <input type="email" placeholder="E-Mail" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
             <button type="button" (click)="setPasswordVisibility()">Eye</button>
-            <button type="submit">Sign in</button>
+            <button type="button" (click)="loginUser(email(), password())">Sign in</button>
+            <button type="button" (click)="logoutUser()">Sign out</button>
             <button type="reset">Clear</button>
             <h3>First time here?</h3>
             <a (click)="selectSignUp()">Create user</a>

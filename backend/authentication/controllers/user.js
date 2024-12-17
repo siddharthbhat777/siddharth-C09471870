@@ -32,7 +32,14 @@ exports.loginUser = async (req, res, next) => {
             throw error;
         }
         const accessToken = jwt.sign(
-            { email: user.contactDetails.email, userId: user._id },
+            {
+                _id: user._id,
+                name: user.name,
+                age: user.age,
+                email: user.contactDetails.email,
+                phone: user.contactDetails.phone || null,
+                addresses: user.contactDetails.addresses || null
+            },
             'somesupersecretsecret',
             { expiresIn: '1h' }
         );
@@ -63,7 +70,14 @@ exports.refreshToken = async (req, res, next) => {
             throw error;
         }
         const newAccessToken = jwt.sign(
-            { email: user.contactDetails.email, userId: user._id },
+            {
+                _id: user._id,
+                name: user.name,
+                age: user.age,
+                email: user.contactDetails.email,
+                phone: user.contactDetails.phone || null,
+                addresses: user.contactDetails.addresses || null
+            },
             'somesupersecretsecret',
             { expiresIn: '1h' }
         );

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const addressSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
     receiverName: {
         type: String,
         required: true,

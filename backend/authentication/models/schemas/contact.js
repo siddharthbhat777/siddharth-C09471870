@@ -5,6 +5,7 @@ const contactSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         lowercase: true,
         trim: true,
         validate: {
@@ -25,8 +26,8 @@ const contactSchema = new mongoose.Schema({
         },
         required: false
     },
-    address: {
-        type: addressSchema,
+    addresses: {
+        type: [addressSchema],
         required: false
     }
 }, { _id: false });
