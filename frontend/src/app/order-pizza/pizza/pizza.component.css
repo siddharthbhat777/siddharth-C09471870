@@ -77,3 +77,15 @@
 .add-to-cart-btn:hover {
     background-color: var(--secondary-dark-color);
 }
+
+@media (max-width: 768px) {
+    .pizza-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pizza-image img {
+        width: 10rem;
+        height: 10rem;
+    }
+}

@@ -9,3 +9,14 @@
 .single-pizza {
     padding: 2rem;
 }
+
+@media (max-width: 768px) {
+    .pizza-list {
+        grid-template-columns: 1fr;
+        padding-inline: 0.5rem;
+    }
+
+    .single-pizza {
+        padding: 1.5rem;
+    }
+}
