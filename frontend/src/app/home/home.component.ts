@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  imports: [FooterComponent]
+  styleUrl: './home.component.css'
 })
 export class HomeComponent {
   get isMobile() {
