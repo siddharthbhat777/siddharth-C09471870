@@ -4,6 +4,7 @@
     padding-inline: 5rem;
     margin-top: 2rem;
     height: max-content;
+    min-height: 86vh;
 }
 
 .single-pizza {
