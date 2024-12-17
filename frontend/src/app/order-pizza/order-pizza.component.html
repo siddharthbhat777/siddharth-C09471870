@@ -1,5 +1,8 @@
-@for (pizza of pizzas(); track pizza._id) {
-    <app-pizza [pizza]="pizza" />
-} @empty {
-    <app-error-screen errorMessage="Unable to fetch pizza data" errorIcon="/order-pizza/no-pizza.png" />
-}
+<div [class]="pizzas().length > 0 ? 'pizza-list' : ''">
+    @for (pizza of pizzas(); track pizza._id) {
+        <app-pizza [pizza]="pizza" />
+    } @empty {
+        <app-error-screen errorMessage="Unable to fetch pizzas" errorIcon="/order-pizza/no-pizza.png" />
+    }
+</div>
+<app-footer />

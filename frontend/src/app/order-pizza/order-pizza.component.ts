@@ -3,10 +3,11 @@ import { PizzaComponent } from "./pizza/pizza.component";
 import { PizzaService } from './pizza.service';
 import { Pizza } from './pizza.model';
 import { ErrorScreenComponent } from '../shared/error-screen/error-screen.component';
+import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-order-pizza',
-  imports: [PizzaComponent, ErrorScreenComponent],
+  imports: [PizzaComponent, ErrorScreenComponent, FooterComponent],
   templateUrl: './order-pizza.component.html',
   styleUrl: './order-pizza.component.css',
   providers: [PizzaService]

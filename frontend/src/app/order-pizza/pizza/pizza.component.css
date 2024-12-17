@@ -1,0 +1,89 @@
+/* Card Container */
+.pizza-card {
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #fff;
+    display: flex;
+}
+
+/* Header */
+.pizza-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pizza-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.veg-indicator .circle {
+    width: 20px;
+    height: 20px;
+    background-color: #008001;
+    border: 2px solid #008001;
+    border-radius: 50%;
+}
+
+/* Description */
+.pizza-description {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+/* Details */
+.pizza-details {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.pizza-details strong {
+    color: #000;
+}
+
+/* Bottom Section */
+.pizza-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.pizza-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.pizza-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.add-to-cart-btn {
+    background-color: #ffa500;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #e69500;
+}

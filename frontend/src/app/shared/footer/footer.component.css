@@ -5,6 +5,7 @@ footer {
     width: 100%;
     height: 7vh;
     margin-top: 1rem;
-    color: var(--shaded-white-color);
+    color: var(--secondary-color);
     background-color: var(--primary-color);
+    font-weight: 600;
 }

@@ -1,34 +1,38 @@
-<div>
-    <div>
-        <span>{{ pizza().name }}</span>
-        <div>
+<div class="pizza-card">
+    <div class="pizza-header">
+        <h2 class="pizza-title">{{ pizza().name }}</h2>
+        <div class="veg-indicator">
+            @if (pizza().type === 'veg') {
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" version="1.1" viewBox="0 0 3387 3387"
                 style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
                 <rect x="338" y="320" width="2739" height="2773" fill="#FEFEFE" stroke="#008001" stroke-width="85" />
                 <circle cx="1707" cy="1733" r="789" fill="#008001" stroke="#008001" stroke-width="85" />
             </svg>
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" version="1.1"
-                viewBox="0 0 3387 3387"
+            } @else {
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" version="1.1" viewBox="0 0 3387 3387"
                 style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
                 <rect x="338" y="320" width="2739" height="2773" fill="#FEFEFE" stroke="#9C3B14" stroke-width="85" />
                 <circle cx="1707" cy="1733" r="789" fill="#9C3B14" stroke="#9C3B14" stroke-width="85" />
-            </svg> -->
+            </svg>
+            }
         </div>
-        <span>{{ 45 | currency: 'INR' }}</span>
+        <div class="pizza-price">
+            {{ pizza().price | currency: 'INR' }}
+        </div>
     </div>
-    <div>
-        <p>Description</p>
-        <p>
-            <span>Ingredients:</span>
-            ing1, ing2, ing3
+
+    <div class="pizza-details">
+        <p class="pizza-description">
+            {{ pizza().description }}
         </p>
-        <p>
-            <span>Toppings:</span>
-            top1, top2, top3
-        </p>
+        <p><strong>Ingredients :</strong> {{ pizza().ingredients }}</p>
+        <p><strong>Toppings :</strong> {{ pizza().topping }}</p>
     </div>
-    <div>
-        <img src="" alt="" />
-        <button>Add to Cart</button>
+
+    <div class="pizza-bottom">
+        <div class="pizza-image">
+            <img [src]="pizza().image" alt="Paneer Tikka Pizza">
+        </div>
+        <button class="add-to-cart-btn">Add to Cart</button>
     </div>
 </div>
