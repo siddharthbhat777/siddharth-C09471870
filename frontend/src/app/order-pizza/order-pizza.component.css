@@ -1,0 +1,11 @@
+.pizza-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 5rem;
+    margin-top: 2rem;
+    height: max-content;
+}
+
+.single-pizza {
+    padding: 2rem;
+}
