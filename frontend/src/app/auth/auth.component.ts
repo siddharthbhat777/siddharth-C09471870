@@ -1,4 +1,4 @@
-import { Component, inject, output, signal } from '@angular/core';
+import { Component, DestroyRef, inject, output, signal } from '@angular/core';
 import { ModalComponent } from "../shared/modal/modal.component";
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
@@ -18,11 +18,13 @@ export class AuthComponent {
   password = signal('');
 
   private authService = inject(AuthService);
+  private destroyRef = inject(DestroyRef);
 
   loginUser(email: string, password: string) {
-    this.authService.loginUser(email, password).subscribe({
+    const subscription = this.authService.loginUser(email, password).subscribe({
       next: resData => console.log(resData)
     });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   setPasswordVisibility() {

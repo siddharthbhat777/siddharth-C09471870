@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { PizzaComponent } from "./pizza/pizza.component";
 import { PizzaService } from './pizza.service';
 import { Pizza } from './pizza.model';
@@ -13,10 +13,12 @@ import { ErrorScreenComponent } from '../shared/error-screen/error-screen.compon
 })
 export class OrderPizzaComponent implements OnInit {
   pizzas = signal<Pizza[]>([]);
+
   private pizzaService = inject(PizzaService);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.pizzaService.pizzaData.subscribe({
+    const subscription = this.pizzaService.pizzaData.subscribe({
       next: (pizzas: Pizza[]) => {
         console.log(pizzas);
         this.pizzas.update(() => pizzas);
@@ -24,6 +26,7 @@ export class OrderPizzaComponent implements OnInit {
       error: (error) => {
         console.log(error);
       }
-    });    
+    });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }
