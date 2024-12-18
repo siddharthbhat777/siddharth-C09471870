@@ -1,0 +1,22 @@
+.cart-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    padding-inline: 5rem;
+    margin-top: -1rem;
+    min-height: 90vh;
+}
+
+.single-cart-item {
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .cart-items {
+        grid-template-columns: 1fr;
+        padding-inline: 0.5rem;
+    }
+
+    .single-cart-item {
+        padding: 1.5rem;
+    }
+}

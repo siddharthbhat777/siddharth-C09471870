@@ -1,8 +1,12 @@
 @if (cartItems().length > 0) {
     <h1>Please select pizza to customize</h1>
-    @for (cartItem of cartItems(); track cartItem.pizzaId) {
-    <app-pizza [cartItem]="cartItem" />
-    }
+    <div class="cart-items">
+        @for (cartItem of cartItems(); track cartItem.pizzaId) {
+            <div class="single-cart-item">
+                <app-pizza [cartItem]="cartItem" />
+            </div>
+            }
+    </div>
 } @else {
     <app-error-screen errorIcon="/order-pizza/no-pizza.png" errorMessage="No pizzas found" />
 }
