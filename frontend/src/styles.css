@@ -7,7 +7,7 @@ body {
 :root {
     --black-color: black;
     --white-color: white;
-    --shaded-white-color: #efefef;
+    --shaded-white-color: #ebebeb;
     --lightest-gray-color: #c9c9c9;
     --lighter-gray-color: #9b9b9b;
     --gray-color: #6b6b6b;
@@ -17,4 +17,6 @@ body {
     --secondary-light-color: #ffca6d;
     --secondary-color: #FFB128;
     --secondary-dark-color: #e69500;
+    --blue-color: #6b6bff;
+    --dark-blue-color: #0a0a68;
 }

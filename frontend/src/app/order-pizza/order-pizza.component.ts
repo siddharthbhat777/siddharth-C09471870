@@ -30,9 +30,7 @@ export class OrderPizzaComponent implements OnInit {
     });
     this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
     const pizzaSubscription = this.pizzaService.pizzaData.subscribe({
-      error: (error) => {
-        console.log(error);
-      }
+      error: (error) => console.log(error)
     });
     this.destroyRef.onDestroy(() => pizzaSubscription.unsubscribe());
   }

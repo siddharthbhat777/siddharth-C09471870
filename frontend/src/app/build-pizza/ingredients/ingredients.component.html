@@ -1,1 +1,27 @@
-<p>ingredients works!</p>
+<h1 class="selection-heading">Pizzeria now gives you options to build your own pizza. Customize your pizza by choosing
+    ingredients from the list given below</h1>
+<div class="ingredients-layout">
+    <table class="toppings-table">
+        @for (ingredient of ingredients(); track ingredient._id) {
+        <tr>
+            <td>
+                <img [src]="ingredient.image" [alt]="ingredient.tname" class="topping-image">
+            </td>
+            <td>
+                <strong>{{ ingredient.tname }}</strong>
+                <span class="price">{{ ingredient.price | currency: 'INR' }}</span>
+            </td>
+            <td>
+                <label class="add-label">
+                    <input type="checkbox"/>
+                    Add
+                </label>
+            </td>
+        </tr>
+        }
+    </table>
+    <h3 class="total-cost">Total cost: 80</h3>
+</div>
+<div class="build-button-layout">
+    <button class="build-pizza-button">Build Ur Pizza</button>
+</div>

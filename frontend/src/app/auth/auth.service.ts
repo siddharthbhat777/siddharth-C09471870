@@ -17,9 +17,13 @@ export class AuthService {
   private destroyRef = inject(DestroyRef);
 
   loginUser(email: string, password: string) {
-    return this.http.put<LoginResponse>('http://localhost:8001/user/login', { email, password }).pipe(tap((resData) => {
-      this.handleAuthentication(resData);
-    }));
+    return this.http.put<LoginResponse>('http://localhost:8001/user/login', { email, password }).pipe(
+      tap({
+        next: (resData) => {
+          this.handleAuthentication(resData);
+        }
+      })
+    );
   }
 
   decodeToken(token: string): User | null {
