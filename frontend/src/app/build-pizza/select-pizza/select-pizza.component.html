@@ -1,5 +1,5 @@
 @if (cartItems().length > 0) {
-    <h1>Please select pizza to customize</h1>
+    <h1 class="selection-heading">Please select pizza to customize</h1>
     <div class="cart-items">
         @for (cartItem of cartItems(); track cartItem.pizzaId) {
             <div class="single-cart-item">

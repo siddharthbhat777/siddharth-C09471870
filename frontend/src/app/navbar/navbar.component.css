@@ -56,7 +56,7 @@
     transition: color 0.3s;
 }
 
-.nav-links h3:hover {
+.nav-links h3:hover, .selected {
     color: var(--lighter-gray-color);
 }
 
