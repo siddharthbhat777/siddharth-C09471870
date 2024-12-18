@@ -9,7 +9,7 @@
     <div class="content">
         <p><strong>Extra ingredients: </strong>{{ cartItem().extraIngredients.length > 0 ? cartItem().extraIngredients :
             'No ingredients added' }}</p>
-        <button class="customize-button">
+        <button class="customize-button" [routerLink]="['/build-pizza/ingredients', cartItem().pizzaId]">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
                 <path
