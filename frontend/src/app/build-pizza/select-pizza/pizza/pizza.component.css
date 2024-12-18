@@ -1,5 +1,4 @@
 .pizza-card {
-    height: 70%;
     border: .0625rem solid var(--lightest-gray-color);
     border-radius: .5rem;
     box-shadow: 0 .125rem .3125rem rgba(0, 0, 0, 0.2);
