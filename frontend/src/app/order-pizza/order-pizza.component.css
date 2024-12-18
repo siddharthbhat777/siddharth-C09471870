@@ -2,9 +2,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-inline: 5rem;
-    margin-top: 2rem;
+    margin-top: -1rem;
     height: max-content;
-    min-height: 86vh;
+    min-height: 90vh;
 }
 
 .single-pizza {
