@@ -5,6 +5,7 @@ import { BuildPizzaComponent } from './build-pizza/build-pizza.component';
 import { CartComponent } from './cart/cart.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { routes as buildRoutes } from './build-pizza/build.routes';
 
 export const routes: Routes = [
     {
@@ -22,6 +23,7 @@ export const routes: Routes = [
         path: 'build-pizza',
         component: BuildPizzaComponent,
         canActivate: [AuthGuardService],
+        children: buildRoutes,
         title: 'Build Pizza'
     },
     {
