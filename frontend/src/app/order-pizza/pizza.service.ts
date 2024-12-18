@@ -22,9 +22,10 @@ export class PizzaService {
     }).pipe(
       tap({
         next: (res) => {
-          const cartIds = this.cartService.sharableCartPizzaIds;
+          const cartItems = this.cartService.sharableCartPizzas;
+          const cartIds = cartItems().map((item) => item.pizzaId.toString());
           const alteredPizzas = res.pizzas.map((pizza) => {
-            if (cartIds().includes(pizza._id.toString())) {
+            if (cartIds.includes(pizza._id.toString())) {
               return { ...pizza, isAdded: true };
             }
             return { ...pizza, isAdded: false };

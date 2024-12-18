@@ -8,8 +8,8 @@ import { map, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private cartPizzaIds = signal<string[]>([]);
-  sharableCartPizzaIds = this.cartPizzaIds.asReadonly();
+  private cartPizzas = signal<Cart[]>([]);
+  sharableCartPizzas = this.cartPizzas.asReadonly();
   
   private http = inject(HttpClient);
   private authService = inject(AuthService);
@@ -22,8 +22,7 @@ export class CartService {
     }).pipe(
       tap({
         next: (res) => {
-          const ids = res.cartItems.map((item) => item.pizzaId.toString());
-          this.cartPizzaIds.set(ids);
+          this.cartPizzas.set(res.cartItems);
         }
       }),
       map((res) => res.cartItems)
