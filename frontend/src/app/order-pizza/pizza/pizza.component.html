@@ -1,4 +1,4 @@
-<div class="pizza-card">
+<div class="pizza-card" [id]="'pizza-' + pizza()._id.toString()">
     <div class="pizza-header">
         <h2 class="pizza-title">{{ pizza().name }}</h2>
         <div class="type-indicator">

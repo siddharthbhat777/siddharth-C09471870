@@ -16,6 +16,7 @@ export const routes: Routes = [
     {
         path: 'order-pizza',
         component: OrderPizzaComponent,
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
         canActivate: [AuthGuardService],
         title: 'Order Pizza'
     },

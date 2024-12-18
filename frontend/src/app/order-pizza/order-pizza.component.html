@@ -2,6 +2,7 @@
     @for (pizza of pizzas(); track pizza._id) {
         <div class="single-pizza">
             <app-pizza [pizza]="pizza" />
+            <span [id]="pizza._id.toString()"><!-- Scroll target --></span>
         </div>
     } @empty {
         <app-error-screen errorMessage="Unable to fetch pizzas" errorIcon="/order-pizza/no-pizza.png" />
