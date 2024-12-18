@@ -2,10 +2,11 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Ingredient } from '../ingredient.model';
 import { BuildService } from '../build.service';
 import { CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ingredients',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.css'
 })

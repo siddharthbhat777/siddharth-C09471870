@@ -1,7 +1,37 @@
+.top-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* This will spread the elements and center the heading */
+    width: 100%;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--white-color);
+    background-color: var(--darker-blue-color);
+    margin-left: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: var(--dark-blue-color);
+}
+
 .selection-heading {
     text-align: center;
-    font-size: x-large;
+    font-size: large;
     font-weight: 500;
+    padding-inline: 2rem;
 }
 
 .ingredients-layout {
@@ -101,7 +131,7 @@
 
 .total-cost {
     font-size: x-large;
-    color: var(--dark-blue-color);
+    color: var(--darker-blue-color);
 }
 
 .build-button-layout {
