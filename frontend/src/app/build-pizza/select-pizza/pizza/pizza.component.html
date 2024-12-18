@@ -1,1 +1,15 @@
-<p>pizza works!</p>
+<div class="pizza-card">
+    <div class="header">
+        <img [src]="cartItem().image" [alt]="cartItem().name">
+        <div class="header-texts">
+            <h2>{{ cartItem().name }}</h2>
+            <p>{{ ' x' + cartItem().quantity }}</p>
+        </div>
+    </div>
+    <div class="content">
+        <p>{{ cartItem().description }}</p>
+        <p>{{ cartItem().ingredients }}</p>
+        <p>{{ cartItem().topping }}</p>
+        <p>{{ cartItem().extraIngredients.length > 0 ? cartItem().extraIngredients : 'No ingredients added' }}</p>
+    </div>
+</div>

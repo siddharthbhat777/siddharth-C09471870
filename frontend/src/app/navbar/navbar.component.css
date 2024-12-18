@@ -81,18 +81,18 @@
 }
 
 .nav-actions button:hover {
-    background-color: var(--secondary-light-color);
-    color: var(--darker-gray-color);
+    background-color: var(--secondary-dark-color);
+    color: var(--shaded-white-color);
 }
 
-.nav-actions .logout {
+.nav-actions .profile {
     cursor: pointer;
     font-size: 1rem;
     transition: color 0.3s;
     color: var(--white-color);
 }
 
-.nav-actions .logout:hover {
+.nav-actions .profile:hover {
     color: var(--lightest-gray-color);
 }
 
@@ -145,7 +145,7 @@
         font-size: 0.875rem;
     }
 
-    .nav-actions .logout {
+    .nav-actions .profile {
         font-size: 0.875rem;
     }
 }
