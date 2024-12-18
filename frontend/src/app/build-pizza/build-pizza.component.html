@@ -1,7 +1,3 @@
 <div class="build-layout">
-    @if (cartItems().length > 0) {
-        <router-outlet />
-    } @else {
-        <app-error-screen errorIcon="/order-pizza/no-pizza.png" errorMessage="No pizzas found" />
-    }
+    <router-outlet />
 </div>

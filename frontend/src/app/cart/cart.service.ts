@@ -15,14 +15,24 @@ export class CartService {
   private authService = inject(AuthService);
 
   getCart() {
-    return this.http.get<{ cartItems: Cart[] }>(`http://localhost:5004/cart/items/${this.authService.sharableData()?._id}`, {
+    return this.http.get<{ cartItems: any[] }>(`http://localhost:5004/cart/items/${this.authService.sharableData()?._id}`, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
     }).pipe(
       tap({
         next: (res) => {
-          this.cartPizzas.set(res.cartItems);
+          const formattedCart: Cart[] = res.cartItems.map((item) => ({
+            quantity: item.quantity,
+            pizzaId: item.pizzaId,
+            name: item.pizzaData.name,
+            image: item.pizzaData.image,
+            description: item.pizzaData.description,
+            ingredients: item.pizzaData.ingredients,
+            extraIngredients: item.pizzaData.extraIngredients || [],
+            topping: item.pizzaData.topping
+          }));
+          this.cartPizzas.set(formattedCart);
         }
       }),
       map((res) => res.cartItems)
