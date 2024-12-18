@@ -7,4 +7,5 @@ export interface Pizza {
     description: string;
     ingredients: string[];
     topping: string[];
+    isAdded?: boolean;
 }

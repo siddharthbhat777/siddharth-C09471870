@@ -10,7 +10,7 @@ import { PizzaService } from '../pizza.service';
   styleUrl: './pizza.component.css'
 })
 export class PizzaComponent {
-  pizza = input.required<Pizza & { isAdded: boolean }>();
+  pizza = input.required<Pizza>();
   
   private pizzaService = inject(PizzaService);
   private destroyRef = inject(DestroyRef);
@@ -19,8 +19,8 @@ export class PizzaComponent {
     console.log(this.pizza());
   }
 
-  onAddToCart(pizzaId: string) {
-    const subscription = this.pizzaService.addToCart(pizzaId).subscribe({
+  onAddToCart(pizza: Pizza) {
+    const subscription = this.pizzaService.addToCart(pizza).subscribe({
       next: (cart) => console.log(cart),
       error: (error) => {
         console.log(error);

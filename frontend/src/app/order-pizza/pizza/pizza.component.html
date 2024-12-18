@@ -32,7 +32,7 @@
             <img [src]="pizza().image" alt="Paneer Tikka Pizza">
         </div>
         <button class="add-to-cart-btn" [ngClass]="{ 'disabled-button': pizza().isAdded }" [disabled]="pizza().isAdded"
-            (click)="!pizza().isAdded && onAddToCart(pizza()._id)">
+            (click)="!pizza().isAdded && onAddToCart(pizza())">
             @if (pizza().isAdded) {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-check-circle-fill" viewBox="0 0 16 16">

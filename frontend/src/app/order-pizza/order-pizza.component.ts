@@ -13,31 +13,22 @@ import { CartService } from '../cart/cart.service';
   providers: [PizzaService]
 })
 export class OrderPizzaComponent implements OnInit {
-  pizzas = signal<(Pizza & { isAdded: boolean })[]>([]);
-
   private pizzaService = inject(PizzaService);
   private cartService = inject(CartService);
   private destroyRef = inject(DestroyRef);
-
+  
+  pizzas = this.pizzaService.sharablePizzas;
+  
   ngOnInit(): void {
     const cartSubscription = this.cartService.getCart().subscribe({
-      next: (cartItems) => {
-        const cartPizzaIds = cartItems.map((item) => item.pizzaId.toString());
-        const pizzaSubscription = this.pizzaService.pizzaData.subscribe({
-          next: (pizzas: Pizza[]) => {
-            const pizzasWithAddedStatus = pizzas.map((pizza) => ({
-              ...pizza,
-              isAdded: cartPizzaIds.includes(pizza._id.toString()),
-            }));
-            this.pizzas.set(pizzasWithAddedStatus);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
-        this.destroyRef.onDestroy(() => pizzaSubscription.unsubscribe());
-      }
+      error: (error) => console.log(error)
     });
     this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
+    const pizzaSubscription = this.pizzaService.pizzaData.subscribe({
+      error: (error) => {
+        console.log(error);
+      }
+    });
+    this.destroyRef.onDestroy(() => pizzaSubscription.unsubscribe());
   }
 }
