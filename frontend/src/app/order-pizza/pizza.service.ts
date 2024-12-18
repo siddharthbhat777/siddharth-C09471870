@@ -3,7 +3,6 @@ import { inject, Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Pizza } from './pizza.model';
 import { map, Observable } from 'rxjs';
-import { Cart } from '../cart/cart.model';
 
 @Injectable()
 export class PizzaService {
@@ -21,12 +20,10 @@ export class PizzaService {
   }
 
   addToCart(pizzaId: string) {
-    return this.http.put<{ cart: Cart[] }>(`http://localhost:8001/pizza/add-to-cart/${this.authService.sharableData()?._id}/${pizzaId}`, null, {
+    return this.http.put(`http://localhost:8001/pizza/add-to-cart/${this.authService.sharableData()?._id}/${pizzaId}`, null, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
-    }).pipe(
-      map((res) => res.cart)
-    );
+    });
   }
 }

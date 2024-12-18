@@ -71,10 +71,21 @@
     cursor: pointer;
     font-size: .9rem;
     transition: background-color 0.3s;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .add-to-cart-btn:hover {
     background-color: var(--secondary-dark-color);
+}
+
+.disabled-button {
+    cursor: not-allowed;
+    background-color: var(--secondary-light-color);
+}
+
+.disabled-button:hover {
+    background-color: var(--secondary-light-color);
 }
 
 @media (max-width: 768px) {
