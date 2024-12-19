@@ -40,16 +40,11 @@ exports.customizePizza = async (req, res, next) => {
         const ingredientDetails = await Ingredient.find({
             _id: { $in: ingredients.map((id) => new mongoose.Types.ObjectId(id)) }
         });
-        if (ingredientDetails.length === 0) {
-            const error = new Error('Ingredients not found');
-            error.statusCode = 404;
-            throw error;
-        }
         let totalIngredientsCost = 0;
         if (ingredientDetails.length > 0) {
             totalIngredientsCost = ingredientDetails.reduce((accumulator, ingredient) => accumulator + ingredient.price, 0);
         }
-        pizza.pizzaData = { ...defaultPizza, price: defaultPizza.price + totalIngredientsCost, extraIngredients: ingredients };
+        pizza.pizzaData = { ...defaultPizza, price: defaultPizza.price + totalIngredientsCost, extraIngredients: ingredients || [] };
         await cart.save();
         res.status(200).json({ message: 'Built pizza successfully', cart: cart });
     } catch (error) {

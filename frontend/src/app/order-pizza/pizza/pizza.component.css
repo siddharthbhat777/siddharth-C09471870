@@ -76,26 +76,34 @@
 .add-to-cart-btn {
     background-color: var(--secondary-color);
     color: var(--white-color);
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
     border: none;
     padding: .5rem .75rem;
     border-radius: .25rem;
     cursor: pointer;
     font-size: .9rem;
-    transition: background-color 0.3s;
+    transition: all 0.5s ease;
     display: flex;
     gap: 0.5rem;
 }
 
 .add-to-cart-btn:hover {
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
+}
+
+.add-to-cart-btn:active {
+    box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
     background-color: var(--secondary-dark-color);
 }
 
 .disabled-button {
     cursor: not-allowed;
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
     background-color: var(--secondary-light-color);
 }
 
 .disabled-button:hover {
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
     background-color: var(--secondary-light-color);
 }
 

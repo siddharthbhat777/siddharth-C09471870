@@ -74,7 +74,7 @@
     background-color: var(--secondary-color);
     color: var(--white-color);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: background-color 0.5s ease, color 0.5s ease;
     display: flex;
     align-items: center;
     gap: .3125rem;
@@ -82,6 +82,9 @@
 
 .nav-actions button:hover {
     background-color: var(--secondary-dark-color);
+}
+
+.nav-actions button:active {
     color: var(--shaded-white-color);
 }
 

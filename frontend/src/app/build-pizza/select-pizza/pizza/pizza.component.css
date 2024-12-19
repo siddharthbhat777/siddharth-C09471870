@@ -47,12 +47,13 @@
 .pizza-card .content .customize-button {
     background-color: var(--secondary-color);
     color: var(--white-color);
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
     border: none;
     padding: 0.5rem .75rem;
     border-radius: .25rem;
     cursor: pointer;
     font-size: .9rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,18 +61,24 @@
 }
 
 .pizza-card .content .customize-button:hover {
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
     background-color: var(--secondary-dark-color);
+}
+
+.pizza-card .content .customize-button:active {
+    box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
 }
 
 .pizza-card .content .check-details-button {
     background-color: var(--primary-color);
     color: var(--white-color);
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
     border: none;
     padding: 0.5rem .75rem;
     border-radius: .25rem;
     cursor: pointer;
     font-size: .9rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,5 +86,10 @@
 }
 
 .pizza-card .content .check-details-button:hover {
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
     background-color: var(--darker-gray-color);
+}
+
+.pizza-card .content .check-details-button:active {
+    box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
 }

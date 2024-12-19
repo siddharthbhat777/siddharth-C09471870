@@ -64,10 +64,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .pricing-layout .quantity-buttons .minus-button:hover {
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
+}
+
+.pricing-layout .quantity-buttons .minus-button:active {
+    box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
     background-color: var(--lightest-gray-color);
 }
 
@@ -84,52 +89,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .pricing-layout .quantity-buttons .plus-button:hover {
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
+}
+
+.pricing-layout .quantity-buttons .plus-button:active {
+    box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
     background-color: var(--lightest-gray-color);
 }
 
 .pricing-layout .delete-button {
-  align-items: center;
-  appearance: none;
-  border-radius: .25rem;
-  border-style: none;
-  box-shadow: #00000033 0 .1875rem .0625rem -0.125rem,#00000024 0 .125rem .125rem 0,#0000001f 0 .0625rem .3125rem 0;
-  box-sizing: border-box;
-  color: var(--white-color);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: Roboto,sans-serif;
-  font-size: .875rem;
-  font-weight: 500;
-  height: 2.25rem;
-  justify-content: center;
-  letter-spacing: .0892857em;
-  line-height: normal;
-  min-width: 4rem;
-  outline: none;
-  overflow: visible;
-  padding: 0 1rem;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  will-change: transform,opacity;
-  background-color: var(--red-color);
+    align-items: center;
+    appearance: none;
+    border-radius: .25rem;
+    border-style: none;
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
+    box-sizing: border-box;
+    color: var(--white-color);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: Roboto, sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    height: 2.25rem;
+    justify-content: center;
+    letter-spacing: .0892857em;
+    line-height: normal;
+    min-width: 4rem;
+    outline: none;
+    overflow: visible;
+    padding: 0 1rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    will-change: transform, opacity;
+    background-color: var(--red-color);
 }
 
 .pricing-layout .delete-button:hover {
-  box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
 }
 
 .pricing-layout .delete-button:active {
-  box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
-  background-color: var(--dark-red-color);
+    box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
+    background-color: var(--dark-red-color);
 }
