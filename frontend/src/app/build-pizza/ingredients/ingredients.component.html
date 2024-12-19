@@ -24,7 +24,7 @@
             </td>
             <td>
                 <label class="add-label">
-                    <input type="checkbox" (change)="updateTotalCost(ingredient.price, $event)" />
+                    <input type="checkbox" (change)="updateTotalCost(ingredient.price, ingredient._id.toString(), $event)" />
                     Add
                 </label>
             </td>
@@ -34,5 +34,5 @@
     <h3 class="total-cost">Total cost: {{ totalCost() }}</h3>
 </div>
 <div class="build-button-layout">
-    <button class="build-pizza-button">Build Ur Pizza</button>
+    <button class="build-pizza-button" (click)="buildPizza()">Build Ur Pizza</button>
 </div>

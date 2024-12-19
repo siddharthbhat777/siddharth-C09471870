@@ -40,6 +40,10 @@
     gap: 0.5rem;
 }
 
+.pizza-card .content p {
+    margin: 0;
+}
+
 .pizza-card .content .customize-button {
     background-color: var(--secondary-color);
     color: var(--white-color);

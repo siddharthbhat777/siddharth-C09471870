@@ -26,6 +26,8 @@ export class CartService {
             quantity: item.quantity,
             pizzaId: item.pizzaId,
             name: item.pizzaData.name,
+            type: item.pizzaData.type,
+            price: item.pizzaData.price,
             image: item.pizzaData.image,
             description: item.pizzaData.description,
             ingredients: item.pizzaData.ingredients,
