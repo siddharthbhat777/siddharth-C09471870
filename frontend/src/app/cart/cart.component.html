@@ -1,6 +1,8 @@
 <div>
     <div>
-        <app-cart-item />
+        @for (item of cartItems(); track item.pizzaId) {
+            <app-cart-item [cartItem]="item" />
+        }
     </div>
     <div></div>
 </div>
