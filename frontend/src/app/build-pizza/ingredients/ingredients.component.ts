@@ -3,6 +3,7 @@ import { Ingredient } from '../ingredient.model';
 import { BuildService } from '../build.service';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -17,14 +18,17 @@ export class IngredientsComponent implements OnInit {
   selectedIngredients = signal<string[]>([]);
 
   private buildService = inject(BuildService);
+  private cartService = inject(CartService);
   private destroyRef = inject(DestroyRef);
 
+  private cartItems = this.cartService.sharableCartPizzas;
+
   ngOnInit(): void {
-      const subscription = this.buildService.getIngredients().subscribe({
-        next: (res) => this.ingredients.set(res),
-        error: (error) => console.log(error)
-      });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    const subscription = this.buildService.getIngredients().subscribe({
+      next: (res) => this.ingredients.set(res),
+      error: (error) => console.log(error)
+    });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   updateTotalCost(price: number, ingredientId: string, event: Event): void {
@@ -45,5 +49,15 @@ export class IngredientsComponent implements OnInit {
       error: (error) => console.log(error)
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  isIngredentChecked(pizzaId: string, ingredientId: string): boolean {
+    if (this.cartItems().length > 0) {
+      return this.cartItems().some((item) =>
+        item.pizzaId === pizzaId &&
+        item.extraIngredients.some((ingredient) => ingredient._id.toString() === ingredientId)
+      );
+    }
+    return false;
   }
 }
