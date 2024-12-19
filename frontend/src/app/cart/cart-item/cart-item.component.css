@@ -4,4 +4,83 @@
     box-shadow: 0 .125rem .3125rem #00000033;
     padding: 1rem;
     background-color: var(--white-color);
+    display: grid;
+    grid-template-columns: 25% auto 15%;
+}
+
+.item-card .image-layout {
+    display: flex;
+    align-items: center;
+}
+
+.item-card .image-layout img {
+    height: 10rem;
+    width: 10rem;
+    object-fit: cover;
+}
+
+.details-layout .item-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.details-layout p {
+    color: var(--gray-color);
+}
+
+.pricing-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.pricing-layout .currency {
+    color: var(--green-color);
+    font-size: large;
+    font-weight: 600;
+}
+
+.pricing-layout .quantity-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pricing-layout .quantity-buttons .minus-button {
+    background-color: var(--red-color);
+    cursor: pointer;
+    border: 0;
+    border-radius: 0.25rem;
+    color: var(--white-color);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s ease;
+}
+
+.pricing-layout .quantity-buttons .minus-button:hover {
+    background-color: var(--dark-red-color);
+}
+
+.pricing-layout .quantity-buttons .plus-button {
+    background-color: var(--green-color);
+    cursor: pointer;
+    border: 0;
+    border-radius: 0.25rem;
+    color: var(--white-color);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s ease;
+}
+
+.pricing-layout .quantity-buttons .plus-button:hover {
+    background-color: var(--dark-green-color);
 }

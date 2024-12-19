@@ -20,4 +20,10 @@ body {
     --blue-color: #6b6bff;
     --dark-blue-color: #000093;
     --darker-blue-color: #0a0a68;
+    --light-green-color: #5cb85c;
+    --green-color: green;
+    --dark-green-color: #025a02;
+    --light-red-color: #e14545;
+    --red-color: #da0303;
+    --dark-red-color: #aa0000;
 }
