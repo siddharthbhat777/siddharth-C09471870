@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/c
 import { Ingredient } from '../ingredient.model';
 import { BuildService } from '../build.service';
 import { CurrencyPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
 
 @Component({
@@ -19,13 +19,29 @@ export class IngredientsComponent implements OnInit {
 
   private buildService = inject(BuildService);
   private cartService = inject(CartService);
+  private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
   private cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
     const subscription = this.buildService.getIngredients().subscribe({
-      next: (res) => this.ingredients.set(res),
+      next: (res) => {
+        this.ingredients.set(res);
+        const cartItems = this.cartItems();
+        if (cartItems.length > 0) {
+          const currentPizza = cartItems.find(item => item.pizzaId === this.pizzaId());
+          if (currentPizza) {
+            const selectedIngredientIds = currentPizza.extraIngredients.map(ingredient => ingredient._id.toString());
+            this.selectedIngredients.set(selectedIngredientIds);
+            const totalCost = selectedIngredientIds.reduce((sum, id) => {
+              const ingredient = res.find(ingredient => ingredient._id.toString() === id);
+              return ingredient ? sum + ingredient.price : sum;
+            }, 0);
+            this.totalCost.set(totalCost);
+          }
+        }
+      },
       error: (error) => console.log(error)
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
@@ -46,12 +62,13 @@ export class IngredientsComponent implements OnInit {
 
   buildPizza() {
     const subscription = this.buildService.buildPizza(this.pizzaId(), this.selectedIngredients()).subscribe({
-      error: (error) => console.log(error)
+      error: (error) => console.log(error),
+      complete: () => this.router.navigate(['build-pizza/select-pizza'])
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
-  isIngredentChecked(pizzaId: string, ingredientId: string): boolean {
+  isIngredientChecked(pizzaId: string, ingredientId: string): boolean {
     if (this.cartItems().length > 0) {
       return this.cartItems().some((item) =>
         item.pizzaId === pizzaId &&
