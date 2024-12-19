@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="content">
-        <p><strong>Price: </strong>{{ cartItem().price }}</p>
+        <p><strong>Price: </strong>{{ cartItem().price | currency: 'INR' }}</p>
         <p>
             <strong>Extra ingredients: </strong>
             {{ getExtraIngredients() }}

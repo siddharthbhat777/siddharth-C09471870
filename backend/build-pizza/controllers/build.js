@@ -38,7 +38,7 @@ exports.customizePizza = async (req, res, next) => {
             throw error;
         }
         const ingredientDetails = await Ingredient.find({
-            _id: { $in: ingredients.map((id) => new mongoose.Types.ObjectId(id)) }
+            _id: { $in: ingredients.map((id) => mongoose.Types.ObjectId.createFromHexString(id)) }
         });
         let totalIngredientsCost = 0;
         if (ingredientDetails.length > 0) {

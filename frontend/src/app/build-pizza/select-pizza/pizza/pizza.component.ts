@@ -2,10 +2,11 @@ import { Component, input } from '@angular/core';
 import { Cart } from '../../../cart/cart.model';
 import { RouterLink } from '@angular/router';
 import { Ingredient } from '../../ingredient.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pizza',
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './pizza.component.html',
   styleUrl: './pizza.component.css'
 })
