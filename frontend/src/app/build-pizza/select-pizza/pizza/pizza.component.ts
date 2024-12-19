@@ -25,10 +25,6 @@ export class PizzaComponent {
     if (extraIngredients.length === 0) {
       return 'No ingredients added';
     }
-    if (this.isIngredientArray(extraIngredients)) {
-      return this.formattedIngredient(extraIngredients).join(', ');
-    } else {
-      return extraIngredients.join(', ');
-    }
+    return this.formattedIngredient(extraIngredients).join(', ');
   }
 }

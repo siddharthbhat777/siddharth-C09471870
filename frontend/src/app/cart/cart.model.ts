@@ -9,6 +9,6 @@ export interface Cart {
     image: string;
     description: string;
     ingredients: string[];
-    extraIngredients: string[] | Ingredient[];
+    extraIngredients: Ingredient[];
     topping: string[];
 }
