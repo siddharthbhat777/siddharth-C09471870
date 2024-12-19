@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class IngredientsComponent implements OnInit {
   ingredients = signal<Ingredient[]>([]);
+  totalCost = signal<number>(0);
 
   private buildService = inject(BuildService);
   private destroyRef = inject(DestroyRef);
