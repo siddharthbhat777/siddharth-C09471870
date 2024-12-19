@@ -3,11 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
-import { FooterComponent } from "./shared/footer/footer.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, AuthComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, AuthComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

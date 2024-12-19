@@ -1,8 +1,13 @@
-<div>
+<div class="cart-layout">
     <div>
-        @for (item of cartItems(); track item.pizzaId) {
-            <app-cart-item [cartItem]="item" />
-        }
+        <div class="cart-items">Cart items:</div>
+        <div class="cart-items-list">
+            @for (item of cartItems(); track item.pizzaId) {
+            <div class="single-cart-item">
+                <app-cart-item [cartItem]="item" />
+            </div>
+            }
+        </div>
     </div>
-    <div></div>
+    <div class="billing">Hello</div>
 </div>
