@@ -40,4 +40,22 @@ export class CartService {
       map((res) => res.cartItems)
     );
   }
+
+  updateCartItem(pizzaId: string, operation: 'plus' | 'minus') {
+    return this.http.put(`http://localhost:8001/cart/update-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
+      operation
+    }, {
+      headers: {
+        'Authorization': `Bearer ${this.authService.token}`
+      }
+    });
+  }
+  
+  deleteCartItem(pizzaId: string) {
+    return this.http.delete(`http://localhost:8001/cart/remove-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
+      headers: {
+        'Authorization': `Bearer ${this.authService.token}`
+      }
+    });
+  }
 }

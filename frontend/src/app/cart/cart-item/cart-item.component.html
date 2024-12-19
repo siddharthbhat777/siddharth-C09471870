@@ -25,7 +25,7 @@
     <div class="pricing-layout">
         <span class="currency">{{ cartItem().price | currency: 'INR' }}</span>
         <div class="quantity-buttons">
-            <button class="minus-button">
+            <button class="minus-button" (click)="updateCartItem(cartItem().pizzaId.toString(), 'minus')">
                 @if (cartItem().quantity < 2) { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path
@@ -36,7 +36,8 @@
                     }
             </button>
             {{ cartItem().quantity }}
-            <button class="plus-button">+</button>
+            <button class="plus-button" (click)="updateCartItem(cartItem().pizzaId.toString(), 'plus')">+</button>
         </div>
+        <button class="delete-button" (click)="deleteCartItem(cartItem().pizzaId)">Delete</button>
     </div>
 </div>
