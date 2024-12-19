@@ -24,4 +24,11 @@ export class IngredientsComponent implements OnInit {
       });
       this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
+
+  updateTotalCost(price: number, event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const isChecked = inputElement.checked;
+    const currentTotal = this.totalCost();
+    this.totalCost.set(isChecked ? currentTotal + price : currentTotal - price);
+  }
 }

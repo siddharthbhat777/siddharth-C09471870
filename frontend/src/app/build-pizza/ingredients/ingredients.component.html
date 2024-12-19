@@ -24,7 +24,7 @@
             </td>
             <td>
                 <label class="add-label">
-                    <input type="checkbox" />
+                    <input type="checkbox" (change)="updateTotalCost(ingredient.price, $event)" />
                     Add
                 </label>
             </td>
