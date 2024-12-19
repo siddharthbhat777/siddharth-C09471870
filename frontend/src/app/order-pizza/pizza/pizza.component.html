@@ -29,7 +29,7 @@
 
     <div class="pizza-bottom">
         <div class="pizza-image">
-            <img [src]="pizza().image" alt="Paneer Tikka Pizza">
+            <img [src]="pizza().image" [alt]="pizza().name">
         </div>
         <button class="add-to-cart-btn" [ngClass]="{ 'disabled-button': pizza().isAdded }" [disabled]="pizza().isAdded"
             (click)="!pizza().isAdded && onAddToCart(pizza())">
