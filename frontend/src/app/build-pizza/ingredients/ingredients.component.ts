@@ -25,7 +25,7 @@ export class IngredientsComponent implements OnInit {
   private cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
-    const subscription = this.buildService.getIngredients().subscribe({
+    const buildSubscription = this.buildService.getIngredients().subscribe({
       next: (res) => {
         this.ingredients.set(res);
         const cartItems = this.cartItems();
@@ -44,7 +44,11 @@ export class IngredientsComponent implements OnInit {
       },
       error: (error) => console.log(error)
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    this.destroyRef.onDestroy(() => buildSubscription.unsubscribe());
+    const cartSubscription = this.cartService.getCart().subscribe({
+      error: (error) => console.log(error)
+    });
+    this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
   }
 
   updateTotalCost(price: number, ingredientId: string, event: Event): void {
