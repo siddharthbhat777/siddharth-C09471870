@@ -1,3 +1,6 @@
+@if (toggleExtraOptions()) {
+    <app-extra-options (closeOptions)="closeOptions()" />
+}
 <nav class="navbar">
     <div>
         <div class="navbar-logo" routerLink="">
@@ -21,7 +24,7 @@
                 Shopping cart
             </span>
         </button>
-        <div class="profile">
+        <div class="profile" (click)="toggleExtraOptions.set(!toggleExtraOptions())">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                 class="bi bi-person-circle" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
