@@ -1,15 +1,19 @@
-<div class="cart-layout">
-    <div>
-        <div class="cart-items">Cart items:</div>
-        <div class="cart-items-list">
-            @for (item of cartItems(); track item.pizzaId) {
-            <div class="single-cart-item">
-                <app-cart-item [cartItem]="item" />
+@if (cartItems.length > 1) {
+    <div class="cart-layout">
+        <div>
+            <div class="cart-items">Cart items:</div>
+            <div class="cart-items-list">
+                @for (item of cartItems(); track item.pizzaId) {
+                <div class="single-cart-item">
+                    <app-cart-item [cartItem]="item" />
+                </div>
+                }
             </div>
-            }
+        </div>
+        <div class="billing">
+            <app-billing />
         </div>
     </div>
-    <div class="billing">
-        <app-billing />
-    </div>
-</div>
+} @else {
+    <app-error-screen errorIcon="/cart/empty-cart.png" errorMessage="No cart items found" />
+}
