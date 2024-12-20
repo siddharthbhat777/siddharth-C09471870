@@ -138,7 +138,6 @@ export class AuthComponent {
     } else {
       console.error("Form is invalid. Errors:");
 
-      // Name field errors
       const nameErrors = this.registerForm.get('name')?.errors;
       if (nameErrors) {
         console.log("Name Errors:", nameErrors);
@@ -150,7 +149,6 @@ export class AuthComponent {
         }
       }
 
-      // Age field errors
       const ageErrors = this.registerForm.get('age')?.errors;
       if (ageErrors) {
         console.log("Age Errors:", ageErrors);
@@ -162,7 +160,6 @@ export class AuthComponent {
         }
       }
 
-      // Email field errors
       const emailErrors = this.registerForm.get('email')?.errors;
       if (emailErrors) {
         console.log("Email Errors:", emailErrors);
@@ -174,7 +171,6 @@ export class AuthComponent {
         }
       }
 
-      // Password fields errors
       const passwordsGroup = this.registerForm.get('passwords');
       const passwordErrors = passwordsGroup?.get('password')?.errors;
       const confirmPasswordErrors = passwordsGroup?.get('confirmPassword')?.errors;
@@ -204,6 +200,24 @@ export class AuthComponent {
         console.log("Passwords do not match.");
       }
     }
+  }
+
+  getErrorMessage(control: AbstractControl | null): string | null {
+    if (!control || !control.errors || !control.touched) {
+      return null;
+    }
+
+    const errorMessages: { [key: string]: string } = {
+      required: 'This field is required.',
+      email: 'Invalid email format.',
+      minlength: `Must be at least ${control.getError('minlength')?.requiredLength} characters.`,
+      maxlength: `Must not exceed ${control.getError('maxlength')?.requiredLength} characters.`,
+      onlyAlphabets: 'Only alphabets are allowed.',
+      onlyNumbers: 'Only numbers are allowed.'
+    };
+
+    const firstErrorKey = Object.keys(control.errors)[0];
+    return errorMessages[firstErrorKey] || 'Invalid input.';
   }
 
   setPasswordVisibility(event: Event) {
