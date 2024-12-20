@@ -1,6 +1,6 @@
 <app-navbar />
-<app-auth (showAuth)="closeAuth()" />
 @if (showAuth()) {
+<app-auth (showAuth)="closeAuth()" />
 }
 <main>
     <router-outlet />

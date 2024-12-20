@@ -2,6 +2,14 @@
     margin: auto;
     width: 100%;
     text-align: center;
+    position: relative;
+}
+
+.close-button {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .heading {

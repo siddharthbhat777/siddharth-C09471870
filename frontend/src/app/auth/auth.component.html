@@ -1,5 +1,12 @@
 <app-modal>
     <div class="forms-layout">
+        <div class="close-button" (click)="closeAuth()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke='#000' strokeWidth='0.5' fill="currentColor" class="bi bi-x-lg"
+                viewBox="0 0 16 16">
+                <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+            </svg>
+        </div>
         <h1 class="heading">{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
         @if (isLoginSelected()) {
         <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="form">
@@ -37,7 +44,8 @@
         } @else {
         <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()" class="form">
             <div class="form-field">
-                <input [class]="getErrorMessage(registerForm.get('name')) ? 'error-input' : 'text-input'" type="text" placeholder="Name" formControlName="name">
+                <input [class]="getErrorMessage(registerForm.get('name')) ? 'error-input' : 'text-input'" type="text"
+                    placeholder="Name" formControlName="name">
                 <div class="error-message">
                     @if (getErrorMessage(registerForm.get('name'))) {
                     {{ getErrorMessage(registerForm.get('name')) }}
@@ -45,7 +53,8 @@
                 </div>
             </div>
             <div class="form-field">
-                <input [class]="getErrorMessage(registerForm.get('email')) ? 'error-input' : 'text-input'" type="email" placeholder="E-Mail" formControlName="email">
+                <input [class]="getErrorMessage(registerForm.get('email')) ? 'error-input' : 'text-input'" type="email"
+                    placeholder="E-Mail" formControlName="email">
                 <div class="error-message">
                     @if (getErrorMessage(registerForm.get('email'))) {
                     {{ getErrorMessage(registerForm.get('email')) }}
@@ -53,7 +62,8 @@
                 </div>
             </div>
             <div class="form-field">
-                <input [class]="getErrorMessage(registerForm.get('age')) ? 'error-input' : 'text-input'" type="number" placeholder="Age" formControlName="age">
+                <input [class]="getErrorMessage(registerForm.get('age')) ? 'error-input' : 'text-input'" type="number"
+                    placeholder="Age" formControlName="age">
                 <div class="error-message">
                     @if (getErrorMessage(registerForm.get('age'))) {
                     {{ getErrorMessage(registerForm.get('age')) }}
@@ -62,32 +72,36 @@
             </div>
             <div class="password-group" formGroupName="passwords">
                 <div class="form-field">
-                    <input [class]="getErrorMessage(registerForm.get('passwords.password')) || (registerForm.get('passwords')?.touched && registerForm.get('passwords')?.errors?.['valuesNotEqual']) ? 'error-input' : 'text-input'" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password"
+                    <input
+                        [class]="getErrorMessage(registerForm.get('passwords.password')) || (registerForm.get('passwords')?.touched && registerForm.get('passwords')?.errors?.['valuesNotEqual']) ? 'error-input' : 'text-input'"
+                        [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password"
                         formControlName="password">
-                        <div class="error-message">
-                            @if (getErrorMessage(registerForm.get('passwords.password'))) {
-                            {{ getErrorMessage(registerForm.get('passwords.password')) }}
-                            } @else if (
-                                registerForm.get('passwords')?.touched &&
-                                registerForm.get('passwords')?.errors?.['valuesNotEqual']
-                              ) {
-                                Passwords do not match.
-                              }
-                        </div>
+                    <div class="error-message">
+                        @if (getErrorMessage(registerForm.get('passwords.password'))) {
+                        {{ getErrorMessage(registerForm.get('passwords.password')) }}
+                        } @else if (
+                        registerForm.get('passwords')?.touched &&
+                        registerForm.get('passwords')?.errors?.['valuesNotEqual']
+                        ) {
+                        Passwords do not match.
+                        }
+                    </div>
                 </div>
                 <div class="form-field">
-                    <input [class]="getErrorMessage(registerForm.get('passwords.confirmPassword')) || (registerForm.get('passwords')?.touched && registerForm.get('passwords')?.errors?.['valuesNotEqual']) ? 'error-input' : 'text-input'" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm"
+                    <input
+                        [class]="getErrorMessage(registerForm.get('passwords.confirmPassword')) || (registerForm.get('passwords')?.touched && registerForm.get('passwords')?.errors?.['valuesNotEqual']) ? 'error-input' : 'text-input'"
+                        [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm"
                         formControlName="confirmPassword">
-                        <div class="error-message">
-                            @if (getErrorMessage(registerForm.get('passwords.confirmPassword'))) {
-                            {{ getErrorMessage(registerForm.get('passwords.confirmPassword')) }}
-                            } @else if (
-                                registerForm.get('passwords')?.touched &&
-                                registerForm.get('passwords')?.errors?.['valuesNotEqual']
-                              ) {
-                                Passwords do not match.
-                              }
-                        </div>
+                    <div class="error-message">
+                        @if (getErrorMessage(registerForm.get('passwords.confirmPassword'))) {
+                        {{ getErrorMessage(registerForm.get('passwords.confirmPassword')) }}
+                        } @else if (
+                        registerForm.get('passwords')?.touched &&
+                        registerForm.get('passwords')?.errors?.['valuesNotEqual']
+                        ) {
+                        Passwords do not match.
+                        }
+                    </div>
                 </div>
             </div>
             <label class="checkbox-input">
