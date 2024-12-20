@@ -1,0 +1,143 @@
+.forms-layout {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.heading {
+    font-size: xx-large;
+    font-weight: 400;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+}
+
+.text-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px var(--secondary-light-color);
+    outline: none;
+}
+
+.login-password {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-input {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--dark-gray-color);
+}
+
+.checkbox-input input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    appearance: none;
+    border: .125rem solid var(--lighter-gray-color);
+    border-radius: .3125rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.checkbox-input input[type="checkbox"]:checked {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.checkbox-input input[type="checkbox"]:checked::after {
+    content: '\2713';
+    font-size: 1rem;
+    color: var(--white-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-input input[type="checkbox"]:hover {
+    border-color: var(--light-gray-color);
+}
+
+.sign-in-button {
+    padding: 10px 14px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sign-in-button:hover {
+    background-color: var(--secondary-dark-color);
+    transform: scale(1.02);
+}
+
+.sign-in-button:active {
+    transform: scale(0.98);
+}
+
+.change-layout {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.query-text {
+    font-size: 14px;
+    color: var(--dark-gray-color);
+    text-align: center;
+    margin: 0;
+}
+
+.change-link {
+    font-size: 14px;
+    color: var(--blue-link-color);
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    width: max-content;
+}
+
+.change-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .login-form {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .text-input,
+    .sign-in-button {
+        font-size: 14px;
+    }
+
+    .query-text,
+    .change-link {
+        font-size: 12px;
+    }
+}

@@ -27,8 +27,9 @@ export class AuthComponent {
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
-  setPasswordVisibility() {
-    this.isPasswordVisible.set(!this.isPasswordVisible());
+  setPasswordVisibility(event: Event) {
+    const checkbox = event.target as HTMLInputElement;
+    this.isPasswordVisible.set(checkbox.checked);
   }
   
   selectSignUp() {

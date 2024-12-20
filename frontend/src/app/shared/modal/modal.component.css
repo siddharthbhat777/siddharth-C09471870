@@ -17,7 +17,7 @@
     background-color: var(--white-color);
     padding: 1.25rem;
     border-radius: .5rem;
-    width: 90%;
+    min-width: 30%;
     max-width: 37.5rem;
     box-shadow: 0 .25rem .5rem #0000001a;
     text-align: left;
