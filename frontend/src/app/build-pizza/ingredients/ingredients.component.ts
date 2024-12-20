@@ -4,10 +4,11 @@ import { BuildService } from '../build.service';
 import { CurrencyPipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
+import { ErrorScreenComponent } from "../../shared/error-screen/error-screen.component";
 
 @Component({
   selector: 'app-ingredients',
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, RouterLink, ErrorScreenComponent],
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.css'
 })
@@ -22,7 +23,7 @@ export class IngredientsComponent implements OnInit {
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
-  private cartItems = this.cartService.sharableCartPizzas;
+  cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
     const buildSubscription = this.buildService.getIngredients().subscribe({

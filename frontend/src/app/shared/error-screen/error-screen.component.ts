@@ -8,5 +8,4 @@ import { Component, input } from '@angular/core';
 })
 export class ErrorScreenComponent {
   errorMessage = input.required<string>();
-  errorIcon = input.required<string>();
 }
