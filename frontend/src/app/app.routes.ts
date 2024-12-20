@@ -6,6 +6,7 @@ import { CartComponent } from './cart/cart.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { routes as buildRoutes } from './build-pizza/build.routes';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,12 @@ export const routes: Routes = [
         component: CartComponent,
         canActivate: [AuthGuardService],
         title: 'Cart'
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuardService],
+        title: 'Profile'
     },
     {
         path: '**',

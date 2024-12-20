@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-extra-options',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './extra-options.component.html',
   styleUrl: './extra-options.component.css'
 })
@@ -13,8 +13,10 @@ export class ExtraOptionsComponent implements OnInit {
   
   private authService = inject(AuthService);
   private router = inject(Router);
+
+  userData = this.authService.sharableData;
   
-  isLoggedIn = signal<boolean>(!!this.authService.sharableData());
+  isLoggedIn = signal<boolean>(!!this.userData());
 
   ngOnInit(): void {
       

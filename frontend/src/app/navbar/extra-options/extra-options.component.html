@@ -2,16 +2,28 @@
     <div class="modal-content">
         <div class="extra-options-layout">
             <div class="close-button" (click)="closeOptionsClick()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke='#000' strokeWidth='0.5' fill="currentColor" class="bi bi-x-lg"
-                    viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke='#000' strokeWidth='0.5'
+                    fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                     <path
                         d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                 </svg>
             </div>
             @if (isLoggedIn()) {
-                <button class="logout-button" (click)="onLogout()">Logout</button>
+            <div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                </svg>
+                </div>
+                <div>{{ userData()?.name }}</div>
+                <div routerLink="/profile">View Full Profile</div>
+            </div>
+            <button class="logout-button" (click)="onLogout()">Logout</button>
             } @else {
-                <button class="auth-button" (click)="onLogin()">Login / Sign up</button>
+            <button class="auth-button" (click)="onLogin()">Login / Sign up</button>
             }
         </div>
     </div>
