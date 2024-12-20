@@ -14,16 +14,18 @@
             <button class="submit-button" type="submit">Sign in</button>
             <div class="change-layout">
                 <h3 class="query-text">First time here?</h3>
-                <a class="change-link" (click)="selectSignUp()">Create user</a>
+                <a class="change-link" (click)="isLoginSelected.set(false)">Create user</a>
             </div>
         </form>
         } @else {
-        <form class="form">
-            <input class="text-input" type="text" placeholder="Name">
-            <input class="text-input" type="email" placeholder="E-Mail">
-            <input class="text-input" type="number" placeholder="Age">
-            <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password">
-            <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm">
+        <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()" class="form">
+            <input class="text-input" type="text" placeholder="Name" formControlName="name">
+            <input class="text-input" type="email" placeholder="E-Mail" formControlName="email">
+            <input class="text-input" type="number" placeholder="Age" formControlName="age">
+            <div class="password-group" formGroupName="passwords">
+                <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password" formControlName="password">
+            <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm" formControlName="confirmPassword">
+            </div>
             <label class="checkbox-input">
                 <input type="checkbox" (change)="setPasswordVisibility($event)" />
                 Show password
@@ -31,7 +33,7 @@
             <button class="submit-button" type="submit">Sign up</button>
             <div class="change-layout">
                 <h3 class="query-text">Existing user?</h3>
-                <a class="change-link" (click)="selectSignIn()">Login</a>
+                <a class="change-link" (click)="isLoginSelected.set(true)">Login</a>
             </div>
         </form>
         }

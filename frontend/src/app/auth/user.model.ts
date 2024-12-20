@@ -21,3 +21,10 @@ export interface LoginResponse {
     accessToken: string;
     refreshToken: string;
 }
+
+export interface Register {
+    name: string;
+    email: string;
+    age: number;
+    password: string;
+}

@@ -1,6 +1,6 @@
 import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginResponse, User } from './user.model';
+import { LoginResponse, Register, User } from './user.model';
 import { tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
@@ -15,6 +15,10 @@ export class AuthService {
 
   private http = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
+
+  registerUser( formData: Register) {
+    return this.http.post<{ user: any }>('http://localhost:8001/user/register', formData);
+  }
 
   loginUser(email: string, password: string) {
     return this.http.put<LoginResponse>('http://localhost:8001/user/login', { email, password }).pipe(
