@@ -1,4 +1,4 @@
-@if (cartItems().length > 0) {
+@if (isIngredientExists(pizzaId())) {
     <div class="top-elements">
         <div class="back-button" routerLink="/build-pizza/select-pizza">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" stroke='#000' strokeWidth='0.5'

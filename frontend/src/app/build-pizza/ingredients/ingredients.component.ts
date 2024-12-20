@@ -82,4 +82,8 @@ export class IngredientsComponent implements OnInit {
     }
     return false;
   }
+
+  isIngredientExists(pizzaId: string) {
+    return !!this.cartItems().find((item) => item.pizzaId === pizzaId)
+  }
 }
