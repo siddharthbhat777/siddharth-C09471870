@@ -35,7 +35,10 @@ export class AuthComponent {
     if (this.loginForm.valid && enteredEmail && enteredPassword) {
       const subscription = this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
         error: (error) => console.log(error),
-        complete: () => this.loginForm.reset()
+        complete: () => {
+          this.loginForm.reset();
+          this.closeAuth();
+        }
       });
       this.destroyRef.onDestroy(() => subscription.unsubscribe());
     } else {
