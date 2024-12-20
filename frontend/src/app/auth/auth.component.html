@@ -2,18 +2,16 @@
     <div class="forms-layout">
         <h1 class="heading">{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
         @if (isLoginSelected()) {
-        <form class="form">
-            <input class="text-input" type="email" placeholder="E-Mail" [(ngModel)]="email"
-                [ngModelOptions]="{standalone: true}">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="form">
+            <input class="text-input" type="email" placeholder="E-Mail" formControlName="email">
             <div class="login-password">
-                <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password"
-                    [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password" formControlName="password">
                 <label class="checkbox-input">
                     <input type="checkbox" (change)="setPasswordVisibility($event)" />
                     Show password
                 </label>
             </div>
-            <button class="submit-button" type="button" (click)="loginUser(email(), password())">Sign in</button>
+            <button class="submit-button" type="submit">Sign in</button>
             <div class="change-layout">
                 <h3 class="query-text">First time here?</h3>
                 <a class="change-link" (click)="selectSignUp()">Create user</a>
