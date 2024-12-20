@@ -143,3 +143,42 @@
     box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
     background-color: var(--dark-red-color);
 }
+
+@media (max-width: 768px) {
+    .item-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .item-card .image-layout img {
+        height: 8rem;
+        width: 8rem;
+    }
+
+    .details-layout .item-heading {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .pricing-layout {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .pricing-layout .currency {
+        font-size: medium;
+    }
+
+    .pricing-layout .quantity-buttons {
+        flex-direction: row;
+    }
+
+    .pricing-layout .delete-button {
+        min-width: 3rem;
+        font-size: 0.75rem;
+    }
+}
