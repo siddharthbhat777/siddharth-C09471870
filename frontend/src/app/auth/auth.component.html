@@ -2,7 +2,7 @@
     <div class="forms-layout">
         <h1 class="heading">{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
         @if (isLoginSelected()) {
-        <form class="login-form">
+        <form class="form">
             <input class="text-input" type="email" placeholder="E-Mail" [(ngModel)]="email"
                 [ngModelOptions]="{standalone: true}">
             <div class="login-password">
@@ -13,24 +13,28 @@
                     Show password
                 </label>
             </div>
-            <button class="sign-in-button" type="button" (click)="loginUser(email(), password())">Sign in</button>
+            <button class="submit-button" type="button" (click)="loginUser(email(), password())">Sign in</button>
             <div class="change-layout">
                 <h3 class="query-text">First time here?</h3>
                 <a class="change-link" (click)="selectSignUp()">Create user</a>
             </div>
         </form>
         } @else {
-        <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="E-Mail">
-            <input type="number" placeholder="Age">
-            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password">
-            <input [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm">
-            <input type="checkbox" (change)="setPasswordVisibility($event)">Show password
-            <button type="submit">Sign up</button>
-            <button type="reset">Clear</button>
-            <h3>Existing user?</h3>
-            <a (click)="selectSignIn()">Sign in</a>
+        <form class="form">
+            <input class="text-input" type="text" placeholder="Name">
+            <input class="text-input" type="email" placeholder="E-Mail">
+            <input class="text-input" type="number" placeholder="Age">
+            <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password">
+            <input class="text-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm">
+            <label class="checkbox-input">
+                <input type="checkbox" (change)="setPasswordVisibility($event)" />
+                Show password
+            </label>
+            <button class="submit-button" type="submit">Sign up</button>
+            <div class="change-layout">
+                <h3 class="query-text">Existing user?</h3>
+                <a class="change-link" (click)="selectSignIn()">Login</a>
+            </div>
         </form>
         }
     </div>
