@@ -64,12 +64,12 @@
 .toppings-table td {
     padding: 0.75rem;
     text-align: left;
-    border: 0.0625rem solid var(--lighter-gray-color);
+    border: 0.0625rem solid var(--light-gray-color);
     font-size: 0.9rem;
 }
 
 .toppings-table tr:nth-child(odd) {
-    background-color: var(--shaded-white-color);
+    background-color: var(--lightest-gray-color);
 }
 
 .toppings-table tr:nth-child(even) {
@@ -104,7 +104,7 @@
     width: 1.5rem;
     height: 1.5rem;
     appearance: none;
-    border: .125rem solid var(--lightest-gray-color);
+    border: .125rem solid var(--lighter-gray-color);
     border-radius: .3125rem;
     outline: none;
     cursor: pointer;
@@ -128,7 +128,7 @@
 }
 
 .add-label input[type="checkbox"]:hover {
-    border-color: var(--lighter-gray-color);
+    border-color: var(--light-gray-color);
 }
 
 .total-cost {

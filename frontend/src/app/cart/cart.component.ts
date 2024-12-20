@@ -1,10 +1,11 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CartItemComponent } from "./cart-item/cart-item.component";
 import { CartService } from './cart.service';
+import { BillingComponent } from "./billing/billing.component";
 
 @Component({
   selector: 'app-cart',
-  imports: [CartItemComponent],
+  imports: [CartItemComponent, BillingComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })

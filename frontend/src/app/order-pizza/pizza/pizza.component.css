@@ -1,6 +1,6 @@
 .pizza-card {
     height: 100%;
-    border: .0625rem solid var(--lightest-gray-color);
+    border: .0625rem solid var(--lighter-gray-color);
     border-radius: .5rem;
     box-shadow: 0 .125rem .3125rem #00000033;
     padding: 1rem;

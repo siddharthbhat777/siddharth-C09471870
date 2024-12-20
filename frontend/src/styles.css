@@ -7,9 +7,10 @@ body {
 :root {
     --black-color: black;
     --white-color: white;
-    --shaded-white-color: #ebebeb;
-    --lightest-gray-color: #c9c9c9;
-    --lighter-gray-color: #9b9b9b;
+    --shaded-white-color: #f5f5f5;
+    --lightest-gray-color: #ebebeb;
+    --lighter-gray-color: #c9c9c9;
+    --light-gray-color: #9b9b9b;
     --gray-color: #6b6b6b;
     --dark-gray-color: #4f4f4f;
     --darker-gray-color: #313131;

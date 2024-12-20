@@ -57,7 +57,7 @@
 }
 
 .nav-links h3:hover, .selected {
-    color: var(--lighter-gray-color);
+    color: var(--light-gray-color);
 }
 
 .nav-actions {
@@ -85,7 +85,7 @@
 }
 
 .nav-actions button:active {
-    color: var(--shaded-white-color);
+    color: var(--lightest-gray-color);
 }
 
 .nav-actions .profile {
@@ -96,7 +96,7 @@
 }
 
 .nav-actions .profile:hover {
-    color: var(--lightest-gray-color);
+    color: var(--lighter-gray-color);
 }
 
 @media (max-width: 768px) {

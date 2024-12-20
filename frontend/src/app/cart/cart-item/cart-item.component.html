@@ -23,7 +23,7 @@
         <p><strong>Extra ingredients:</strong> {{ getExtraIngredients() }}</p>
     </div>
     <div class="pricing-layout">
-        <span class="currency">{{ cartItem().price | currency: 'INR' }}</span>
+        <span class="currency">{{ cartItem().price * cartItem().quantity | currency: 'INR' }}</span>
         <div class="quantity-buttons">
             <button class="minus-button" (click)="updateCartItem(cartItem().pizzaId.toString(), 'minus')">
                 @if (cartItem().quantity < 2) { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

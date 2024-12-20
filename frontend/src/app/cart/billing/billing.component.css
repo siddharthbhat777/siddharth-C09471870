@@ -1,0 +1,57 @@
+.bill-card {
+    background-color: var(--lightest-gray-color); /* Soft gray or white shade */
+    border-radius: 0.5rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 .25rem .375rem #0000001a; /* Subtle shadow for elevation */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background-color: transparent; /* Matches card background */
+}
+
+thead {
+    color: var(--darker-gray-color);
+    border-bottom: .125rem solid var(--lighter-gray-color);
+}
+
+th, td {
+    padding: .75rem .9375rem;
+    text-align: left;
+}
+
+tbody {
+    background-color: white;
+}
+
+tbody tr {
+    border-bottom: .0625rem solid var(--lighter-gray-color);
+}
+
+tbody tr:hover {
+    background-color: var(--shaded-white-color); /* Slightly lighter hover effect */
+    transition: background-color 0.3s ease;
+}
+
+th {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.styled-table {
+    border-radius: 0.5rem;
+    overflow: hidden; /* Rounds edges of the table */
+}
+
+.final-total {
+    justify-self: flex-end;
+    font-weight: 600;
+    margin: 1rem 1rem 0 0;
+}
+
+.final-total span {
+    font-weight: 800;
+    color: var(--green-color);
+}

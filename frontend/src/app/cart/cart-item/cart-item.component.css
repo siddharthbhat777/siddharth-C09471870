@@ -1,5 +1,5 @@
 .item-card {
-    border: .0625rem solid var(--lightest-gray-color);
+    border: .0625rem solid var(--lighter-gray-color);
     border-radius: .5rem;
     box-shadow: 0 .125rem .3125rem #00000033;
     padding: 1rem;
@@ -47,12 +47,12 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border: 0.05rem solid var(--lightest-gray-color);
+    border: 0.05rem solid var(--lighter-gray-color);
     border-radius: 0.25rem;
 }
 
 .pricing-layout .quantity-buttons .minus-button {
-    background-color: var(--shaded-white-color);
+    background-color: var(--lightest-gray-color);
     font-weight: 600;
     font-size: large;
     cursor: pointer;
@@ -73,11 +73,11 @@
 
 .pricing-layout .quantity-buttons .minus-button:active {
     box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
-    background-color: var(--lightest-gray-color);
+    background-color: var(--lighter-gray-color);
 }
 
 .pricing-layout .quantity-buttons .plus-button {
-    background-color: var(--shaded-white-color);
+    background-color: var(--lightest-gray-color);
     font-weight: 600;
     font-size: large;
     cursor: pointer;
@@ -98,7 +98,7 @@
 
 .pricing-layout .quantity-buttons .plus-button:active {
     box-shadow: #00000033 0 .3125rem .3125rem -0.1875rem, #00000024 0 .5rem .625rem .0625rem, #0000001f 0 .1875rem .875rem .125rem;
-    background-color: var(--lightest-gray-color);
+    background-color: var(--lighter-gray-color);
 }
 
 .pricing-layout .delete-button {

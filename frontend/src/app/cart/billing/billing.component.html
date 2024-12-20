@@ -1,0 +1,28 @@
+<div class="billing-layout">
+    <div class="location-layout"></div>
+    <div class="bill-container">
+        <div class="bill-card">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of cartItems(); track item.pizzaId) {
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price * item.quantity | currency: 'INR' }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="final-total">
+                Total: <span>{{calculateTotal() | currency: 'INR'}}</span>
+            </div>
+        </div>
+    </div>
+</div>
