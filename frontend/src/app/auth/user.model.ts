@@ -24,6 +24,7 @@ export interface Register {
 }
 
 export interface Address {
+    _id?: string;
     title: string;
     receiverName: string;
     receiverPhone: string;

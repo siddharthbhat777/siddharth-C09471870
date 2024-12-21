@@ -228,6 +228,9 @@
     </form>
     }
     <div class="address-list-container">
+        @for (address of userData()?.addresses; track address._id) {
+            <div>{{ address.title }}</div>
+        }
     </div>
 </div>
 </div>
