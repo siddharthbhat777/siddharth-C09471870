@@ -1,6 +1,8 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ProfileService } from './profile.service';
+import { ProfileRequest } from '../auth/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +20,8 @@ export class ProfileComponent implements OnInit {
   screenWidth = signal<number>(0);
 
   private authService = inject(AuthService);
+  private profileService = inject(ProfileService);
+  private destroyRef = inject(DestroyRef);
 
   userData = this.authService.sharableData;
 
@@ -66,7 +70,25 @@ export class ProfileComponent implements OnInit {
     })
   });
   
-  detailsSubmit() { }
+  detailsSubmit() {
+    const enteredFirstname = this.detailsForm.value.firstname;
+    const enteredLastname = this.detailsForm.value.lastname;
+    const enteredAge = this.detailsForm.value.age;
+    const enteredPhone = this.detailsForm.value.phone;
+    if (enteredFirstname && enteredLastname && enteredAge && enteredPhone) {
+      const editData: ProfileRequest = {
+        firstname: enteredFirstname,
+        lastname: enteredLastname,
+        age: +enteredAge,
+        phone: enteredPhone
+      }
+      const subscription = this.profileService.editProfile(editData).subscribe({
+        error: (error) => console.log(error),
+        complete: () => this.setEditableState(false)
+      });
+      this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    }
+  }
   
   addressForm = new FormGroup({
     addressTitle: new FormControl('', {

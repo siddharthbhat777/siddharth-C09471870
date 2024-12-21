@@ -6,7 +6,10 @@ admin:
 apiEndpoints:
   auth-api:
     host: localhost
-    paths: '/*'
+    paths: '/user/*'
+  profile-api:
+    host: localhost
+    paths: '/profile/*'
   order-api:
     host: localhost
     paths: '/pizza/*'
@@ -18,6 +21,8 @@ apiEndpoints:
     paths: '/cart/*'
 serviceEndpoints:
   auth-service:
+    url: 'http://localhost:5001/'
+  profile-service:
     url: 'http://localhost:5001/'
   order-service:
     url: 'http://localhost:5002/'
@@ -40,6 +45,22 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: auth-service 
+              changeOrigin: true
+  
+  profile:
+    apiEndpoints:
+      - profile-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: profile-service 
               changeOrigin: true
   
   order-pizza:

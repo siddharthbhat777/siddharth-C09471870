@@ -1,6 +1,6 @@
 import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginResponse, Register, User } from './user.model';
+import { TokenResponse, Register, User } from './user.model';
 import { tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string) {
-    return this.http.put<LoginResponse>('http://localhost:8001/user/login', { email, password }).pipe(
+    return this.http.put<TokenResponse>('http://localhost:8001/user/login', { email, password }).pipe(
       tap({
         next: (resData) => {
           this.handleAuthentication(resData);
@@ -44,7 +44,7 @@ export class AuthService {
     if (!storedTokens) {
       return;
     }
-    const { accessToken, refreshToken } = JSON.parse(storedTokens) as LoginResponse;
+    const { accessToken, refreshToken } = JSON.parse(storedTokens) as TokenResponse;
     const decodedToken = this.decodeToken(accessToken);
     if (decodedToken?.exp) {
       const expirationDuration = decodedToken.exp * 1000 - Date.now();
@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   refreshToken(refreshToken: string) {
-    const subscription = this.http.post<LoginResponse>('http://localhost:8001/user/refresh-token', { refreshToken }).pipe(
+    const subscription = this.http.post<TokenResponse>('http://localhost:8001/user/refresh-token', { refreshToken }).pipe(
       tap((resData) => {
         this.handleAuthentication(resData);
       })
@@ -102,7 +102,7 @@ export class AuthService {
     return this.logout();
   }
 
-  private handleAuthentication(resData: LoginResponse) {
+  private handleAuthentication(resData: TokenResponse) {
     const decodedToken = this.decodeToken(resData.accessToken);
     this.userData.set(decodedToken);
     if (decodedToken?.exp) {
@@ -110,5 +110,10 @@ export class AuthService {
       this.autoLogout(expirationDuration);
     }
     localStorage.setItem('tokens', JSON.stringify(resData));
+  }
+
+  modifyProfile(resData: TokenResponse) {
+    this.handleAuthentication(resData);
+    this.autoLogin();
   }
 }

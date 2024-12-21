@@ -4,21 +4,13 @@ export interface User {
     lastname: string;
     age: number;
     email: string;
-    phone?: number;
+    phone?: string;
     iat?: number;
     exp?: number;
-    addresses?: {
-        title: string;
-        receiverName: string;
-        receiverPhone: string;
-        addressLine: string;
-        pincode: number;
-        city: string;
-        state: string
-    }[]
+    addresses?: Address[]
 }
 
-export interface LoginResponse {
+export interface TokenResponse {
     accessToken: string;
     refreshToken: string;
 }
@@ -30,3 +22,20 @@ export interface Register {
     age: number;
     password: string;
 }
+
+export interface Address {
+    title: string;
+    receiverName: string;
+    receiverPhone: string;
+    addressLine: string;
+    pincode: number;
+    city: string;
+    state: string
+};
+
+export interface ProfileRequest {
+    firstname: string;
+    lastname: string;
+    age: number;
+    phone: string;
+};
