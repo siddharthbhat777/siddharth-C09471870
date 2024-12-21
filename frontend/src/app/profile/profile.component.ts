@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ProfileService } from './profile.service';
-import { ProfileRequest } from '../auth/user.model';
+import { Address, ProfileRequest } from '../auth/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -114,7 +114,31 @@ export class ProfileComponent implements OnInit {
     })
   });
   
-  addressSubmit() { }
+  addressSubmit() {
+    const enteredTitle = this.addressForm.value.addressTitle;
+    const enteredReceiverName = this.addressForm.value.addressReceiverName;
+    const enteredReceiverPhone = this.addressForm.value.addressReceiverPhone;
+    const enteredAddressLine = this.addressForm.value.addressLine;
+    const enteredPincode = this.addressForm.value.addressPincode;
+    const enteredCity = this.addressForm.value.addressCity;
+    const enteredState = this.addressForm.value.addressState;
+    if (enteredTitle && enteredReceiverName && enteredReceiverPhone && enteredAddressLine && enteredPincode && enteredCity && enteredState) {
+      const address: Address = {
+        title: enteredTitle,
+        receiverName: enteredReceiverName,
+        receiverPhone: enteredReceiverPhone,
+        addressLine: enteredAddressLine,
+        pincode: +enteredPincode,
+        city: enteredCity,
+        state: enteredState
+      }
+      const subscription = this.profileService.addAddress(address).subscribe({
+        error: (error) => console.log(error),
+        complete: () => this.openAddAddress.set(false)
+      });
+      this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    }
+  }
   
   onlyAlphabetsValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

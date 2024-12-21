@@ -51,17 +51,33 @@ exports.addAddress = async (req, res, next) => {
         }
     }
     try {
-        const updatedUser = await User.findByIdAndUpdate(userId, {
+        const user = await User.findByIdAndUpdate(userId, {
             $push: { "contactDetails.addresses": newAddress }
         },
             { new: true, runValidators: true }
         );
-        if (!updatedUser) {
+        if (!user) {
             const error = new Error('User not found.');
             error.statusCode = 404;
             throw error;
         }
-        res.status(201).json({ message: 'Added address successfully', user: updatedUser });
+        const currentToken = req.headers.authorization.split(" ")[1];
+        const decodedToken = jwt.decode(currentToken);
+        const remainingTime = decodedToken.exp - Math.floor(Date.now() / 1000);
+        const accessToken = jwt.sign(
+            {
+                _id: user._id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                age: user.age,
+                email: user.contactDetails.email,
+                phone: user.contactDetails.phone || null,
+                addresses: user.contactDetails.addresses || null
+            },
+            'somesupersecretsecret',
+            { expiresIn: remainingTime + 's' }
+        );
+        res.status(201).json({ accessToken, refreshToken: user.refreshToken });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;
