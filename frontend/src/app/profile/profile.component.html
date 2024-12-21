@@ -81,6 +81,7 @@
         </h2>
         @if (openAddAddress()) {
         <form class="address-form" [formGroup]="addressForm" (ngSubmit)="addressSubmit()">
+            <h3 class="sub-heading">Add address</h3>
             @if (screenWidth() < 768) { <div class="form-field">
                 <input [class]="getErrorMessage(addressForm.get('addressTitle')) ? 'error-input' : 'text-input'"
                     type="text" placeholder="Title" formControlName="addressTitle">
@@ -147,7 +148,7 @@
     @if (openAddAddress()) {
     <div class="form-buttons">
         <button type="button" class="cancel-button" (click)="setAddAddressState(false)">Cancel</button>
-        <button type="submit" class="save-button">Save</button>
+        <button type="submit" class="save-button">Add</button>
     </div>
     }
     } @else {
@@ -221,7 +222,7 @@
     @if (openAddAddress()) {
     <div class="form-buttons">
         <button type="button" class="cancel-button" (click)="setAddAddressState(false)">Cancel</button>
-        <button type="submit" class="save-button">Save</button>
+        <button type="submit" class="save-button">Add</button>
     </div>
     }
     }
@@ -229,7 +230,7 @@
     }
     <div class="address-list-container">
         @for (address of userData()?.addresses; track address._id) {
-            <div>{{ address.title }}</div>
+        <app-address [address]="address" />
         }
     </div>
 </div>

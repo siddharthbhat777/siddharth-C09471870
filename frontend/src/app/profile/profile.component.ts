@@ -3,10 +3,11 @@ import { AuthService } from '../auth/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ProfileService } from './profile.service';
 import { Address, ProfileRequest } from '../auth/user.model';
+import { AddressComponent } from "./address/address.component";
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AddressComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
   host: {

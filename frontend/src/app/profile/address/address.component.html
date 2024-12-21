@@ -1,0 +1,17 @@
+<div class="address-card">
+    <div class="left-column">
+        <p class="address-title">{{ address().title }}</p>
+        <p class="receiver-info">
+            <strong class="receiver-name">{{ address().receiverName }} - </strong>
+            <span class="receiver-phone">{{ address().receiverPhone }}</span>
+        </p>
+    </div>
+    <div class="right-column">
+        <p class="address-line">{{ address().addressLine }}</p>
+        <p class="address-meta">
+            <span class="pincode">Pincode: {{ address().pincode }}</span>,
+            <span class="city">{{ address().city }}</span>,
+            <span class="state">{{ address().state }}</span>
+        </p>
+    </div>
+</div>

@@ -31,6 +31,12 @@
     position: relative;
 }
 
+.sub-heading {
+    margin: 0;
+    font-size: x-large;
+    font-weight: 400;
+}
+
 .address-add-button {
     position: absolute;
     top: 0;
@@ -44,11 +50,24 @@
     color: var(--darker-gray-color);
 }
 
-.details-form, .address-form {
+.details-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.25rem;
+}
+
+.address-list {
+    padding-inline: 1rem;
+}
+
+.address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    box-shadow: #0000003d 0rem .1875rem .5rem;
+    border-radius: 0.5rem;
 }
 
 .input-group {
