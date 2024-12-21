@@ -3,6 +3,10 @@
     grid-template-columns: 30% auto;
 }
 
+.edit-profile {
+    cursor: pointer;
+}
+
 .forms-layout {
     margin: auto;
     width: 100%;

@@ -3,7 +3,8 @@
         <div class="profile-details">
             <h2 class="heading">
                 <span>Profile details</span>
-                <div class="edit-profile">
+                @if (!isEditable()) {
+                <div class="edit-profile" (click)="setEditableState(true)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -12,6 +13,7 @@
                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                     </svg>
                 </div>
+                }
             </h2>
             <form class="details-form" [formGroup]="detailsForm" (ngSubmit)="detailsSubmit()">
                 <div class="form-field">
@@ -55,10 +57,12 @@
                         }
                     </div>
                 </div>
+                @if (isEditable()) {
                 <div class="form-buttons">
-                    <button type="button" class="cancel-button">Cancel</button>
+                    <button type="button" class="cancel-button" (click)="setEditableState(false)">Cancel</button>
                     <button type="submit" class="save-button">Save</button>
                 </div>
+                }
             </form>
         </div>
     </div>

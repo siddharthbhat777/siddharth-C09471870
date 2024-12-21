@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
@@ -9,9 +9,36 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validatio
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  isEditable = signal<boolean>(false);
+
   private authService = inject(AuthService);
 
   userData = this.authService.sharableData;
+
+  constructor() {
+    this.toggleFormControls(this.isEditable());
+  }
+
+  toggleFormControls(isEditable: boolean) {
+    if (isEditable) {
+      this.detailsForm.enable();
+    } else {
+      this.detailsForm.disable();
+    }
+  }
+
+  setEditableState(editable: boolean) {
+    this.isEditable.set(editable);
+    this.toggleFormControls(editable);
+    if (!editable) {
+      this.detailsForm.reset({
+        firstname: this.userData()?.firstname,
+        lastname: this.userData()?.lastname,
+        age: this.userData()?.age,
+        phone: this.userData()?.phone,
+      });
+    }
+  }
 
   detailsForm = new FormGroup({
     firstname: new FormControl(this.userData()?.firstname || '', {
