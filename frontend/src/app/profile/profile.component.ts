@@ -106,7 +106,7 @@ export class ProfileComponent implements OnInit {
       validators: [Validators.required]
     }),
     addressPincode: new FormControl('', {
-      validators: [Validators.required, Validators.minLength(6)]
+      validators: [Validators.required, Validators.pattern(/^\d{6}$/)]
     }),
     addressCity: new FormControl('', {
       validators: [Validators.required, this.onlyAlphabetsValidator()]
