@@ -1,3 +1,8 @@
+.profile-layout {
+    display: grid;
+    grid-template-columns: 30% auto;
+}
+
 .forms-layout {
     margin: auto;
     width: 100%;
@@ -121,7 +126,13 @@
     box-shadow: 0 0 .3125rem var(--light-red-color);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .profile-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .details-form {
         padding: 1rem;
         gap: .75rem;
