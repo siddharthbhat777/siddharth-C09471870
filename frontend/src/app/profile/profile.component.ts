@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
@@ -6,16 +6,23 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validatio
   selector: 'app-profile',
   imports: [ReactiveFormsModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
+  host: {
+    class: 'control',
+    'window:resize': '$event'
+  }
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   isEditable = signal<boolean>(false);
+  openAddAddress = signal<boolean>(false);
+  screenWidth = signal<number>(0);
 
   private authService = inject(AuthService);
 
   userData = this.authService.sharableData;
 
-  constructor() {
+  ngOnInit(): void {
+    this.screenWidth.set(window.innerWidth);
     this.toggleFormControls(this.isEditable());
   }
 
@@ -40,6 +47,10 @@ export class ProfileComponent {
     }
   }
 
+  setAddAddressState(state: boolean) {
+    this.openAddAddress.set(state);
+  }
+
   detailsForm = new FormGroup({
     firstname: new FormControl(this.userData()?.firstname || '', {
       validators: [Validators.required, this.onlyAlphabetsValidator()]
@@ -52,9 +63,37 @@ export class ProfileComponent {
     }),
     phone: new FormControl(this.userData()?.phone || '', {
       validators: [Validators.required, this.phoneNumberValidator()]
-    }),
+    })
   });
-
+  
+  detailsSubmit() { }
+  
+  addressForm = new FormGroup({
+    addressTitle: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    addressReceiverName: new FormControl('', {
+      validators: [Validators.required, this.onlyAlphabetsValidator()]
+    }),
+    addressReceiverPhone: new FormControl('', {
+      validators: [Validators.required, this.phoneNumberValidator()]
+    }),
+    addressLine: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    addressPincode: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)]
+    }),
+    addressCity: new FormControl('', {
+      validators: [Validators.required, this.onlyAlphabetsValidator()]
+    }),
+    addressState: new FormControl('', {
+      validators: [Validators.required, this.onlyAlphabetsValidator()]
+    })
+  });
+  
+  addressSubmit() { }
+  
   onlyAlphabetsValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
@@ -78,8 +117,6 @@ export class ProfileComponent {
       return isValid ? null : { phoneNumber: true };
     };
   }
-
-  detailsSubmit() { }
 
   getErrorMessage(control: AbstractControl | null): string | null {
     if (!control || !control.errors || !control.touched) {

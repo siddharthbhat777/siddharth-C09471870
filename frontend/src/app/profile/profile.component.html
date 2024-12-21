@@ -67,6 +67,167 @@
         </div>
     </div>
     <div class="address-list">
-        Hello there
+        <h2 class="heading">
+            @if (!openAddAddress()) {
+            <div class="address-add-button" (click)="setAddAddressState(true)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
+                </svg>
+            </div>
+            }
+            <span>Address List</span>
+        </h2>
+        @if (openAddAddress()) {
+        <form class="address-form" [formGroup]="addressForm" (ngSubmit)="addressSubmit()">
+            @if (screenWidth() < 768) { <div class="form-field">
+                <input [class]="getErrorMessage(addressForm.get('addressTitle')) ? 'error-input' : 'text-input'"
+                    type="text" placeholder="Title" formControlName="addressTitle">
+                <div class="error-message">
+                    @if (getErrorMessage(addressForm.get('addressTitle'))) {
+                    {{ getErrorMessage(addressForm.get('addressTitle')) }}
+                    }
+                </div>
     </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressReceiverName')) ? 'error-input' : 'text-input'"
+            type="text" placeholder="Receiver name" formControlName="addressReceiverName">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressReceiverName'))) {
+            {{ getErrorMessage(addressForm.get('addressReceiverName')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressReceiverPhone')) ? 'error-input' : 'text-input'"
+            type="number" placeholder="Receiver phone" formControlName="addressReceiverPhone">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressReceiverPhone'))) {
+            {{ getErrorMessage(addressForm.get('addressReceiverPhone')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <textarea rows="3" [class]="getErrorMessage(addressForm.get('addressLine')) ? 'error-input' : 'text-input'"
+            placeholder="Flat number, Building, Locality, etc." formControlName="addressLine"></textarea>
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressLine'))) {
+            {{ getErrorMessage(addressForm.get('addressLine')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressPincode')) ? 'error-input' : 'text-input'" type="number"
+            placeholder="Pincode" formControlName="addressPincode">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressPincode'))) {
+            {{ getErrorMessage(addressForm.get('addressPincode')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressCity')) ? 'error-input' : 'text-input'" type="text"
+            placeholder="City" formControlName="addressCity">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressCity'))) {
+            {{ getErrorMessage(addressForm.get('addressCity')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressState')) ? 'error-input' : 'text-input'" type="text"
+            placeholder="State" formControlName="addressState">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressState'))) {
+            {{ getErrorMessage(addressForm.get('addressState')) }}
+            }
+        </div>
+    </div>
+    @if (openAddAddress()) {
+    <div class="form-buttons">
+        <button type="button" class="cancel-button" (click)="setAddAddressState(false)">Cancel</button>
+        <button type="submit" class="save-button">Save</button>
+    </div>
+    }
+    } @else {
+    <div class="input-group">
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressTitle')) ? 'error-input' : 'text-input'" type="text"
+                placeholder="Title" formControlName="addressTitle">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressTitle'))) {
+                {{ getErrorMessage(addressForm.get('addressTitle')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressReceiverName')) ? 'error-input' : 'text-input'"
+                type="text" placeholder="Receiver name" formControlName="addressReceiverName">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressReceiverName'))) {
+                {{ getErrorMessage(addressForm.get('addressReceiverName')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressReceiverPhone')) ? 'error-input' : 'text-input'"
+                type="number" placeholder="Receiver phone" formControlName="addressReceiverPhone">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressReceiverPhone'))) {
+                {{ getErrorMessage(addressForm.get('addressReceiverPhone')) }}
+                }
+            </div>
+        </div>
+    </div>
+    <div class="form-field">
+        <textarea rows="3" [class]="getErrorMessage(addressForm.get('addressLine')) ? 'error-input' : 'text-input'"
+            placeholder="Flat number, Building, Locality, etc." formControlName="addressLine"></textarea>
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressLine'))) {
+            {{ getErrorMessage(addressForm.get('addressLine')) }}
+            }
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressPincode')) ? 'error-input' : 'text-input'"
+                type="number" placeholder="Pincode" formControlName="addressPincode">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressPincode'))) {
+                {{ getErrorMessage(addressForm.get('addressPincode')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressCity')) ? 'error-input' : 'text-input'" type="text"
+                placeholder="City" formControlName="addressCity">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressCity'))) {
+                {{ getErrorMessage(addressForm.get('addressCity')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressState')) ? 'error-input' : 'text-input'" type="text"
+                placeholder="State" formControlName="addressState">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressState'))) {
+                {{ getErrorMessage(addressForm.get('addressState')) }}
+                }
+            </div>
+        </div>
+    </div>
+    @if (openAddAddress()) {
+    <div class="form-buttons">
+        <button type="button" class="cancel-button" (click)="setAddAddressState(false)">Cancel</button>
+        <button type="submit" class="save-button">Save</button>
+    </div>
+    }
+    }
+    </form>
+    }
+    <div class="address-list-container">
+    </div>
+</div>
 </div>

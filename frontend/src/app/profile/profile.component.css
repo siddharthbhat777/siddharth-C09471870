@@ -28,19 +28,45 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-.details-form {
+.address-add-button {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.address-add-button:hover {
+    color: var(--darker-gray-color);
+}
+
+.details-form, .address-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.25rem;
 }
 
+.input-group {
+    display: flex;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+textarea {
+    resize: none;
+    height: auto;
+}
+
 .text-input {
     width: 100%;
     padding: .625rem .875rem;
     font-size: 1rem;
+    font-family: Arial, sans-serif;
     border: .0625rem solid var(--lighter-gray-color);
     border-radius: .25rem;
     box-sizing: border-box;
@@ -101,6 +127,7 @@
 }
 
 .form-field {
+    flex: 1;
     position: relative;
 }
 
