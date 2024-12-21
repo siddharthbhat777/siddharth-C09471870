@@ -4,10 +4,11 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validatio
 import { ProfileService } from './profile.service';
 import { Address, ProfileRequest } from '../auth/user.model';
 import { AddressComponent } from "./address/address.component";
+import { ErrorScreenComponent } from "../shared/error-screen/error-screen.component";
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule, AddressComponent],
+  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
   host: {

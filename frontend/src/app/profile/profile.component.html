@@ -231,6 +231,8 @@
     <div class="address-list-container">
         @for (address of userData()?.addresses; track address._id) {
         <app-address [address]="address" />
+        } @empty {
+        <app-error-screen errorMessage="No addresses found" />
         }
     </div>
 </div>

@@ -52,4 +52,25 @@ export class ProfileService {
       })
     );
   }
+  
+  deleteAddress(addressId: string) {
+    const previousUserProfile = localStorage.getItem('tokens');
+    if (!previousUserProfile) {
+        throw new Error('No user profile is available to revert to.');
+    }
+    return this.http.put<TokenResponse>(`http://localhost:8001/profile/delete-address/${this.authService.sharableData()?._id}/${addressId}`, null, {
+      headers: {
+        'Authorization': `Bearer ${this.authService.token}`
+      }
+    }).pipe(
+      tap({
+        next: (res) => {
+          this.authService.modifyProfile(res);
+        },
+        error: () => {
+          this.authService.modifyProfile(JSON.parse(previousUserProfile));
+        }
+      })
+    );
+  }
 }
