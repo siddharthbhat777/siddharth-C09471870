@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const userRoutes = require('./routers/user');
+const profileRoutes = require('./routers/profile');
 
 const app = express();
 app.use(express.json());
@@ -12,10 +13,11 @@ const DATABASE_URL = "mongodb+srv://siddharthC09471870:C09471870@pizzeria.vsmlx.
 const SERVER_PORT = 5001;
 
 // Setting headers
-app.use(cors({ methods: ['POST', 'PUT'] }));
+app.use(cors({ methods: ['POST', 'PUT', 'DELETE'] }));
 
 // Setting up routes
 app.use('/user', userRoutes);
+app.use('/profile', profileRoutes);
 
 // Error logging format
 app.use((error, _, res, ignoreLint) => {

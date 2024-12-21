@@ -6,7 +6,7 @@ admin:
 apiEndpoints:
   auth-api:
     host: localhost
-    paths: '/user/*'
+    paths: '/*'
   order-api:
     host: localhost
     paths: '/pizza/*'
