@@ -13,7 +13,7 @@ const DATABASE_URL = "mongodb+srv://siddharthC09471870:C09471870@pizzeria.vsmlx.
 const SERVER_PORT = 5001;
 
 // Setting headers
-app.use(cors({ methods: ['POST', 'PUT', 'DELETE'] }));
+app.use(cors({ methods: ['POST', 'PUT'] }));
 
 // Setting up routes
 app.use('/user', userRoutes);

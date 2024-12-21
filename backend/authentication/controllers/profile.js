@@ -48,3 +48,26 @@ exports.addAddress = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.deleteAddress = async (req, res, next) => {
+    const userId = req.params.userId;
+    const addressId = req.params.addressId;
+    try {
+        const updatedUser = await User.findByIdAndUpdate(userId, {
+                $pull: { "contactDetails.addresses": { _id: addressId } }
+            },
+            { new: true }
+        );
+        if (!updatedUser) {
+            const error = new Error('User not found.');
+            error.statusCode = 404;
+            throw error;
+        }
+        res.status(200).json({ message: 'Deleted address successfully', user: updatedUser });
+    } catch (error) {
+        if (!error.statusCode) {
+            error.statusCode = 500;
+        }
+        next(error);
+    }
+};
