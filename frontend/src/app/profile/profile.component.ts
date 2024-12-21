@@ -136,7 +136,10 @@ export class ProfileComponent implements OnInit {
       }
       const subscription = this.profileService.addAddress(address).subscribe({
         error: (error) => console.log(error),
-        complete: () => this.openAddAddress.set(false)
+        complete: () => {
+          this.openAddAddress.set(false);
+          this.addressForm.reset();
+        }
       });
       this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
