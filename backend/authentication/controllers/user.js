@@ -3,11 +3,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.registerUser = async (req, res, next) => {
-    const { name, age, password, email } = req.body;
+    const { firstname, lastname, age, password, email } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 12);
         const userData = {
-            name,
+            firstname,
+            lastname,
             age,
             password: hashedPassword,
             contactDetails: {
@@ -42,7 +43,8 @@ exports.loginUser = async (req, res, next) => {
         const accessToken = jwt.sign(
             {
                 _id: user._id,
-                name: user.name,
+                firstname: user.firstname,
+                lastname: user.lastname,
                 age: user.age,
                 email: user.contactDetails.email,
                 phone: user.contactDetails.phone || null,
@@ -80,7 +82,8 @@ exports.refreshToken = async (req, res, next) => {
         const newAccessToken = jwt.sign(
             {
                 _id: user._id,
-                name: user.name,
+                firstname: user.firstname,
+                lastname: user.lastname,
                 age: user.age,
                 email: user.contactDetails.email,
                 phone: user.contactDetails.phone || null,

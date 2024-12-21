@@ -170,13 +170,13 @@
 }
 
 @media (max-width: 480px) {
-    .login-form {
+    .form {
         padding: 1rem;
         gap: .75rem;
     }
 
     .text-input,
-    .sign-in-button {
+    .submit-button {
         font-size: .875rem;
     }
 

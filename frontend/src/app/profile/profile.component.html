@@ -1,1 +1,72 @@
-<p>profile works!</p>
+<div class="profile-layout">
+    <div class="profile-details-container">
+        <div class="profile-card">
+            <div class="profile-icon">
+                <img src="" alt="">
+            </div>
+            <div class="profile-details">
+                <h2 class="heading">
+                    <span>Profile details</span>
+                    <div class="edit-profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                        </svg>
+                    </div>
+                </h2>
+                <form class="details-form" [formGroup]="detailsForm" (ngSubmit)="detailsSubmit()">
+                    <div class="form-field">
+                        <input [class]="getErrorMessage(detailsForm.get('firstname')) ? 'error-input' : 'text-input'"
+                            type="text" placeholder="Firstname" formControlName="firstname">
+                        <div class="error-message">
+                            @if (getErrorMessage(detailsForm.get('firstname'))) {
+                            {{ getErrorMessage(detailsForm.get('firstname')) }}
+                            }
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input [class]="getErrorMessage(detailsForm.get('lastname')) ? 'error-input' : 'text-input'"
+                            type="text" placeholder="Lastname" formControlName="lastname">
+                        <div class="error-message">
+                            @if (getErrorMessage(detailsForm.get('lastname'))) {
+                            {{ getErrorMessage(detailsForm.get('lastname')) }}
+                            }
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input [class]="getErrorMessage(detailsForm.get('age')) ? 'error-input' : 'text-input'"
+                            type="number" placeholder="Age" formControlName="age">
+                        <div class="error-message">
+                            @if (getErrorMessage(detailsForm.get('age'))) {
+                            {{ getErrorMessage(detailsForm.get('age')) }}
+                            }
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input disabled class="text-input" type="email" placeholder="E-mail"
+                            [value]="userData()?.email">
+                        <div class="error-message">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input [class]="getErrorMessage(detailsForm.get('phone')) ? 'error-input' : 'text-input'"
+                            type="number" placeholder="Phone number" formControlName="phone">
+                        <div class="error-message">
+                            @if (getErrorMessage(detailsForm.get('phone'))) {
+                            {{ getErrorMessage(detailsForm.get('phone')) }}
+                            }
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="cancel-button">Cancel</button>
+                        <button type="submit" class="save-button">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="address-list"></div>
+</div>

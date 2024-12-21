@@ -70,7 +70,10 @@ export class AuthComponent {
   }
 
   registerForm = new FormGroup({
-    name: new FormControl('', {
+    firstname: new FormControl('', {
+      validators: [Validators.required, this.onlyAlphabetsValidator()]
+    }),
+    lastname: new FormControl('', {
       validators: [Validators.required, this.onlyAlphabetsValidator()]
     }),
     age: new FormControl('', {
@@ -119,13 +122,15 @@ export class AuthComponent {
   }
 
   registerSubmit() {
-    const enteredName = this.registerForm.value.name;
+    const enteredFirstName = this.registerForm.value.firstname;
+    const enteredLastName = this.registerForm.value.lastname;
     const enteredAge = this.registerForm.value.age;
     const enteredEmail = this.registerForm.value.email;
     const enteredPassword = this.registerForm.value.passwords?.password;
-    if (this.registerForm.valid && enteredName && enteredAge && enteredEmail && enteredPassword) {
+    if (this.registerForm.valid && enteredFirstName && enteredLastName && enteredAge && enteredEmail && enteredPassword) {
       const formData: Register = {
-        name: enteredName,
+        firstname: enteredFirstName,
+        lastname: enteredLastName,
         age: +enteredAge,
         email: enteredEmail,
         password: enteredPassword

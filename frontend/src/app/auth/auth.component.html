@@ -44,11 +44,20 @@
         } @else {
         <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()" class="form">
             <div class="form-field">
-                <input [class]="getErrorMessage(registerForm.get('name')) ? 'error-input' : 'text-input'" type="text"
-                    placeholder="Name" formControlName="name">
+                <input [class]="getErrorMessage(registerForm.get('firstname')) ? 'error-input' : 'text-input'" type="text"
+                    placeholder="Firstname" formControlName="firstname">
                 <div class="error-message">
-                    @if (getErrorMessage(registerForm.get('name'))) {
-                    {{ getErrorMessage(registerForm.get('name')) }}
+                    @if (getErrorMessage(registerForm.get('firstname'))) {
+                    {{ getErrorMessage(registerForm.get('firstname')) }}
+                    }
+                </div>
+            </div>
+            <div class="form-field">
+                <input [class]="getErrorMessage(registerForm.get('lastname')) ? 'error-input' : 'text-input'" type="text"
+                    placeholder="Lastname" formControlName="lastname">
+                <div class="error-message">
+                    @if (getErrorMessage(registerForm.get('lastname'))) {
+                    {{ getErrorMessage(registerForm.get('lastname')) }}
                     }
                 </div>
             </div>

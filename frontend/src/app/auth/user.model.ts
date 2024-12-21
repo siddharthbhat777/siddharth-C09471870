@@ -1,6 +1,7 @@
 export interface User {
     _id: string;
-    name: string;
+    firstname: string;
+    lastname: string;
     age: number;
     email: string;
     phone?: number;
@@ -23,7 +24,8 @@ export interface LoginResponse {
 }
 
 export interface Register {
-    name: string;
+    firstname: string;
+    lastname: string;
     email: string;
     age: number;
     password: string;

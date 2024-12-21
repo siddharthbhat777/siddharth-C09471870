@@ -1,0 +1,135 @@
+.forms-layout {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.close-button {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.heading {
+    font-size: xx-large;
+    font-weight: 400;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.25rem;
+}
+
+.text-input {
+    width: 100%;
+    padding: .625rem .875rem;
+    font-size: 1rem;
+    border: .0625rem solid var(--lighter-gray-color);
+    border-radius: .25rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 .3125rem var(--secondary-light-color);
+    outline: none;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.cancel-button {
+    padding: .625rem .875rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button:hover {
+    background-color: var(--darker-gray-color);
+    transform: scale(1.02);
+}
+
+.cancel-button:active {
+    transform: scale(0.98);
+}
+
+.save-button {
+    padding: .625rem .875rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-button:hover {
+    background-color: var(--secondary-dark-color);
+    transform: scale(1.02);
+}
+
+.save-button:active {
+    transform: scale(0.98);
+}
+
+.form-field {
+    position: relative;
+}
+
+.error-message {
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    font-size: 0.875rem;
+    color: var(--red-color);
+}
+
+.error-input {
+    border: .0625rem solid var(--red-color);
+    background-color: var(--lightest-red-color);
+    box-shadow: none;
+    width: 100%;
+    padding: .625rem .875rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.error-input:focus {
+    outline: none;
+    border-color: var(--dark-red-color);
+    box-shadow: 0 0 .3125rem var(--light-red-color);
+}
+
+@media (max-width: 480px) {
+    .details-form {
+        padding: 1rem;
+        gap: .75rem;
+    }
+
+    .text-input,
+    .cancel-button,
+    .save-button {
+        font-size: .875rem;
+    }
+}
