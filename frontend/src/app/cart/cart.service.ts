@@ -15,7 +15,7 @@ export class CartService {
   private authService = inject(AuthService);
 
   getCart(): Observable<any[]> {
-    return this.http.get<{ cartItems: any[] }>(`http://localhost:5004/cart/items/${this.authService.sharableData()?._id}`, {
+    return this.http.get<{ cartItems: any[] }>(`http://localhost:8001/cart/items/${this.authService.sharableData()?._id}`, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }

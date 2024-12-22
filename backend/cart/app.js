@@ -9,13 +9,13 @@ app.use(express.json());
 
 // Constants
 const DATABASE_URL = "mongodb+srv://siddharthC09471870:C09471870@pizzeria.vsmlx.mongodb.net/pizzeria";
-const SERVER_PORT = 5004;
+const SERVER_PORT = 5005;
 
 // Setting headers
 app.use(cors({ methods: ['GET', 'PUT', 'DELETE'] }));
 
 // Request logs
-app.use((req, res, next) => {
+app.use((req, _, next) => {
     console.log(`[${new Date().toISOString()}] Incoming request: ${req.method} ${req.url}`);
     next();
 });
