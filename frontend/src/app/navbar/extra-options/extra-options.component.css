@@ -90,7 +90,6 @@
 }
 
 .options {
-    background-color: var(--light-gray-color);
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -103,6 +102,7 @@
     cursor: pointer;
     border: 0.05rem solid var(--light-gray-color);
     background-color: var(--shaded-white-color);
+    box-shadow: #00000033 0 .1875rem .0625rem -0.125rem, #00000024 0 .125rem .125rem 0, #0000001f 0 .0625rem .3125rem 0;
     padding: 0.5rem 3rem;
     font-size: medium;
     font-weight: 600;
@@ -120,7 +120,7 @@
 
 .option:hover {
     transform: scale(1.01);
-    box-shadow: #3c40434d 0rem .0625rem .125rem 0rem, #3c404326 0rem .0625rem .1875rem .0625rem;
+    box-shadow: #00000033 0 .125rem .25rem -0.0625rem, #00000024 0 .25rem .3125rem 0, #0000001f 0 .0625rem .625rem 0;
 }
 
 .option:active {
