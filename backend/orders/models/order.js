@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema({
         type: addressSchema,
         required: true
     },
-    cart: {
+    cartItems: {
         type: [cartItemSchema],
         required: true
     }
