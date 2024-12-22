@@ -1,43 +1,47 @@
-@if (isIngredientExists(pizzaId())) {
-    <div class="top-elements">
-        <div class="back-button" routerLink="/build-pizza/select-pizza">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" stroke='#000' strokeWidth='0.5'
-                class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223" />
-            </svg>
-            <span>Back</span>
-        </div>
-        <h1 class="selection-heading">Pizzeria now gives you options to build your own pizza. Customize your pizza by
-            choosing
-            ingredients from the list given below</h1>
-    </div>
-    <div class="ingredients-layout">
-        <table class="toppings-table">
-            @for (ingredient of ingredients(); track ingredient._id) {
-            <tr>
-                <td>
-                    <img [src]="ingredient.image" [alt]="ingredient.tname" class="topping-image">
-                </td>
-                <td>
-                    <strong>{{ ingredient.tname }}</strong>
-                    <span class="price">{{ ingredient.price | currency: 'INR' }}</span>
-                </td>
-                <td>
-                    <label class="add-label">
-                        <input type="checkbox" [checked]="isIngredientChecked(pizzaId(), ingredient._id.toString())"
-                            (change)="updateTotalCost(ingredient.price, ingredient._id.toString(), $event)" />
-                        Add
-                    </label>
-                </td>
-            </tr>
-            }
-        </table>
-        <h3 class="total-cost">Total cost: {{ totalCost() }}</h3>
-    </div>
-    <div class="build-button-layout">
-        <button class="build-pizza-button" (click)="buildPizza()">Build Ur Pizza</button>
-    </div>
+@if (isLoading()) {
+<app-screen-loader />
 } @else {
-    <app-error-screen errorMessage="No cart items found" />
+@if (isIngredientExists(pizzaId())) {
+<div class="top-elements">
+    <div class="back-button" routerLink="/build-pizza/select-pizza">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" stroke='#000'
+            strokeWidth='0.5' class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223" />
+        </svg>
+        <span>Back</span>
+    </div>
+    <h1 class="selection-heading">Pizzeria now gives you options to build your own pizza. Customize your pizza by
+        choosing
+        ingredients from the list given below</h1>
+</div>
+<div class="ingredients-layout">
+    <table class="toppings-table">
+        @for (ingredient of ingredients(); track ingredient._id) {
+        <tr>
+            <td>
+                <img [src]="ingredient.image" [alt]="ingredient.tname" class="topping-image">
+            </td>
+            <td>
+                <strong>{{ ingredient.tname }}</strong>
+                <span class="price">{{ ingredient.price | currency: 'INR' }}</span>
+            </td>
+            <td>
+                <label class="add-label">
+                    <input type="checkbox" [checked]="isIngredientChecked(pizzaId(), ingredient._id.toString())"
+                        (change)="updateTotalCost(ingredient.price, ingredient._id.toString(), $event)" />
+                    Add
+                </label>
+            </td>
+        </tr>
+        }
+    </table>
+    <h3 class="total-cost">Total cost: {{ totalCost() }}</h3>
+</div>
+<div class="build-button-layout">
+    <button class="build-pizza-button" (click)="buildPizza()">Build Ur Pizza</button>
+</div>
+} @else {
+<app-error-screen errorMessage="No cart items found" />
+}
 }

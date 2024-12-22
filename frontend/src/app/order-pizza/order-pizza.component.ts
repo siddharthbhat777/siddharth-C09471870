@@ -1,17 +1,20 @@
-import { Component, DestroyRef, inject, input, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { PizzaComponent } from "./pizza/pizza.component";
 import { PizzaService } from './pizza.service';
 import { ErrorScreenComponent } from '../shared/error-screen/error-screen.component';
 import { CartService } from '../cart/cart.service';
+import { ScreenLoaderComponent } from "../shared/screen-loader/screen-loader.component";
 
 @Component({
   selector: 'app-order-pizza',
-  imports: [PizzaComponent, ErrorScreenComponent],
+  imports: [PizzaComponent, ErrorScreenComponent, ScreenLoaderComponent],
   templateUrl: './order-pizza.component.html',
   styleUrl: './order-pizza.component.css',
   providers: [PizzaService]
 })
 export class OrderPizzaComponent implements OnInit {
+  isLoading = signal<boolean>(false);
+
   private pizzaService = inject(PizzaService);
   private cartService = inject(CartService);
   private destroyRef = inject(DestroyRef);
@@ -21,6 +24,7 @@ export class OrderPizzaComponent implements OnInit {
   pizzaId = input<string | undefined>();
 
   ngOnInit(): void {
+    this.isLoading.set(true);
     if (this.pizzaId()) {
       this.scrollToPizza(this.pizzaId()!);
     }
@@ -29,7 +33,12 @@ export class OrderPizzaComponent implements OnInit {
     });
     this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
     const pizzaSubscription = this.pizzaService.pizzaData.subscribe({
-      error: (error) => console.log(error)
+      error: (error) => console.log(error),
+      complete: () => {
+        setTimeout(() => {
+          this.isLoading.set(false);
+        }, 500);
+      }
     });
     this.destroyRef.onDestroy(() => pizzaSubscription.unsubscribe());
   }

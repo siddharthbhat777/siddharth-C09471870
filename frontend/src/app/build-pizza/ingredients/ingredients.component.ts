@@ -5,14 +5,16 @@ import { CurrencyPipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
 import { ErrorScreenComponent } from "../../shared/error-screen/error-screen.component";
+import { ScreenLoaderComponent } from "../../shared/screen-loader/screen-loader.component";
 
 @Component({
   selector: 'app-ingredients',
-  imports: [CurrencyPipe, RouterLink, ErrorScreenComponent],
+  imports: [CurrencyPipe, RouterLink, ErrorScreenComponent, ScreenLoaderComponent],
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.css'
 })
 export class IngredientsComponent implements OnInit {
+  isLoading = signal<boolean>(false);
   pizzaId = input.required<string>();
   ingredients = signal<Ingredient[]>([]);
   totalCost = signal<number>(0);
@@ -26,28 +28,36 @@ export class IngredientsComponent implements OnInit {
   cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
-    const buildSubscription = this.buildService.getIngredients().subscribe({
-      next: (res) => {
-        this.ingredients.set(res);
-        const cartItems = this.cartItems();
-        if (cartItems.length > 0) {
-          const currentPizza = cartItems.find(item => item.pizzaId === this.pizzaId());
-          if (currentPizza) {
-            const selectedIngredientIds = currentPizza.extraIngredients.map(ingredient => ingredient._id.toString());
-            this.selectedIngredients.set(selectedIngredientIds);
-            const totalCost = selectedIngredientIds.reduce((sum, id) => {
-              const ingredient = res.find(ingredient => ingredient._id.toString() === id);
-              return ingredient ? sum + ingredient.price : sum;
-            }, 0);
-            this.totalCost.set(totalCost);
-          }
-        }
-      },
-      error: (error) => console.log(error)
-    });
-    this.destroyRef.onDestroy(() => buildSubscription.unsubscribe());
+    this.isLoading.set(true);
     const cartSubscription = this.cartService.getCart().subscribe({
-      error: (error) => console.log(error)
+      error: (error) => console.log(error),
+      complete: () => {
+        const buildSubscription = this.buildService.getIngredients().subscribe({
+          next: (res) => {
+            this.ingredients.set(res);
+            const cartItems = this.cartItems();
+            if (cartItems.length > 0) {
+              const currentPizza = cartItems.find(item => item.pizzaId === this.pizzaId());
+              if (currentPizza) {
+                const selectedIngredientIds = currentPizza.extraIngredients.map(ingredient => ingredient._id.toString());
+                this.selectedIngredients.set(selectedIngredientIds);
+                const totalCost = selectedIngredientIds.reduce((sum, id) => {
+                  const ingredient = res.find(ingredient => ingredient._id.toString() === id);
+                  return ingredient ? sum + ingredient.price : sum;
+                }, 0);
+                this.totalCost.set(totalCost);
+              }
+            }
+          },
+          error: (error) => console.log(error),
+          complete: () => {
+            setTimeout(() => {
+              this.isLoading.set(false);
+            }, 500);
+          }
+        });
+        this.destroyRef.onDestroy(() => buildSubscription.unsubscribe());
+      }
     });
     this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
   }

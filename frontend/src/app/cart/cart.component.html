@@ -1,3 +1,6 @@
+@if (isLoading()) {
+<app-screen-loader />
+} @else {
 @if (cartItems().length > 0) {
 <div class="cart-layout">
     <div>
@@ -16,4 +19,5 @@
 </div>
 } @else {
 <app-error-screen errorMessage="No cart items found" />
+}
 }

@@ -1,3 +1,6 @@
+@if (isLoading()) {
+<app-screen-loader />
+} @else {
 <div class="profile-layout">
     <div class="profile-details-container">
         <div class="profile-details">
@@ -237,3 +240,4 @@
     </div>
 </div>
 </div>
+}

@@ -5,14 +5,16 @@ import { ProfileService } from './profile.service';
 import { Address, ProfileRequest } from '../auth/user.model';
 import { AddressComponent } from "./address/address.component";
 import { ErrorScreenComponent } from "../shared/error-screen/error-screen.component";
+import { ScreenLoaderComponent } from "../shared/screen-loader/screen-loader.component";
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent],
+  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent, ScreenLoaderComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
+  isLoading = signal<boolean>(false);
   isEditable = signal<boolean>(false);
   openAddAddress = signal<boolean>(false);
   screenWidth = signal<number>(window.innerWidth);
@@ -24,6 +26,10 @@ export class ProfileComponent implements OnInit {
   userData = this.authService.sharableData;
 
   ngOnInit(): void {
+    this.isLoading.set(true);
+    setTimeout(() => {
+      this.isLoading.set(false);
+    }, 500);
     this.toggleFormControls(this.isEditable());
   }
 
@@ -66,7 +72,7 @@ export class ProfileComponent implements OnInit {
       validators: [Validators.required, this.phoneNumberValidator()]
     })
   });
-  
+
   detailsSubmit() {
     const enteredFirstname = this.detailsForm.value.firstname;
     const enteredLastname = this.detailsForm.value.lastname;
@@ -86,7 +92,7 @@ export class ProfileComponent implements OnInit {
       this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
   }
-  
+
   addressForm = new FormGroup({
     addressTitle: new FormControl('', {
       validators: [Validators.required]
@@ -110,7 +116,7 @@ export class ProfileComponent implements OnInit {
       validators: [Validators.required, this.onlyAlphabetsValidator()]
     })
   });
-  
+
   addressSubmit() {
     const enteredTitle = this.addressForm.value.addressTitle;
     const enteredReceiverName = this.addressForm.value.addressReceiverName;
@@ -139,7 +145,7 @@ export class ProfileComponent implements OnInit {
       this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
   }
-  
+
   onlyAlphabetsValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;

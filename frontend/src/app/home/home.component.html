@@ -1,3 +1,6 @@
+@if (isLoading()) {
+<app-screen-loader />
+} @else {
 <header>Our Story</header>
 <div class="main-content">
     <p>
@@ -18,7 +21,8 @@
         Pizza is the Tastiest Pan Pizza. Ever!
     </p>
     <div class="content">
-        <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/526830277/display_1500/stock-photo-raw-dough-for-pizza-with-ingredients-and-spices-on-table-526830277.jpg"
+        <img class="content-image"
+            src="https://www.shutterstock.com/shutterstock/photos/526830277/display_1500/stock-photo-raw-dough-for-pizza-with-ingredients-and-spices-on-table-526830277.jpg"
             alt="pizza-ingredients">
         <div class="content-text">
             <h3 class="content-heading">Ingredients</h3>
@@ -31,7 +35,8 @@
     </div>
     <div class="content">
         @if (isMobile) {
-            <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
+        <img class="content-image"
+            src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
             alt="chef">
         }
         <div class="content-text">
@@ -43,15 +48,18 @@
             </p>
         </div>
         @if (!isMobile) {
-            <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
+        <img class="content-image"
+            src="https://www.shutterstock.com/shutterstock/photos/437116033/display_1500/stock-photo-happy-chef-437116033.jpg"
             alt="chef">
         }
     </div>
     <div class="content">
-        <img class="content-image" src="https://www.shutterstock.com/shutterstock/photos/669255388/display_1500/stock-photo-vintage-analog-kitchen-countdown-timer-with-classical-clock-face-and-red-remaining-time-display-669255388.jpg"
+        <img class="content-image"
+            src="https://www.shutterstock.com/shutterstock/photos/669255388/display_1500/stock-photo-vintage-analog-kitchen-countdown-timer-with-classical-clock-face-and-red-remaining-time-display-669255388.jpg"
             alt="delivery">
         <div class="content-text">
             <h3 class="content-heading">45 min delivery</h3>
         </div>
     </div>
 </div>
+}
