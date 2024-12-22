@@ -1,5 +1,5 @@
 @if (toggleExtraOptions()) {
-    <app-extra-options (closeOptions)="closeOptions()" />
+<app-extra-options (closeOptions)="closeOptions()" />
 }
 <nav class="navbar">
     <div>
@@ -23,6 +23,9 @@
             <span>
                 Shopping cart
             </span>
+            @if (cartData().length > 0) {
+            <div class="cart-items-number">{{ cartData().length }}</div>
+            }
         </button>
         <div class="profile" (click)="toggleExtraOptions.set(!toggleExtraOptions())">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"

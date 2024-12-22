@@ -2,7 +2,6 @@ import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/c
 import { PizzaComponent } from "./pizza/pizza.component";
 import { PizzaService } from './pizza.service';
 import { ErrorScreenComponent } from '../shared/error-screen/error-screen.component';
-import { CartService } from '../cart/cart.service';
 import { ScreenLoaderComponent } from "../shared/screen-loader/screen-loader.component";
 
 @Component({
@@ -16,7 +15,6 @@ export class OrderPizzaComponent implements OnInit {
   isLoading = signal<boolean>(false);
 
   private pizzaService = inject(PizzaService);
-  private cartService = inject(CartService);
   private destroyRef = inject(DestroyRef);
 
   pizzas = this.pizzaService.sharablePizzas;
@@ -28,10 +26,6 @@ export class OrderPizzaComponent implements OnInit {
     if (this.pizzaId()) {
       this.scrollToPizza(this.pizzaId()!);
     }
-    const cartSubscription = this.cartService.getCart().subscribe({
-      error: (error) => console.log(error)
-    });
-    this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
     const pizzaSubscription = this.pizzaService.pizzaData.subscribe({
       error: (error) => console.log(error),
       complete: () => {
