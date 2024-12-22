@@ -19,6 +19,9 @@ apiEndpoints:
   cart-api:
     host: localhost
     paths: '/cart/*'
+  history-api:
+    host: localhost
+    paths: '/order/*'
 serviceEndpoints:
   auth-service:
     url: 'http://localhost:5001/'
@@ -30,6 +33,8 @@ serviceEndpoints:
     url: 'http://localhost:5004/'
   cart-service:
     url: 'http://localhost:5005/'
+  history-service:
+    url: 'http://localhost:5006/'
 policies:
   - proxy
   - jwt
@@ -109,4 +114,19 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: cart-service 
+              changeOrigin: true
+  history:
+    apiEndpoints:
+      - history-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: history-service 
               changeOrigin: true
