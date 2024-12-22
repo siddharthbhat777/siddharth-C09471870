@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BuildService } from './build.service';
-import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-build-pizza',
-  imports: [RouterOutlet, FooterComponent],
+  imports: [RouterOutlet],
   templateUrl: './build-pizza.component.html',
   styleUrl: './build-pizza.component.css',
   providers: [BuildService]

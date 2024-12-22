@@ -1,7 +1,6 @@
 .profile-layout {
     display: grid;
     grid-template-columns: 30% auto;
-    min-height: 90vh;
 }
 
 .edit-profile {

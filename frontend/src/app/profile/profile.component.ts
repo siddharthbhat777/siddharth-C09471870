@@ -5,11 +5,10 @@ import { ProfileService } from './profile.service';
 import { Address, ProfileRequest } from '../auth/user.model';
 import { AddressComponent } from "./address/address.component";
 import { ErrorScreenComponent } from "../shared/error-screen/error-screen.component";
-import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent, FooterComponent],
+  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

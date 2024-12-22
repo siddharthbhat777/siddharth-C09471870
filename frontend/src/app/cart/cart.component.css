@@ -1,7 +1,3 @@
-.cart {
-    min-height: 90vh;
-}
-
 .cart-layout {
     display: grid;
     grid-template-columns: 60% 40%;

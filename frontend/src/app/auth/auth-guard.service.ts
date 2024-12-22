@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CanActivate, GuardResult, MaybeAsync, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 

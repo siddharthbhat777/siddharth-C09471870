@@ -3,11 +3,10 @@ import { CartItemComponent } from "./cart-item/cart-item.component";
 import { CartService } from './cart.service';
 import { BillingComponent } from "./billing/billing.component";
 import { ErrorScreenComponent } from "../shared/error-screen/error-screen.component";
-import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-cart',
-  imports: [CartItemComponent, BillingComponent, ErrorScreenComponent, FooterComponent],
+  imports: [CartItemComponent, BillingComponent, ErrorScreenComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
