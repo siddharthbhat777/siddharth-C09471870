@@ -7,26 +7,26 @@
 }
 
 .loader {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
-    border: 8px solid #d1914b;
+    border: .5rem solid #d1914b;
     box-sizing: border-box;
     --c: no-repeat radial-gradient(farthest-side, #d64123 94%, #0000);
     --b: no-repeat radial-gradient(farthest-side, #000 94%, #0000);
     background:
-        var(--c) 11px 15px,
-        var(--b) 6px 15px,
-        var(--c) 35px 23px,
-        var(--b) 29px 15px,
-        var(--c) 11px 46px,
-        var(--b) 11px 34px,
-        var(--c) 36px 0px,
-        var(--b) 50px 31px,
-        var(--c) 47px 43px,
-        var(--b) 31px 48px,
+        var(--c) .6875rem .9375rem,
+        var(--b) .375rem .9375rem,
+        var(--c) 2.1875rem 1.4375rem,
+        var(--b) 1.8125rem .9375rem,
+        var(--c) .6875rem 2.875rem,
+        var(--b) .6875rem 2.125rem,
+        var(--c) 2.25rem 0rem,
+        var(--b) 3.125rem 1.9375rem,
+        var(--c) 2.9375rem 2.6875rem,
+        var(--b) 1.9375rem 3rem,
         #f6d353;
-    background-size: 15px 15px, 6px 6px;
+    background-size: .9375rem .9375rem, .375rem .375rem;
     animation: l4 3s infinite;
 }
 

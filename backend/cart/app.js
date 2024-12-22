@@ -14,6 +14,12 @@ const SERVER_PORT = 5004;
 // Setting headers
 app.use(cors({ methods: ['GET', 'PUT', 'DELETE'] }));
 
+// Request logs
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] Incoming request: ${req.method} ${req.url}`);
+    next();
+});
+
 // Setting up routes
 app.use('/cart', cartRoutes);
 
