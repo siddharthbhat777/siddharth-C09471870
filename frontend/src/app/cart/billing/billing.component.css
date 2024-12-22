@@ -1,15 +1,15 @@
 .bill-card {
-    background-color: var(--lightest-gray-color); /* Soft gray or white shade */
+    background-color: var(--lightest-gray-color);
     border-radius: 0.5rem;
     padding-bottom: 1rem;
-    box-shadow: 0 .25rem .375rem #0000001a; /* Subtle shadow for elevation */
+    box-shadow: 0 .25rem .375rem #0000001a;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
-    background-color: transparent; /* Matches card background */
+    background-color: transparent;
 }
 
 thead {
@@ -23,7 +23,7 @@ th, td {
 }
 
 tbody {
-    background-color: white;
+    background-color: var(--white-color);
 }
 
 tbody tr {
@@ -31,7 +31,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background-color: var(--shaded-white-color); /* Slightly lighter hover effect */
+    background-color: var(--shaded-white-color);
     transition: background-color 0.3s ease;
 }
 
@@ -42,7 +42,7 @@ th {
 
 .styled-table {
     border-radius: 0.5rem;
-    overflow: hidden; /* Rounds edges of the table */
+    overflow: hidden;
 }
 
 .final-total {
@@ -54,4 +54,119 @@ th {
 .final-total span {
     font-weight: 800;
     color: var(--green-color);
+}
+
+.sub-heading {
+    margin: 0;
+    font-size: x-large;
+    font-weight: 500;
+    color: var(--secondary-dark-color);
+    margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.location-layout {
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    border: 0.05rem dashed var(--light-gray-color);
+}
+
+.address-list {
+    max-height: 15rem;
+    overflow-y: auto;
+}
+
+.address-card {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border: .1rem solid var(--secondary-light-color);
+    border-radius: .5rem;
+    padding: 1rem;
+    background-color: var(--shaded-white-color);
+    box-shadow: 0 .25rem .375rem #0000001a;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.address-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 .3125rem var(--secondary-light-color);
+}
+
+.address-list-card {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border: .1rem solid var(--lighter-gray-color);
+    border-radius: .5rem;
+    padding: 1rem;
+    background-color: var(--shaded-white-color);
+    box-shadow: 0 .25rem .375rem #0000001a;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.address-list-card:hover {
+    border-color: var(--secondary-light-color);
+    box-shadow: 0 0 .3125rem var(--secondary-light-color);
+}
+
+.left-column {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.right-column {
+    width: 55%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.address-title {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--darker-gray-color);
+}
+
+.receiver-info {
+    margin: 0;
+    font-size: 1em;
+    color: var(--darker-gray-color);
+}
+
+.receiver-name {
+    font-weight: bold;
+}
+
+.receiver-phone {
+    font-weight: normal;
+    color: var(--gray-color);
+}
+
+.address-line {
+    margin: 0;
+    font-size: 1em;
+    color: var(--dark-gray-color);
+}
+
+.address-meta {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--gray-color);
+}
+
+.pincode, .city, .state {
+    display: inline-block;
+    margin-right: .25rem;
+}
+
+.no-data-message {
+    padding-inline: 1rem;
+    font-size: larger;
+    font-weight: 600;
+    color: var(--light-gray-color);
 }

@@ -31,7 +31,6 @@ export class AuthComponent {
   loginSubmit() {
     const enteredEmail = this.loginForm.value.email;
     const enteredPassword = this.loginForm.value.password;
-    console.log(enteredEmail, enteredPassword);
     if (this.loginForm.valid && enteredEmail && enteredPassword) {
       const subscription = this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
         error: (error) => console.log(error),
