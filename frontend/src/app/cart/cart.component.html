@@ -1,4 +1,5 @@
-@if (cartItems().length > 0) {
+<div class="cart">
+    @if (cartItems().length > 0) {
     <div class="cart-layout">
         <div>
             <div class="cart-items">Cart items:</div>
@@ -14,6 +15,8 @@
             <app-billing />
         </div>
     </div>
-} @else {
+    } @else {
     <app-error-screen errorMessage="No cart items found" />
-}
+    }
+</div>
+<app-footer />

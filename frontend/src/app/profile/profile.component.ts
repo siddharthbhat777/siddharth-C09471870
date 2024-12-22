@@ -5,21 +5,18 @@ import { ProfileService } from './profile.service';
 import { Address, ProfileRequest } from '../auth/user.model';
 import { AddressComponent } from "./address/address.component";
 import { ErrorScreenComponent } from "../shared/error-screen/error-screen.component";
+import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent],
+  imports: [ReactiveFormsModule, AddressComponent, ErrorScreenComponent, FooterComponent],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
-  host: {
-    class: 'control',
-    'window:resize': '$event'
-  }
+  styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
   isEditable = signal<boolean>(false);
   openAddAddress = signal<boolean>(false);
-  screenWidth = signal<number>(0);
+  screenWidth = signal<number>(window.innerWidth);
 
   private authService = inject(AuthService);
   private profileService = inject(ProfileService);
@@ -28,7 +25,6 @@ export class ProfileComponent implements OnInit {
   userData = this.authService.sharableData;
 
   ngOnInit(): void {
-    this.screenWidth.set(window.innerWidth);
     this.toggleFormControls(this.isEditable());
   }
 

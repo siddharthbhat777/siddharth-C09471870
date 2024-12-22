@@ -1,3 +1,7 @@
+.cart {
+    min-height: 90vh;
+}
+
 .cart-layout {
     display: grid;
     grid-template-columns: 60% 40%;
@@ -6,13 +10,7 @@
 .cart-items {
     font-size: x-large;
     padding: 1rem;
-    text-shadow: 1px 1px 2px black;
-    background-color: var(--secondary-color);
-}
-
-.cart-items-list {
-    height: 80vh;
-    overflow-y: auto;
+    text-shadow: .0625rem .0625rem .125rem var(--black-color);
 }
 
 .single-cart-item {
@@ -21,8 +19,9 @@
 
 .billing {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 
 @media (max-width: 768px) {

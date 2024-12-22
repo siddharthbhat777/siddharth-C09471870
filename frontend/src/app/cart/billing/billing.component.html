@@ -1,4 +1,5 @@
 <div class="billing-layout">
+    <div class="billing-heading">Location:</div>
     <div class="location-layout">
         <div class="address-card" (click)="onOpenAddressSelection()">
             @if (addresses.length > 0) {
@@ -23,7 +24,7 @@
         </div>
         @if (openAddressSelection()) {
         <div class="address-selection">
-            <h2 class="sub-heading">Select address</h2>
+            <h2 class="sub-heading">Select address:</h2>
             <div class="address-list">
                 @for (address of addresses; track address._id) {
                 <div class="address-list-card" (click)="onAddressSelection(address)">
@@ -50,6 +51,7 @@
         </div>
         }
     </div>
+    <div class="billing-heading">Price details:</div>
     <div class="bill-container">
         <div class="bill-card">
             <table class="styled-table">
