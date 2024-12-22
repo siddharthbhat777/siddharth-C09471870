@@ -25,7 +25,7 @@
 
 .extra-options-layout {
     position: relative;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 0;
 }
 
 .close-button {
@@ -78,8 +78,58 @@
     background-color: var(--dark-green-color);
 }
 
+.options-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.username {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.options {
+    background-color: var(--light-gray-color);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.option {
+    cursor: pointer;
+    border: 0.05rem solid var(--light-gray-color);
+    background-color: var(--shaded-white-color);
+    padding: 0.5rem 3rem;
+    font-size: medium;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.option:nth-child(1) {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.option:last-child {
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.option:hover {
+    transform: scale(1.01);
+    box-shadow: #3c40434d 0rem .0625rem .125rem 0rem, #3c404326 0rem .0625rem .1875rem .0625rem;
+}
+
+.option:active {
+    background-color: var(--lightest-gray-color);
+}
+
 .logout-button {
     align-items: center;
+    gap: 0.5rem;
     appearance: none;
     border-radius: .25rem;
     border-style: none;
@@ -96,6 +146,7 @@
     letter-spacing: .0892857em;
     line-height: normal;
     min-width: 4rem;
+    width: 100%;
     outline: none;
     overflow: visible;
     padding: 0 1rem;
