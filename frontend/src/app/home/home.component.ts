@@ -10,10 +10,7 @@ import { ScreenLoaderComponent } from "../shared/screen-loader/screen-loader.com
 })
 export class HomeComponent implements OnInit {
   isLoading = signal<boolean>(false);
-
-  get isMobile() {
-    return window.innerWidth <= 768
-  }
+  isMobile = signal<boolean>(window.innerWidth <= 768);
 
   ngOnInit(): void {
     this.isLoading.set(true);
