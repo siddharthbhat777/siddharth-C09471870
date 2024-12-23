@@ -12,7 +12,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
   toggleExtraOptions = signal<boolean>(false);
-  isMobile = signal<boolean>(false);
+  isMobile = signal<boolean>(window.innerWidth <= 768);
   showMenuOptions = signal<boolean>(false);
 
   private cartService = inject(CartService);
