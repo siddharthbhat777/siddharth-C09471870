@@ -1,4 +1,19 @@
 <div class="pizza-card">
+    <div class="type-indicator">
+        @if (cartItem().type === 'veg') {
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" version="1.1" viewBox="0 0 3387 3387"
+            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
+            <rect x="338" y="320" width="2739" height="2773" fill="#FEFEFE" stroke="#008001" stroke-width="85" />
+            <circle cx="1707" cy="1733" r="789" fill="#008001" stroke="#008001" stroke-width="85" />
+        </svg>
+        } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" version="1.1" viewBox="0 0 3387 3387"
+            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd">
+            <rect x="338" y="320" width="2739" height="2773" fill="#FEFEFE" stroke="#9C3B14" stroke-width="85" />
+            <circle cx="1707" cy="1733" r="789" fill="#9C3B14" stroke="#9C3B14" stroke-width="85" />
+        </svg>
+        }
+    </div>
     <div class="header">
         <img [src]="cartItem().image" [alt]="cartItem().name">
         <div class="header-texts">
