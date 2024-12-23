@@ -6,10 +6,11 @@ import { Address } from '../../auth/user.model';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../history/history.service';
 import { HistoryRequest } from '../../history/history.model';
+import { ErrorAlertComponent } from "../../shared/error-alert/error-alert.component";
 
 @Component({
   selector: 'app-billing',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, ErrorAlertComponent],
   templateUrl: './billing.component.html',
   styleUrl: './billing.component.css'
 })
@@ -25,6 +26,7 @@ export class BillingComponent {
   selectedAddress = signal<Address>(this.addresses[0]);
   cartItems = this.cartService.sharableCartPizzas;
   openAddressSelection = signal<boolean>(false);
+  showErrorAlert = signal<boolean>(false);
 
   calculateTotal() {
     return this.cartItems().reduce((accumulator: number, item: { price: number; quantity: number; }) => accumulator + (item.price * item.quantity), 0);
@@ -44,19 +46,27 @@ export class BillingComponent {
   }
 
   onPlaceOrder() {
-    const order: HistoryRequest = {
-      userId: this.authService.sharableData()?._id!,
-      address: this.selectedAddress(),
-      cartItems: this.cartItems(),
-      finalTotal: this.calculateTotal()
-    };
-    const subscription = this.historyService.addOrder(order).subscribe({
-      error: (error) => console.log(error),
-      complete: () => {
-        this.router.navigate(['order-successful']);
-        this.cartService.clearCart();
-      }
-    });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    if (!!this.selectedAddress()) {
+      const order: HistoryRequest = {
+        userId: this.authService.sharableData()?._id!,
+        address: this.selectedAddress(),
+        cartItems: this.cartItems(),
+        finalTotal: this.calculateTotal()
+      };
+      const subscription = this.historyService.addOrder(order).subscribe({
+        error: (error) => console.log(error),
+        complete: () => {
+          this.router.navigate(['order-successful']);
+          this.cartService.clearCart();
+        }
+      });
+      this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    } else {
+      this.showErrorAlert.set(true);
+    }
+  }
+
+  onClose() {
+    this.showErrorAlert.set(false);
   }
 }

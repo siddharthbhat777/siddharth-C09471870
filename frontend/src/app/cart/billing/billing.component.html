@@ -1,5 +1,9 @@
 <div class="billing-layout">
     <div class="billing-heading">Location:</div>
+    @if (showErrorAlert()) {
+        <app-error-alert heading="Error" description="Please add address" (close)="onClose()" />
+        <div style="margin-bottom: 0.5rem;"></div>
+    }
     <div class="location-layout">
         <div class="address-card" (click)="onOpenAddressSelection()">
             @if (addresses.length > 0) {
