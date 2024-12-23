@@ -31,6 +31,10 @@
 }
 
 @media (max-width: 768px) {
+    .responsive-table {
+        margin-top: 1rem;
+    }
+
     .responsive-table thead {
         display: none;
     }
@@ -38,6 +42,10 @@
     .responsive-table tr {
         display: block;
         margin-bottom: 1.25rem;
+        border: 0.1rem solid var(--light-gray-color);
+        box-shadow: #00000029 0rem .1875rem .375rem, #0000003b 0rem .1875rem .375rem;
+        border-radius: 0.5rem;
+        margin-inline: 1rem;
     }
 
     .responsive-table td {
