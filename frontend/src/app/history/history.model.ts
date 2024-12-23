@@ -9,3 +9,10 @@ export interface History {
     cartItems: Cart[];
     createdAt: string;
 }
+
+export interface HistoryRequest {
+    userId: string;
+    finalTotal: number;
+    address: Address;
+    cartItems: Cart[];
+}

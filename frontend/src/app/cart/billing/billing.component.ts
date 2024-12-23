@@ -1,9 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { CartService } from '../cart.service';
 import { CurrencyPipe } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
 import { Address } from '../../auth/user.model';
 import { Router } from '@angular/router';
+import { HistoryService } from '../../history/history.service';
+import { History, HistoryRequest } from '../../history/history.model';
 
 @Component({
   selector: 'app-billing',
@@ -14,7 +16,9 @@ import { Router } from '@angular/router';
 export class BillingComponent {
   private cartService = inject(CartService);
   private authService = inject(AuthService);
+  private historyService = inject(HistoryService);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   userData = this.authService.sharableData;
   addresses: Address[] = this.userData()?.addresses!;
@@ -37,5 +41,18 @@ export class BillingComponent {
   onAddressSelection(address: Address) {
     this.selectedAddress.set(address);
     this.openAddressSelection.set(false);
+  }
+
+  onPlaceOrder() {
+    const order: HistoryRequest = {
+      userId: this.authService.sharableData()?._id!,
+      address: this.selectedAddress(),
+      cartItems: this.cartItems(),
+      finalTotal: this.calculateTotal()
+    };
+    const subscription = this.historyService.addOrder(order).subscribe({
+      error: (error) => console.log(error)
+    });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }

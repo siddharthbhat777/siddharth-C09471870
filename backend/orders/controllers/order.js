@@ -1,9 +1,10 @@
 const Cart = require("../models/cart");
 const Order = require("../models/order");
 
-exports.getOrders = async (_, res, next) => {
+exports.getOrders = async (req, res, next) => {
+    const { userId } = req.params;
     try {
-        const orders = await Order.find({}, { id: 0 });
+        const orders = await Order.find({ userId }, { id: 0 });
         const transformedOrders = orders.map(order => {
             const transformedCartItems = order.cartItems.map(item => ({
                 quantity: item.quantity,
