@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
 import { ErrorScreenComponent } from "../../shared/error-screen/error-screen.component";
 import { ScreenLoaderComponent } from "../../shared/screen-loader/screen-loader.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ingredients',
@@ -23,6 +24,7 @@ export class IngredientsComponent implements OnInit {
   private buildService = inject(BuildService);
   private cartService = inject(CartService);
   private router = inject(Router);
+  private titleService = inject(Title);
   private destroyRef = inject(DestroyRef);
 
   cartItems = this.cartService.sharableCartPizzas;
@@ -46,6 +48,7 @@ export class IngredientsComponent implements OnInit {
                   return ingredient ? sum + ingredient.price : sum;
                 }, 0);
                 this.totalCost.set(totalCost);
+                this.titleService.setTitle(currentPizza.name);
               }
             }
           },
