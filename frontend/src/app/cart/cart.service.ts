@@ -83,4 +83,8 @@ export class CartService {
       })
     );
   }
+
+  clearCart() {
+    this.cartPizzas.set([]);
+  }
 }

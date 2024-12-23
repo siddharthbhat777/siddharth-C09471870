@@ -3,6 +3,7 @@ import { ModalComponent } from "../shared/modal/modal.component";
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Register } from './user.model';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,6 +18,7 @@ export class AuthComponent {
   isPasswordVisible = signal(false);
 
   private authService = inject(AuthService);
+  private cartService = inject(CartService);
   private destroyRef = inject(DestroyRef);
 
   loginForm = new FormGroup({
@@ -32,14 +34,18 @@ export class AuthComponent {
     const enteredEmail = this.loginForm.value.email;
     const enteredPassword = this.loginForm.value.password;
     if (this.loginForm.valid && enteredEmail && enteredPassword) {
-      const subscription = this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
+      const authSubscription = this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
         error: (error) => console.log(error),
         complete: () => {
           this.loginForm.reset();
           this.closeAuth();
+          const cartSubscription = this.cartService.getCart().subscribe({
+            error: (error) => console.log(error)
+          });
+          this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
         }
       });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
+      this.destroyRef.onDestroy(() => authSubscription.unsubscribe());
     } else {
       console.error("Form is invalid. Errors:");
 
