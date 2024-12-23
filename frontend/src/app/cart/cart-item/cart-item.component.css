@@ -152,6 +152,10 @@
         text-align: center;
     }
 
+    .item-card .image-layout {
+        justify-content: center;
+    }
+
     .item-card .image-layout img {
         height: 8rem;
         width: 8rem;
