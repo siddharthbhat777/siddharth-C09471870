@@ -39,10 +39,9 @@ export class AuthComponent {
         complete: () => {
           this.loginForm.reset();
           this.closeAuth();
-          const cartSubscription = this.cartService.getCart().subscribe({
+          this.cartService.getCart().subscribe({
             error: (error) => console.log(error)
           });
-          this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
         }
       });
       this.destroyRef.onDestroy(() => authSubscription.unsubscribe());
