@@ -1,7 +1,7 @@
 import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TokenResponse, Register, User } from './user.model';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -16,11 +16,11 @@ export class AuthService {
   private http = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
 
-  registerUser(formData: Register) {
+  registerUser(formData: Register): Observable<{ user: any }> {
     return this.http.post<{ user: any }>('http://localhost:8001/user/register', formData);
   }
 
-  loginUser(email: string, password: string) {
+  loginUser(email: string, password: string): Observable<TokenResponse> {
     return this.http.put<TokenResponse>('http://localhost:8001/user/login', { email, password }).pipe(
       tap({
         next: (resData) => {

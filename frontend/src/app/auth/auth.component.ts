@@ -114,7 +114,7 @@ export class AuthComponent {
     };
   }
 
-  equalValues(controlName1: string, controlName2: string) {
+  equalValues(controlName1: string, controlName2: string): ValidatorFn {
     return (control: AbstractControl) => {
       const val1 = control.get(controlName1)?.value;
       const val2 = control.get(controlName2)?.value;
