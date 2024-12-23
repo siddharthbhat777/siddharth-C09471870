@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   isLoading = signal<boolean>(false);
   isEditable = signal<boolean>(false);
   openAddAddress = signal<boolean>(false);
-  screenWidth = signal<number>(window.innerWidth);
+  isMobile = signal<boolean>(window.innerWidth <= 768);
 
   private authService = inject(AuthService);
   private profileService = inject(ProfileService);

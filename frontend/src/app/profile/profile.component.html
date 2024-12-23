@@ -85,7 +85,7 @@
         @if (openAddAddress()) {
         <form class="address-form" [formGroup]="addressForm" (ngSubmit)="addressSubmit()">
             <h3 class="sub-heading">Add address</h3>
-            @if (screenWidth() < 768) { <div class="form-field">
+            @if (isMobile()) { <div class="form-field">
                 <input [class]="getErrorMessage(addressForm.get('addressTitle')) ? 'error-input' : 'text-input'"
                     type="text" placeholder="Title" formControlName="addressTitle">
                 <div class="error-message">
