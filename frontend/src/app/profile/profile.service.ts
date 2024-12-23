@@ -14,7 +14,7 @@ export class ProfileService {
   editProfile(profileUpdate: ProfileRequest) {
     const previousUserProfile = localStorage.getItem('tokens');
     if (!previousUserProfile) {
-        throw new Error('No user profile is available to revert to.');
+      throw new Error('No user profile is available to revert to.');
     }
     return this.http.put<TokenResponse>(`http://localhost:8001/profile/edit/${this.authService.sharableData()?._id}`, profileUpdate, {
       headers: {
@@ -31,11 +31,11 @@ export class ProfileService {
       })
     );
   }
-  
+
   addAddress(address: Address) {
     const previousUserProfile = localStorage.getItem('tokens');
     if (!previousUserProfile) {
-        throw new Error('No user profile is available to revert to.');
+      throw new Error('No user profile is available to revert to.');
     }
     return this.http.put<TokenResponse>(`http://localhost:8001/profile/add-address/${this.authService.sharableData()?._id}`, address, {
       headers: {
@@ -52,11 +52,11 @@ export class ProfileService {
       })
     );
   }
-  
+
   deleteAddress(addressId: string) {
     const previousUserProfile = localStorage.getItem('tokens');
     if (!previousUserProfile) {
-        throw new Error('No user profile is available to revert to.');
+      throw new Error('No user profile is available to revert to.');
     }
     return this.http.put<TokenResponse>(`http://localhost:8001/profile/delete-address/${this.authService.sharableData()?._id}/${addressId}`, null, {
       headers: {

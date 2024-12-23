@@ -37,7 +37,7 @@ export class BillingComponent {
       this.router.navigate(['profile']);
     }
   }
-  
+
   onAddressSelection(address: Address) {
     this.selectedAddress.set(address);
     this.openAddressSelection.set(false);

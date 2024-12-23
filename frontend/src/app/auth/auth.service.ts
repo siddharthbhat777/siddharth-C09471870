@@ -16,7 +16,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
 
-  registerUser( formData: Register) {
+  registerUser(formData: Register) {
     return this.http.post<{ user: any }>('http://localhost:8001/user/register', formData);
   }
 

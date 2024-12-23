@@ -80,7 +80,9 @@
     color: var(--gray-color);
 }
 
-.pincode, .city, .state {
+.pincode,
+.city,
+.state {
     display: inline-block;
     margin-right: .25rem;
 }

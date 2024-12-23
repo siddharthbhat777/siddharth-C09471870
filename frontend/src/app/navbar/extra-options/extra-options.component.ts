@@ -10,13 +10,13 @@ import { CartService } from '../../cart/cart.service';
 })
 export class ExtraOptionsComponent {
   closeOptions = output();
-  
+
   private authService = inject(AuthService);
   private cartService = inject(CartService);
   private router = inject(Router);
 
   userData = this.authService.sharableData;
-  
+
   isLoggedIn = signal<boolean>(!!this.userData());
 
   onLogin() {
