@@ -52,7 +52,10 @@ export class BillingComponent {
     };
     const subscription = this.historyService.addOrder(order).subscribe({
       error: (error) => console.log(error),
-      complete: () => this.router.navigate(['order-successful'])
+      complete: () => {
+        this.router.navigate(['order-successful']);
+        this.cartService.clearCart();
+      }
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
