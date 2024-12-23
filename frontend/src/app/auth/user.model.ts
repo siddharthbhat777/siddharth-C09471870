@@ -32,11 +32,11 @@ export interface Address {
     pincode: number;
     city: string;
     state: string
-};
+}
 
 export interface ProfileRequest {
     firstname: string;
     lastname: string;
     age: number;
     phone: string;
-};
+}

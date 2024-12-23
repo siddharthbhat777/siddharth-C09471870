@@ -4,9 +4,6 @@ import { ErrorScreenComponent } from "../shared/error-screen/error-screen.compon
 @Component({
   selector: 'app-not-found',
   imports: [ErrorScreenComponent],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  templateUrl: './not-found.component.html'
 })
-export class NotFoundComponent {
-
-}
+export class NotFoundComponent { }

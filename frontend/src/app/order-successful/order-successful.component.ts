@@ -7,5 +7,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './order-successful.component.html',
   styleUrl: './order-successful.component.css'
 })
-export class OrderSuccessfulComponent {
-}
+export class OrderSuccessfulComponent { }

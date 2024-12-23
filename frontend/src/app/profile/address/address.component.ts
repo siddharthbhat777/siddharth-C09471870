@@ -4,7 +4,6 @@ import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-address',
-  imports: [],
   templateUrl: './address.component.html',
   styleUrl: './address.component.css'
 })

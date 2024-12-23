@@ -63,11 +63,11 @@
 }
 
 .checkbox-input input[type="checkbox"] {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     appearance: none;
-    border: 2px solid var(--lighter-gray-color);
-    border-radius: 5px;
+    border: .125rem solid var(--lighter-gray-color);
+    border-radius: .3125rem;
     outline: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -81,7 +81,7 @@
 
 .checkbox-input input[type="checkbox"]:checked::after {
     content: '\2713';
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--white-color);
     position: absolute;
     top: 50%;

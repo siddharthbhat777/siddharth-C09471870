@@ -6,7 +6,6 @@ import { BuildService } from './build.service';
   selector: 'app-build-pizza',
   imports: [RouterOutlet],
   templateUrl: './build-pizza.component.html',
-  styleUrl: './build-pizza.component.css',
   providers: [BuildService]
 })
 export class BuildPizzaComponent { }

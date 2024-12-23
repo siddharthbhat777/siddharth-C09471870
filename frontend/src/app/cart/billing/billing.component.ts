@@ -5,7 +5,7 @@ import { AuthService } from '../../auth/auth.service';
 import { Address } from '../../auth/user.model';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../history/history.service';
-import { History, HistoryRequest } from '../../history/history.model';
+import { HistoryRequest } from '../../history/history.model';
 
 @Component({
   selector: 'app-billing',
