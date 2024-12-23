@@ -4,18 +4,21 @@ import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModu
 import { AuthService } from './auth.service';
 import { Register } from './user.model';
 import { CartService } from '../cart/cart.service';
+import { ErrorAlertComponent } from "../shared/error-alert/error-alert.component";
 
 @Component({
   selector: 'app-auth',
-  imports: [ModalComponent, FormsModule, ReactiveFormsModule],
+  imports: [ModalComponent, FormsModule, ReactiveFormsModule, ErrorAlertComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
   showAuth = output();
 
-  isLoginSelected = signal(true);
-  isPasswordVisible = signal(false);
+  isLoginSelected = signal<boolean>(true);
+  isPasswordVisible = signal<boolean>(false);
+  showLoginErrorAlert = signal<string>('');
+  showRegisterErrorAlert = signal<string>('');
 
   private authService = inject(AuthService);
   private cartService = inject(CartService);
@@ -35,7 +38,13 @@ export class AuthComponent {
     const enteredPassword = this.loginForm.value.password;
     if (this.loginForm.valid && enteredEmail && enteredPassword) {
       const authSubscription = this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
-        error: (error) => console.log(error),
+        error: (error) => {
+          if (error.status === 404 || error.status === 401) {
+            this.showLoginErrorAlert.set(error.error.message);
+          } else {
+            console.log(error);
+          }
+        },
         complete: () => {
           this.loginForm.reset();
           this.closeAuth();
@@ -45,31 +54,6 @@ export class AuthComponent {
         }
       });
       this.destroyRef.onDestroy(() => authSubscription.unsubscribe());
-    } else {
-      console.error("Form is invalid. Errors:");
-
-      const emailErrors = this.loginForm.get('email')?.errors;
-      const passwordErrors = this.loginForm.get('password')?.errors;
-
-      if (emailErrors) {
-        console.log("Email Errors:", emailErrors);
-        if (emailErrors['required']) {
-          console.log("Email is required.");
-        }
-        if (emailErrors['email']) {
-          console.log("Invalid email format.");
-        }
-      }
-
-      if (passwordErrors) {
-        console.log("Password Errors:", passwordErrors);
-        if (passwordErrors['required']) {
-          console.log("Password is required.");
-        }
-        if (passwordErrors['minlength']) {
-          console.log(`Password must be at least ${passwordErrors['minlength'].requiredLength} characters.`);
-        }
-      }
     }
   }
 
@@ -140,7 +124,13 @@ export class AuthComponent {
         password: enteredPassword
       };
       const subscription = this.authService.registerUser(formData).subscribe({
-        error: (error) => console.log(error),
+        error: (error) => {
+          if (error.status === 409) {
+            this.showRegisterErrorAlert.set(error.error.message);
+          } else {
+            console.log(error);
+          }
+        },
         complete: () => {
           this.registerForm.reset();
           this.isLoginSelected.set(true);
@@ -243,5 +233,10 @@ export class AuthComponent {
 
   logoutUser() {
     this.authService.logout();
+  }
+
+  closeAlert() {
+    this.showLoginErrorAlert.set('');
+    this.showRegisterErrorAlert.set('');
   }
 }

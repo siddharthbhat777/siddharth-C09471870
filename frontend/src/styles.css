@@ -29,4 +29,8 @@ body {
     --light-red-color: #e14545;
     --red-color: #da0303;
     --dark-red-color: #aa0000;
+    --alert-lightest-shade: #fff2f0;
+    --alert-light-shade: #ff4d4f;
+    --alert-medium-shade: #d9363e;
+    --alert-dark-shade: #a8071a;
 }

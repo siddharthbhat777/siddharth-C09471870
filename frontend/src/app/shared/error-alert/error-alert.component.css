@@ -1,0 +1,37 @@
+.error-alert {
+    border: .0625rem solid var(--alert-light-shade);
+    background-color: var(--alert-lightest-shade);
+    color: var(--alert-dark-shade);
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 .125rem .25rem #0000001a;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.error-heading {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin: 0 0 .5rem 0;
+}
+
+.error-description {
+    font-size: .875rem;
+    margin: 0 0 1rem 0;
+}
+
+.error-ok-btn {
+    background-color: var(--alert-light-shade);
+    color: var(--white-color);
+    border: none;
+    border-radius: .25rem;
+    padding: .5rem 1rem;
+    font-size: .875rem;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.error-ok-btn:hover {
+    background-color: var(--alert-medium-shade);
+}

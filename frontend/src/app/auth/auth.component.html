@@ -10,6 +10,9 @@
         <h1 class="heading">{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
         @if (isLoginSelected()) {
         <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="form">
+            @if (showLoginErrorAlert().length > 0) {
+            <app-error-alert heading="Error" [description]="showLoginErrorAlert()" (close)="closeAlert()" />
+            }
             <div class="form-field">
                 <input [class]="getErrorMessage(loginForm.get('email')) ? 'error-input' : 'text-input'" type="email"
                     placeholder="E-Mail" formControlName="email">
@@ -43,6 +46,9 @@
         </form>
         } @else {
         <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()" class="form">
+            @if (showRegisterErrorAlert().length > 0) {
+            <app-error-alert heading="Error" [description]="showRegisterErrorAlert()" (close)="closeAlert()" />
+            }
             <div class="form-field">
                 <input [class]="getErrorMessage(registerForm.get('firstname')) ? 'error-input' : 'text-input'"
                     type="text" placeholder="Firstname" formControlName="firstname">

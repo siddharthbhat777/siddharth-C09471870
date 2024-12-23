@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const userRoutes = require('./routers/user');
-const profileRoutes = require('./routers/profile');
 
 const app = express();
 app.use(express.json());
@@ -23,7 +22,6 @@ app.use((req, _, next) => {
 
 // Setting up routes
 app.use('/user', userRoutes);
-app.use('/profile', profileRoutes);
 
 // Error logging format
 app.use((error, _, res, ignoreLint) => {
