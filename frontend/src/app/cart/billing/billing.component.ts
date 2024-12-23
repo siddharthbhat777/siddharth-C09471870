@@ -51,7 +51,8 @@ export class BillingComponent {
       finalTotal: this.calculateTotal()
     };
     const subscription = this.historyService.addOrder(order).subscribe({
-      error: (error) => console.log(error)
+      error: (error) => console.log(error),
+      complete: () => this.router.navigate(['order-successful'])
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
