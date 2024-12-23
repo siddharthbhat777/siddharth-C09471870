@@ -1,14 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { OrderPizzaComponent } from './order-pizza/order-pizza.component';
-import { BuildPizzaComponent } from './build-pizza/build-pizza.component';
-import { CartComponent } from './cart/cart.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { routes as buildRoutes } from './build-pizza/build.routes';
-import { ProfileComponent } from './profile/profile.component';
-import { HistoryComponent } from './history/history.component';
-import { OrderSuccessfulComponent } from './order-successful/order-successful.component';
 
 export const routes: Routes = [
     {
@@ -18,39 +11,39 @@ export const routes: Routes = [
     },
     {
         path: 'order-pizza',
-        component: OrderPizzaComponent,
+        loadComponent: () => import('./order-pizza/order-pizza.component').then(module => module.OrderPizzaComponent),
         runGuardsAndResolvers: 'paramsOrQueryParamsChange',
         canActivate: [AuthGuardService],
         title: 'Order Pizza'
     },
     {
         path: 'build-pizza',
-        component: BuildPizzaComponent,
+        loadComponent: () => import('./build-pizza/build-pizza.component').then(module => module.BuildPizzaComponent),
         canActivate: [AuthGuardService],
-        children: buildRoutes,
+        loadChildren: () => import('./build-pizza/build.routes').then(module => module.routes),
         title: 'Build Pizza'
     },
     {
         path: 'cart',
-        component: CartComponent,
+        loadComponent: () => import('./cart/cart.component').then(module => module.CartComponent),
         canActivate: [AuthGuardService],
         title: 'Cart'
     },
     {
         path: 'profile',
-        component: ProfileComponent,
+        loadComponent: () => import('./profile/profile.component').then(module => module.ProfileComponent),
         canActivate: [AuthGuardService],
         title: 'Profile'
     },
     {
         path: 'history',
-        component: HistoryComponent,
+        loadComponent: () => import('./history/history.component').then(module => module.HistoryComponent),
         canActivate: [AuthGuardService],
         title: 'Order history'
     },
     {
         path: 'order-successful',
-        component: OrderSuccessfulComponent,
+        loadComponent: () => import('./order-successful/order-successful.component').then(module => module.OrderSuccessfulComponent),
         canActivate: [AuthGuardService],
         title: 'Order Successful'
     },
