@@ -10,8 +10,7 @@ import { ScreenLoaderComponent } from "../shared/screen-loader/screen-loader.com
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrl: './history.component.css',
-  imports: [ErrorScreenComponent, DatePipe, CurrencyPipe, ScreenLoaderComponent],
-  providers: [HistoryService]
+  imports: [ErrorScreenComponent, DatePipe, CurrencyPipe, ScreenLoaderComponent]
 })
 export class HistoryComponent implements OnInit {
   isLoading = signal<boolean>(false);

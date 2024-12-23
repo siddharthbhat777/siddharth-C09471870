@@ -4,7 +4,9 @@ import { AuthService } from '../auth/auth.service';
 import { map, Observable } from 'rxjs';
 import { History } from './history.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HistoryService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
