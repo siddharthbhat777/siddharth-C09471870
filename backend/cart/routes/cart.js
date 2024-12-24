@@ -9,7 +9,7 @@ router.get('/items/:userId', getCart);
 // PUT: /cart/update-item/:userId/:pizzaId
 router.put('/update-item/:userId/:pizzaId', updateCart);
 
-// PUT: /cart/remove-item/:userId/:pizzaId
-router.put('/remove-item/:userId/:pizzaId', deleteCartItem);
+// DELETE: /cart/remove-item/:userId/:pizzaId
+router.delete('/remove-item/:userId/:pizzaId', deleteCartItem);
 
 module.exports = router;
