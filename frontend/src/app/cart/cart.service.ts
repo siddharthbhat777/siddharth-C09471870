@@ -72,7 +72,7 @@ export class CartService {
     const previousCart = this.cartPizzas;
     const updatedCart = this.cartPizzas().filter((item) => item.pizzaId !== pizzaId);
     this.cartPizzas.set(updatedCart);
-    return this.http.delete(`http://localhost:8001/cart/remove-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
+    return this.http.put(`http://localhost:8001/cart/remove-item/${this.authService.sharableData()?._id}/${pizzaId}`, null, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }

@@ -12,7 +12,7 @@ const DATABASE_URL = "mongodb://localhost:27017/pizzeria";
 const SERVER_PORT = 5005;
 
 // Setting headers
-app.use(cors({ methods: ['GET', 'PUT', 'DELETE'] }));
+app.use(cors({ methods: ['GET', 'PUT'] }));
 
 // Request logs
 app.use((req, _, next) => {
