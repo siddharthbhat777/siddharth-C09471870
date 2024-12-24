@@ -26,7 +26,7 @@ export class OrderPizzaComponent implements OnInit {
     if (this.pizzaId()) {
       this.scrollToPizza(this.pizzaId()!);
     }
-    const pizzaSubscription = this.pizzaService.pizzaData.subscribe({
+    const pizzaSubscription = this.pizzaService.getPizzaData().subscribe({
       error: (error) => console.log(error),
       complete: () => {
         setTimeout(() => {

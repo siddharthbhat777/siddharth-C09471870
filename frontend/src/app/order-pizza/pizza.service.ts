@@ -14,7 +14,7 @@ export class PizzaService {
   private authService = inject(AuthService);
   private cartService = inject(CartService);
 
-  get pizzaData(): Observable<Pizza[]> {
+  getPizzaData(): Observable<Pizza[]> {
     return this.http.get<{ pizzas: Pizza[] }>('http://localhost:8001/pizza/all-pizzas', {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
