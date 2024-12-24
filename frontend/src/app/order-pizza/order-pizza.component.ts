@@ -44,6 +44,6 @@ export class OrderPizzaComponent implements OnInit {
         setTimeout(() => pizzaElement.classList.add('scale-effect'), 500);
         setTimeout(() => pizzaElement.classList.remove('scale-effect'), 1000);
       }
-    }, 500);
+    }, 1000);
   }
 }
