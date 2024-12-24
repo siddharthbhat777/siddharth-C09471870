@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ExtraOptionsComponent } from "./extra-options/extra-options.component";
 import { CartService } from '../cart/cart.service';
@@ -18,15 +18,13 @@ export class NavbarComponent implements OnInit {
   private cartService = inject(CartService);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private destroyRef = inject(DestroyRef);
 
   cartData = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
-    const subscription = this.cartService.getCart().subscribe({
+    this.cartService.getCart().subscribe({
       error: (error) => console.log(error)
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   closeOptions() {

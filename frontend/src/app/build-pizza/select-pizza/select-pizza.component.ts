@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PizzaComponent } from "./pizza/pizza.component";
 import { CartService } from '../../cart/cart.service';
 import { ErrorScreenComponent } from "../../shared/error-screen/error-screen.component";
@@ -14,13 +14,12 @@ export class SelectPizzaComponent {
   isLoading = signal<boolean>(false);
 
   private cartService = inject(CartService);
-  private destroyRef = inject(DestroyRef);
 
   cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
     this.isLoading.set(true);
-    const subscription = this.cartService.getCart().subscribe({
+    this.cartService.getCart().subscribe({
       error: (error) => console.log(error),
       complete: () => {
         setTimeout(() => {
@@ -28,6 +27,5 @@ export class SelectPizzaComponent {
         }, 500);
       }
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }

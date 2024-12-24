@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CartItemComponent } from "./cart-item/cart-item.component";
 import { CartService } from './cart.service';
 import { BillingComponent } from "./billing/billing.component";
@@ -15,13 +15,12 @@ export class CartComponent implements OnInit {
   isLoading = signal<boolean>(false);
 
   private cartService = inject(CartService);
-  private destroyRef = inject(DestroyRef);
 
   cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
     this.isLoading.set(true);
-    const subscription = this.cartService.getCart().subscribe({
+    this.cartService.getCart().subscribe({
       error: (error) => console.log(error),
       complete: () => {
         setTimeout(() => {
@@ -29,6 +28,5 @@ export class CartComponent implements OnInit {
         }, 500);
       }
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 }

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ProfileService } from './profile.service';
@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
 
   private authService = inject(AuthService);
   private profileService = inject(ProfileService);
-  private destroyRef = inject(DestroyRef);
 
   userData = this.authService.sharableData;
 
@@ -85,11 +84,10 @@ export class ProfileComponent implements OnInit {
         age: +enteredAge,
         phone: enteredPhone
       }
-      const subscription = this.profileService.editProfile(editData).subscribe({
+      this.profileService.editProfile(editData).subscribe({
         error: (error) => console.log(error),
         complete: () => this.setEditableState(false)
       });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
   }
 
@@ -135,14 +133,13 @@ export class ProfileComponent implements OnInit {
         city: enteredCity,
         state: enteredState
       }
-      const subscription = this.profileService.addAddress(address).subscribe({
+      this.profileService.addAddress(address).subscribe({
         error: (error) => console.log(error),
         complete: () => {
           this.openAddAddress.set(false);
           this.addressForm.reset();
         }
       });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
   }
 

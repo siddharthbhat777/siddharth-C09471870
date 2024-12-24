@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { HistoryService } from './history.service';
 import { History } from './history.model';
 import { ErrorScreenComponent } from "../shared/error-screen/error-screen.component";
@@ -17,11 +17,10 @@ export class HistoryComponent implements OnInit {
   orders = signal<History[]>([]);
 
   private historyService = inject(HistoryService);
-  private destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.isLoading.set(true);
-    const subscription = this.historyService.getHistory().subscribe({
+    this.historyService.getHistory().subscribe({
       next: (res) => this.orders.set(res),
       error: (error) => console.log(error),
       complete: () => {
@@ -30,7 +29,6 @@ export class HistoryComponent implements OnInit {
         }, 500);
       }
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   getItemList(items: Cart[]) {

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CartService } from '../cart.service';
 import { CurrencyPipe } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
@@ -19,7 +19,6 @@ export class BillingComponent {
   private authService = inject(AuthService);
   private historyService = inject(HistoryService);
   private router = inject(Router);
-  private destroyRef = inject(DestroyRef);
 
   userData = this.authService.sharableData;
   addresses: Address[] = this.userData()?.addresses!;
@@ -53,14 +52,13 @@ export class BillingComponent {
         cartItems: this.cartItems(),
         finalTotal: this.calculateTotal()
       };
-      const subscription = this.historyService.addOrder(order).subscribe({
+      this.historyService.addOrder(order).subscribe({
         error: (error) => console.log(error),
         complete: () => {
           this.router.navigate(['order-successful']);
           this.cartService.clearCart();
         }
       });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
     } else {
       this.showErrorAlert.set(true);
     }

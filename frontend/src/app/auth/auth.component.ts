@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, output, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { ModalComponent } from "../shared/modal/modal.component";
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
@@ -22,7 +22,6 @@ export class AuthComponent {
 
   private authService = inject(AuthService);
   private cartService = inject(CartService);
-  private destroyRef = inject(DestroyRef);
 
   loginForm = new FormGroup({
     email: new FormControl('', {
@@ -37,7 +36,7 @@ export class AuthComponent {
     const enteredEmail = this.loginForm.value.email;
     const enteredPassword = this.loginForm.value.password;
     if (this.loginForm.valid && enteredEmail && enteredPassword) {
-      const authSubscription = this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
+      this.authService.loginUser(enteredEmail, enteredPassword).subscribe({
         error: (error) => {
           if (error.status === 404 || error.status === 401) {
             this.showLoginErrorAlert.set(error.error.message);
@@ -53,7 +52,6 @@ export class AuthComponent {
           });
         }
       });
-      this.destroyRef.onDestroy(() => authSubscription.unsubscribe());
     }
   }
 
@@ -123,7 +121,7 @@ export class AuthComponent {
         email: enteredEmail,
         password: enteredPassword
       };
-      const subscription = this.authService.registerUser(formData).subscribe({
+      this.authService.registerUser(formData).subscribe({
         error: (error) => {
           if (error.status === 409) {
             this.showRegisterErrorAlert.set(error.error.message);
@@ -136,7 +134,6 @@ export class AuthComponent {
           this.isLoginSelected.set(true);
         }
       });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
   }
 

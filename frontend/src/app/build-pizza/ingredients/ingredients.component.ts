@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { Ingredient } from '../ingredient.model';
 import { BuildService } from '../build.service';
 import { CurrencyPipe } from '@angular/common';
@@ -25,16 +25,15 @@ export class IngredientsComponent implements OnInit {
   private cartService = inject(CartService);
   private router = inject(Router);
   private titleService = inject(Title);
-  private destroyRef = inject(DestroyRef);
 
   cartItems = this.cartService.sharableCartPizzas;
 
   ngOnInit(): void {
     this.isLoading.set(true);
-    const cartSubscription = this.cartService.getCart().subscribe({
+    this.cartService.getCart().subscribe({
       error: (error) => console.log(error),
       complete: () => {
-        const buildSubscription = this.buildService.getIngredients().subscribe({
+        this.buildService.getIngredients().subscribe({
           next: (res) => {
             this.ingredients.set(res);
             const cartItems = this.cartItems();
@@ -59,10 +58,8 @@ export class IngredientsComponent implements OnInit {
             }, 500);
           }
         });
-        this.destroyRef.onDestroy(() => buildSubscription.unsubscribe());
       }
     });
-    this.destroyRef.onDestroy(() => cartSubscription.unsubscribe());
   }
 
   updateTotalCost(price: number, ingredientId: string, event: Event): void {
@@ -79,11 +76,10 @@ export class IngredientsComponent implements OnInit {
   }
 
   buildPizza() {
-    const subscription = this.buildService.buildPizza(this.pizzaId(), this.selectedIngredients()).subscribe({
+    this.buildService.buildPizza(this.pizzaId(), this.selectedIngredients()).subscribe({
       error: (error) => console.log(error),
       complete: () => this.router.navigate(['build-pizza/select-pizza'])
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   isIngredientChecked(pizzaId: string, ingredientId: string): boolean {

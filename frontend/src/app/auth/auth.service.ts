@@ -1,4 +1,4 @@
-import { DestroyRef, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TokenResponse, Register, User } from './user.model';
 import { Observable, tap } from 'rxjs';
@@ -14,7 +14,6 @@ export class AuthService {
   showLoginDialog = signal(false);
 
   private http = inject(HttpClient);
-  private destroyRef = inject(DestroyRef);
 
   registerUser(formData: Register): Observable<{ user: any }> {
     return this.http.post<{ user: any }>('http://localhost:8001/user/register', formData);
@@ -61,14 +60,13 @@ export class AuthService {
   }
 
   refreshToken(refreshToken: string) {
-    const subscription = this.http.post<TokenResponse>('http://localhost:8001/user/refresh-token', { refreshToken }).pipe(
+    return this.http.post<TokenResponse>('http://localhost:8001/user/refresh-token', { refreshToken }).pipe(
       tap((resData) => {
         this.handleAuthentication(resData);
       })
     ).subscribe({
       error: () => this.logout()
     });
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   logout() {
