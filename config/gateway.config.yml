@@ -24,17 +24,17 @@ apiEndpoints:
     paths: '/order/*'
 serviceEndpoints:
   auth-service:
-    url: 'http://localhost:5001/'
+    url: 'https://pizzeria-auth.onrender.com'
   profile-service:
-    url: 'http://localhost:5002/'
+    url: 'https://pizzeria-profile.onrender.com'
   order-service:
-    url: 'http://localhost:5003/'
+    url: 'https://pizzeria-order-pizza.onrender.com'
   build-service:
-    url: 'http://localhost:5004/'
+    url: 'https://pizzeria-build-pizza.onrender.com'
   cart-service:
-    url: 'http://localhost:5005/'
+    url: 'https://pizzeria-cart.onrender.com'
   history-service:
-    url: 'http://localhost:5006/'
+    url: 'https://pizzeria-orders.onrender.com'
 policies:
   - proxy
   - jwt
