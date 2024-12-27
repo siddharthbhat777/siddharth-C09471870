@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 // Constants
-const DATABASE_URL = "mongodb://localhost:27017/pizzeria";
+const DATABASE_URL = "mongodb+srv://siddharthC09471870:C09471870@pizzeria.vsmlx.mongodb.net/pizzeria";
 const SERVER_PORT = 5006;
 
 // Setting headers
