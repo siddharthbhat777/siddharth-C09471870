@@ -47,6 +47,7 @@ pipelines:
       - cors:
           - action:
               origin: 'https://siddharth-pizzeria.netlify.app/'
+              credentials: true
       - proxy:
           - action:
               serviceEndpoint: auth-service 
@@ -59,6 +60,7 @@ pipelines:
       - cors:
           - action:
               origin: 'https://siddharth-pizzeria.netlify.app/'
+              credentials: true
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -75,6 +77,7 @@ pipelines:
       - cors:
           - action:
               origin: 'https://siddharth-pizzeria.netlify.app/'
+              credentials: true
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -91,6 +94,7 @@ pipelines:
       - cors:
           - action:
               origin: 'https://siddharth-pizzeria.netlify.app/'
+              credentials: true
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -107,6 +111,7 @@ pipelines:
       - cors:
           - action:
               origin: 'https://siddharth-pizzeria.netlify.app/'
+              credentials: true
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -122,6 +127,7 @@ pipelines:
       - cors:
           - action:
               origin: 'https://siddharth-pizzeria.netlify.app/'
+              credentials: true
       - jwt:
           - action:
               checkCredentialExistence: false
