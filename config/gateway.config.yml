@@ -2,7 +2,7 @@ http:
   port: 8001
 admin:
   port: 9876
-  host: localhost
+  host: 0.0.0.0
 apiEndpoints:
   auth-api:
     host: pizzeria-auth.onrender.com
