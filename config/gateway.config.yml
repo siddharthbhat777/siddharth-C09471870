@@ -5,22 +5,22 @@ admin:
   host: localhost
 apiEndpoints:
   auth-api:
-    host: localhost
+    host: pizzeria-auth.onrender.com
     paths: '/user/*'
   profile-api:
-    host: localhost
+    host: pizzeria-profile.onrender.com
     paths: '/profile/*'
   order-api:
-    host: localhost
+    host: pizzeria-order-pizza.onrender.com
     paths: '/pizza/*'
   build-api:
-    host: localhost
+    host: pizzeria-build-pizza.onrender.com
     paths: '/build/*'
   cart-api:
-    host: localhost
+    host: pizzeria-cart.onrender.com
     paths: '/cart/*'
   history-api:
-    host: localhost
+    host: pizzeria-orders.onrender.com
     paths: '/order/*'
 serviceEndpoints:
   auth-service:
