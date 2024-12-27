@@ -16,11 +16,11 @@ export class AuthService {
   private http = inject(HttpClient);
 
   registerUser(formData: Register): Observable<{ user: any }> {
-    return this.http.post<{ user: any }>('http://localhost:8001/user/register', formData);
+    return this.http.post<{ user: any }>('https://pizzeria-gateway.onrender.com/user/register', formData);
   }
 
   loginUser(email: string, password: string): Observable<TokenResponse> {
-    return this.http.put<TokenResponse>('http://localhost:8001/user/login', { email, password }).pipe(
+    return this.http.put<TokenResponse>('https://pizzeria-gateway.onrender.com/user/login', { email, password }).pipe(
       tap({
         next: (resData) => {
           this.handleAuthentication(resData);
@@ -60,7 +60,7 @@ export class AuthService {
   }
 
   refreshToken(refreshToken: string) {
-    return this.http.post<TokenResponse>('http://localhost:8001/user/refresh-token', { refreshToken }).pipe(
+    return this.http.post<TokenResponse>('https://pizzeria-gateway.onrender.com/user/refresh-token', { refreshToken }).pipe(
       tap((resData) => {
         this.handleAuthentication(resData);
       })

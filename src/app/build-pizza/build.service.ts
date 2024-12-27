@@ -11,7 +11,7 @@ export class BuildService {
   private authService = inject(AuthService);
 
   getIngredients(): Observable<Ingredient[]> {
-    return this.http.get<{ ingredients: Ingredient[] }>('http://localhost:8001/build/ingredients', {
+    return this.http.get<{ ingredients: Ingredient[] }>('https://pizzeria-gateway.onrender.com/build/ingredients', {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
@@ -21,7 +21,7 @@ export class BuildService {
   }
 
   buildPizza(pizzaId: string, ingredients: string[]): Observable<Cart[]> {
-    return this.http.put<{ cart: Cart[] }>(`http://localhost:8001/build/customize/${this.authService.sharableData()?._id}/${pizzaId}`, {
+    return this.http.put<{ cart: Cart[] }>(`https://pizzeria-gateway.onrender.com/build/customize/${this.authService.sharableData()?._id}/${pizzaId}`, {
       ingredients
     }, {
       headers: {
