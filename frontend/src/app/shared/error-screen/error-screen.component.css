@@ -1,9 +1,0 @@
-.error-template {
-    width: 100%;
-    text-align: center;
-}
-
-.error-template .error-message {
-    font-size: 1.5rem;
-    color: var(--light-gray-color);
-}
