@@ -24,17 +24,17 @@ apiEndpoints:
     paths: '/order/*'
 serviceEndpoints:
   auth-service:
-    url: 'https://pizzeria-auth.onrender.com/'
+    url: 'https://pizzeria-auth.onrender.com'
   profile-service:
-    url: 'https://pizzeria-profile.onrender.com/'
+    url: 'https://pizzeria-profile.onrender.com'
   order-service:
-    url: 'https://pizzeria-order-pizza.onrender.com/'
+    url: 'https://pizzeria-order-pizza.onrender.com'
   build-service:
-    url: 'https://pizzeria-build-pizza.onrender.com/'
+    url: 'https://pizzeria-build-pizza.onrender.com'
   cart-service:
-    url: 'https://pizzeria-cart.onrender.com/'
+    url: 'https://pizzeria-cart.onrender.com'
   history-service:
-    url: 'https://pizzeria-orders.onrender.com/'
+    url: 'https://pizzeria-orders.onrender.com'
 policies:
   - proxy
   - jwt
@@ -46,7 +46,7 @@ pipelines:
     policies:
       - cors:
           - action:
-              origin: '*'
+              origin: 'https://siddharth-pizzeria.netlify.app/'
       - proxy:
           - action:
               serviceEndpoint: auth-service 
@@ -58,7 +58,7 @@ pipelines:
     policies:
       - cors:
           - action:
-              origin: '*'
+              origin: 'https://siddharth-pizzeria.netlify.app/'
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -74,7 +74,7 @@ pipelines:
     policies:
       - cors:
           - action:
-              origin: '*'
+              origin: 'https://siddharth-pizzeria.netlify.app/'
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -90,7 +90,7 @@ pipelines:
     policies:
       - cors:
           - action:
-              origin: '*'
+              origin: 'https://siddharth-pizzeria.netlify.app/'
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -106,7 +106,7 @@ pipelines:
     policies:
       - cors:
           - action:
-              origin: '*'
+              origin: 'https://siddharth-pizzeria.netlify.app/'
       - jwt:
           - action:
               checkCredentialExistence: false
@@ -121,7 +121,7 @@ pipelines:
     policies:
       - cors:
           - action:
-              origin: '*'
+              origin: 'https://siddharth-pizzeria.netlify.app/'
       - jwt:
           - action:
               checkCredentialExistence: false
