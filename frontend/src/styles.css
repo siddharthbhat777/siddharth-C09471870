@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --black-color: black;
+    --white-color: white;
+    --shaded-white-color: #f5f5f5;
+    --lightest-gray-color: #ebebeb;
+    --lighter-gray-color: #c9c9c9;
+    --light-gray-color: #9b9b9b;
+    --gray-color: #6b6b6b;
+    --dark-gray-color: #4f4f4f;
+    --darker-gray-color: #313131;
+    --primary-color: #141414;
+    --secondary-light-color: #ffca6d;
+    --secondary-color: #FFB128;
+    --secondary-dark-color: #e69500;
+    --blue-color: #6b6bff;
+    --blue-link-color: #007bff;
+    --dark-blue-color: #000093;
+    --darker-blue-color: #0a0a68;
+    --light-green-color: #5cb85c;
+    --green-color: green;
+    --dark-green-color: #025a02;
+    --lightest-red-color: #ffe2e2;
+    --light-red-color: #e14545;
+    --red-color: #da0303;
+    --dark-red-color: #aa0000;
+    --alert-lightest-shade: #fff2f0;
+    --alert-light-shade: #ff4d4f;
+    --alert-medium-shade: #d9363e;
+    --alert-dark-shade: #a8071a;
+}

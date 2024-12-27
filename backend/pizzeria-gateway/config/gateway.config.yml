@@ -1,0 +1,132 @@
+http:
+  port: 8001
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  auth-api:
+    host: localhost
+    paths: '/user/*'
+  profile-api:
+    host: localhost
+    paths: '/profile/*'
+  order-api:
+    host: localhost
+    paths: '/pizza/*'
+  build-api:
+    host: localhost
+    paths: '/build/*'
+  cart-api:
+    host: localhost
+    paths: '/cart/*'
+  history-api:
+    host: localhost
+    paths: '/order/*'
+serviceEndpoints:
+  auth-service:
+    url: 'http://localhost:5001/'
+  profile-service:
+    url: 'http://localhost:5002/'
+  order-service:
+    url: 'http://localhost:5003/'
+  build-service:
+    url: 'http://localhost:5004/'
+  cart-service:
+    url: 'http://localhost:5005/'
+  history-service:
+    url: 'http://localhost:5006/'
+policies:
+  - proxy
+  - jwt
+  - cors
+pipelines:
+  default:
+    apiEndpoints:
+      - auth-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - proxy:
+          - action:
+              serviceEndpoint: auth-service 
+              changeOrigin: true
+  
+  profile:
+    apiEndpoints:
+      - profile-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: profile-service 
+              changeOrigin: true
+  
+  order-pizza:
+    apiEndpoints:
+      - order-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: order-service 
+              changeOrigin: true
+  
+  build-pizza:
+    apiEndpoints:
+      - build-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: build-service 
+              changeOrigin: true
+  
+  cart:
+    apiEndpoints:
+      - cart-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: cart-service 
+              changeOrigin: true
+  history:
+    apiEndpoints:
+      - history-api
+    policies:
+      - cors:
+          - action:
+              origin: '*'
+      - jwt:
+          - action:
+              checkCredentialExistence: false
+              secretOrPublicKey: 'somesupersecretsecret'
+      - proxy:
+          - action:
+              serviceEndpoint: history-service 
+              changeOrigin: true

@@ -1,0 +1,243 @@
+@if (isLoading()) {
+<app-screen-loader />
+} @else {
+<div class="profile-layout">
+    <div class="profile-details-container">
+        <div class="profile-details">
+            <h2 class="heading">
+                <span>Profile details</span>
+                @if (!isEditable()) {
+                <div class="edit-profile" (click)="setEditableState(true)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                    </svg>
+                </div>
+                }
+            </h2>
+            <form class="details-form" [formGroup]="detailsForm" (ngSubmit)="detailsSubmit()">
+                <div class="form-field">
+                    <input [class]="getErrorMessage(detailsForm.get('firstname')) ? 'error-input' : 'text-input'"
+                        type="text" placeholder="Firstname" formControlName="firstname">
+                    <div class="error-message">
+                        @if (getErrorMessage(detailsForm.get('firstname'))) {
+                        {{ getErrorMessage(detailsForm.get('firstname')) }}
+                        }
+                    </div>
+                </div>
+                <div class="form-field">
+                    <input [class]="getErrorMessage(detailsForm.get('lastname')) ? 'error-input' : 'text-input'"
+                        type="text" placeholder="Lastname" formControlName="lastname">
+                    <div class="error-message">
+                        @if (getErrorMessage(detailsForm.get('lastname'))) {
+                        {{ getErrorMessage(detailsForm.get('lastname')) }}
+                        }
+                    </div>
+                </div>
+                <div class="form-field">
+                    <input [class]="getErrorMessage(detailsForm.get('age')) ? 'error-input' : 'text-input'"
+                        type="number" placeholder="Age" formControlName="age">
+                    <div class="error-message">
+                        @if (getErrorMessage(detailsForm.get('age'))) {
+                        {{ getErrorMessage(detailsForm.get('age')) }}
+                        }
+                    </div>
+                </div>
+                <div class="form-field">
+                    <input disabled class="text-input" type="email" placeholder="E-mail" [value]="userData()?.email">
+                    <div class="error-message">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <input [class]="getErrorMessage(detailsForm.get('phone')) ? 'error-input' : 'text-input'"
+                        type="number" placeholder="Phone number" formControlName="phone">
+                    <div class="error-message">
+                        @if (getErrorMessage(detailsForm.get('phone'))) {
+                        {{ getErrorMessage(detailsForm.get('phone')) }}
+                        }
+                    </div>
+                </div>
+                @if (isEditable()) {
+                <div class="form-buttons">
+                    <button type="button" class="cancel-button" (click)="setEditableState(false)">Cancel</button>
+                    <button type="submit" class="save-button">Save</button>
+                </div>
+                }
+            </form>
+        </div>
+    </div>
+    <div class="address-list">
+        <h2 class="heading">
+            @if (!openAddAddress()) {
+            <div class="address-add-button" (click)="setAddAddressState(true)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0" />
+                </svg>
+            </div>
+            }
+            <span>Address List</span>
+        </h2>
+        @if (openAddAddress()) {
+        <form class="address-form" [formGroup]="addressForm" (ngSubmit)="addressSubmit()">
+            <h3 class="sub-heading">Add address</h3>
+            @if (isMobile()) { <div class="form-field">
+                <input [class]="getErrorMessage(addressForm.get('addressTitle')) ? 'error-input' : 'text-input'"
+                    type="text" placeholder="Title" formControlName="addressTitle">
+                <div class="error-message">
+                    @if (getErrorMessage(addressForm.get('addressTitle'))) {
+                    {{ getErrorMessage(addressForm.get('addressTitle')) }}
+                    }
+                </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressReceiverName')) ? 'error-input' : 'text-input'"
+            type="text" placeholder="Receiver name" formControlName="addressReceiverName">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressReceiverName'))) {
+            {{ getErrorMessage(addressForm.get('addressReceiverName')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressReceiverPhone')) ? 'error-input' : 'text-input'"
+            type="number" placeholder="Receiver phone" formControlName="addressReceiverPhone">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressReceiverPhone'))) {
+            {{ getErrorMessage(addressForm.get('addressReceiverPhone')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <textarea rows="3" [class]="getErrorMessage(addressForm.get('addressLine')) ? 'error-input' : 'text-input'"
+            placeholder="Flat number, Building, Locality, etc." formControlName="addressLine"></textarea>
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressLine'))) {
+            {{ getErrorMessage(addressForm.get('addressLine')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressPincode')) ? 'error-input' : 'text-input'" type="number"
+            placeholder="Pincode" formControlName="addressPincode">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressPincode'))) {
+            {{ getErrorMessage(addressForm.get('addressPincode')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressCity')) ? 'error-input' : 'text-input'" type="text"
+            placeholder="City" formControlName="addressCity">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressCity'))) {
+            {{ getErrorMessage(addressForm.get('addressCity')) }}
+            }
+        </div>
+    </div>
+    <div class="form-field">
+        <input [class]="getErrorMessage(addressForm.get('addressState')) ? 'error-input' : 'text-input'" type="text"
+            placeholder="State" formControlName="addressState">
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressState'))) {
+            {{ getErrorMessage(addressForm.get('addressState')) }}
+            }
+        </div>
+    </div>
+    @if (openAddAddress()) {
+    <div class="form-buttons">
+        <button type="button" class="cancel-button" (click)="setAddAddressState(false)">Cancel</button>
+        <button type="submit" class="save-button">Add</button>
+    </div>
+    }
+    } @else {
+    <div class="input-group">
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressTitle')) ? 'error-input' : 'text-input'" type="text"
+                placeholder="Title" formControlName="addressTitle">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressTitle'))) {
+                {{ getErrorMessage(addressForm.get('addressTitle')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressReceiverName')) ? 'error-input' : 'text-input'"
+                type="text" placeholder="Receiver name" formControlName="addressReceiverName">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressReceiverName'))) {
+                {{ getErrorMessage(addressForm.get('addressReceiverName')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressReceiverPhone')) ? 'error-input' : 'text-input'"
+                type="number" placeholder="Receiver phone" formControlName="addressReceiverPhone">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressReceiverPhone'))) {
+                {{ getErrorMessage(addressForm.get('addressReceiverPhone')) }}
+                }
+            </div>
+        </div>
+    </div>
+    <div class="form-field">
+        <textarea rows="3" [class]="getErrorMessage(addressForm.get('addressLine')) ? 'error-input' : 'text-input'"
+            placeholder="Flat number, Building, Locality, etc." formControlName="addressLine"></textarea>
+        <div class="error-message">
+            @if (getErrorMessage(addressForm.get('addressLine'))) {
+            {{ getErrorMessage(addressForm.get('addressLine')) }}
+            }
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressPincode')) ? 'error-input' : 'text-input'"
+                type="number" placeholder="Pincode" formControlName="addressPincode">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressPincode'))) {
+                {{ getErrorMessage(addressForm.get('addressPincode')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressCity')) ? 'error-input' : 'text-input'" type="text"
+                placeholder="City" formControlName="addressCity">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressCity'))) {
+                {{ getErrorMessage(addressForm.get('addressCity')) }}
+                }
+            </div>
+        </div>
+        <div class="form-field">
+            <input [class]="getErrorMessage(addressForm.get('addressState')) ? 'error-input' : 'text-input'" type="text"
+                placeholder="State" formControlName="addressState">
+            <div class="error-message">
+                @if (getErrorMessage(addressForm.get('addressState'))) {
+                {{ getErrorMessage(addressForm.get('addressState')) }}
+                }
+            </div>
+        </div>
+    </div>
+    @if (openAddAddress()) {
+    <div class="form-buttons">
+        <button type="button" class="cancel-button" (click)="setAddAddressState(false)">Cancel</button>
+        <button type="submit" class="save-button">Add</button>
+    </div>
+    }
+    }
+    </form>
+    }
+    <div class="address-list-container">
+        @for (address of userData()?.addresses; track address._id) {
+        <app-address [address]="address" />
+        } @empty {
+        <app-error-screen errorMessage="No addresses found" />
+        }
+    </div>
+</div>
+</div>
+}

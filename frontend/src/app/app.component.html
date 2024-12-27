@@ -1,0 +1,8 @@
+<app-navbar />
+@if (showAuth()) {
+<app-auth (showAuth)="closeAuth()" />
+}
+<main>
+    <router-outlet />
+</main>
+<app-footer />

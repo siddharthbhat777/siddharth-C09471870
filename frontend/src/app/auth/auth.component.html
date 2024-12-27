@@ -1,0 +1,134 @@
+<app-modal>
+    <div class="forms-layout">
+        <div class="close-button" (click)="closeAuth()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" stroke='#000' strokeWidth='0.5'
+                fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+            </svg>
+        </div>
+        <h1 class="heading">{{ isLoginSelected() ? 'Login' : 'Sign Up' }}</h1>
+        @if (isLoginSelected()) {
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="form">
+            @if (showLoginErrorAlert().length > 0) {
+            <app-error-alert heading="Error" [description]="showLoginErrorAlert()" (close)="closeAlert()" />
+            }
+            <div class="form-field">
+                <input [class]="getErrorMessage(loginForm.get('email')) ? 'error-input' : 'text-input'" type="email"
+                    placeholder="E-Mail" formControlName="email">
+                <div class="error-message">
+                    @if (getErrorMessage(loginForm.get('email'))) {
+                    {{ getErrorMessage(loginForm.get('email')) }}
+                    }
+                </div>
+            </div>
+            <div class="login-password">
+                <div class="form-field">
+                    <input [class]="getErrorMessage(loginForm.get('password')) ? 'error-input' : 'text-input'"
+                        [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password"
+                        formControlName="password">
+                    <div class="error-message">
+                        @if (getErrorMessage(loginForm.get('password'))) {
+                        {{ getErrorMessage(loginForm.get('password')) }}
+                        }
+                    </div>
+                </div>
+                <label class="checkbox-input">
+                    <input type="checkbox" (change)="setPasswordVisibility($event)" />
+                    Show password
+                </label>
+            </div>
+            <button class="submit-button" type="submit">Sign in</button>
+            <div class="change-layout">
+                <h3 class="query-text">First time here?</h3>
+                <a class="change-link" (click)="isLoginSelected.set(false)">Create user</a>
+            </div>
+        </form>
+        } @else {
+        <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()" class="form">
+            @if (showRegisterErrorAlert().length > 0) {
+            <app-error-alert heading="Error" [description]="showRegisterErrorAlert()" (close)="closeAlert()" />
+            }
+            <div class="form-field">
+                <input [class]="getErrorMessage(registerForm.get('firstname')) ? 'error-input' : 'text-input'"
+                    type="text" placeholder="Firstname" formControlName="firstname">
+                <div class="error-message">
+                    @if (getErrorMessage(registerForm.get('firstname'))) {
+                    {{ getErrorMessage(registerForm.get('firstname')) }}
+                    }
+                </div>
+            </div>
+            <div class="form-field">
+                <input [class]="getErrorMessage(registerForm.get('lastname')) ? 'error-input' : 'text-input'"
+                    type="text" placeholder="Lastname" formControlName="lastname">
+                <div class="error-message">
+                    @if (getErrorMessage(registerForm.get('lastname'))) {
+                    {{ getErrorMessage(registerForm.get('lastname')) }}
+                    }
+                </div>
+            </div>
+            <div class="form-field">
+                <input [class]="getErrorMessage(registerForm.get('email')) ? 'error-input' : 'text-input'" type="email"
+                    placeholder="E-Mail" formControlName="email">
+                <div class="error-message">
+                    @if (getErrorMessage(registerForm.get('email'))) {
+                    {{ getErrorMessage(registerForm.get('email')) }}
+                    }
+                </div>
+            </div>
+            <div class="form-field">
+                <input [class]="getErrorMessage(registerForm.get('age')) ? 'error-input' : 'text-input'" type="number"
+                    placeholder="Age" formControlName="age">
+                <div class="error-message">
+                    @if (getErrorMessage(registerForm.get('age'))) {
+                    {{ getErrorMessage(registerForm.get('age')) }}
+                    }
+                </div>
+            </div>
+            <div class="password-group" formGroupName="passwords">
+                <div class="form-field">
+                    <input
+                        [class]="getErrorMessage(registerForm.get('passwords.password')) || (registerForm.get('passwords')?.touched && registerForm.get('passwords')?.errors?.['valuesNotEqual']) ? 'error-input' : 'text-input'"
+                        [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Password"
+                        formControlName="password">
+                    <div class="error-message">
+                        @if (getErrorMessage(registerForm.get('passwords.password'))) {
+                        {{ getErrorMessage(registerForm.get('passwords.password')) }}
+                        } @else if (
+                        registerForm.get('passwords')?.touched &&
+                        registerForm.get('passwords')?.errors?.['valuesNotEqual']
+                        ) {
+                        Passwords do not match.
+                        }
+                    </div>
+                </div>
+                <div class="form-field">
+                    <input
+                        [class]="getErrorMessage(registerForm.get('passwords.confirmPassword')) || (registerForm.get('passwords')?.touched && registerForm.get('passwords')?.errors?.['valuesNotEqual']) ? 'error-input' : 'text-input'"
+                        [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Confirm"
+                        formControlName="confirmPassword">
+                    <div class="error-message">
+                        @if (getErrorMessage(registerForm.get('passwords.confirmPassword'))) {
+                        {{ getErrorMessage(registerForm.get('passwords.confirmPassword')) }}
+                        } @else if (
+                        registerForm.get('passwords')?.touched &&
+                        registerForm.get('passwords')?.errors?.['valuesNotEqual']
+                        ) {
+                        Passwords do not match.
+                        }
+                    </div>
+                </div>
+            </div>
+            <label class="checkbox-input">
+                <input type="checkbox" (change)="setPasswordVisibility($event)" />
+                Show password
+            </label>
+            <button class="submit-button" type="submit">Sign up</button>
+            <div class="change-layout">
+                <h3 class="query-text">Existing user?</h3>
+                <a class="change-link" (click)="isLoginSelected.set(true)">Login</a>
+            </div>
+        </form>
+        }
+    </div>
+</app-modal>

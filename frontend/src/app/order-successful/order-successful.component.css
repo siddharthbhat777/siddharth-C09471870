@@ -1,0 +1,95 @@
+.order-successful-layout {
+    position: relative;
+    background-image: url('https://www.shutterstock.com/shutterstock/photos/2469319013/display_1500/stock-photo-delicious-margherita-pizza-on-wooden-table-top-view-2469319013.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(50%);
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 1.5rem;
+}
+
+@keyframes pop-effect {
+    0% {
+        transform: scale(0.8);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.success-icon {
+    color: var(--green-color);
+    animation: pop-effect 0.6s ease-in-out;
+}
+
+.heading {
+    color: var(--green-color);
+    font-weight: 400;
+    animation: pop-effect 0.6s ease-in-out;
+}
+
+.button-container {
+    display: flex;
+    gap: .625rem;
+    z-index: 1;
+}
+
+.go-home-button {
+    padding: .625rem .875rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.go-home-button:hover {
+    background-color: var(--darker-gray-color);
+    transform: scale(1.02);
+}
+
+.go-home-button:active {
+    transform: scale(0.98);
+}
+
+.view-orders-button {
+    padding: .625rem .875rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-orders-button:hover {
+    background-color: var(--secondary-dark-color);
+    transform: scale(1.02);
+}
+
+.view-orders-button:active {
+    transform: scale(0.98);
+}
