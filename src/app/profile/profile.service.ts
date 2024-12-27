@@ -16,7 +16,7 @@ export class ProfileService {
     if (!previousUserProfile) {
       throw new Error('No user profile is available to revert to.');
     }
-    return this.http.put<TokenResponse>(`https://pizzeria-gateway.onrender.com/profile/edit/${this.authService.sharableData()?._id}`, profileUpdate, {
+    return this.http.put<TokenResponse>(`https://pizzeria-profile.onrender.com/profile/edit/${this.authService.sharableData()?._id}`, profileUpdate, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
@@ -37,7 +37,7 @@ export class ProfileService {
     if (!previousUserProfile) {
       throw new Error('No user profile is available to revert to.');
     }
-    return this.http.put<TokenResponse>(`https://pizzeria-gateway.onrender.com/profile/add-address/${this.authService.sharableData()?._id}`, address, {
+    return this.http.put<TokenResponse>(`https://pizzeria-profile.onrender.com/profile/add-address/${this.authService.sharableData()?._id}`, address, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
@@ -58,7 +58,7 @@ export class ProfileService {
     if (!previousUserProfile) {
       throw new Error('No user profile is available to revert to.');
     }
-    return this.http.put<TokenResponse>(`https://pizzeria-gateway.onrender.com/profile/delete-address/${this.authService.sharableData()?._id}/${addressId}`, null, {
+    return this.http.put<TokenResponse>(`https://pizzeria-profile.onrender.com/profile/delete-address/${this.authService.sharableData()?._id}/${addressId}`, null, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }

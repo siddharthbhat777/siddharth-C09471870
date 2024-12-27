@@ -15,7 +15,7 @@ export class CartService {
   private authService = inject(AuthService);
 
   getCart(): Observable<any[]> {
-    return this.http.get<{ cartItems: any[] }>(`https://pizzeria-gateway.onrender.com/cart/items/${this.authService.sharableData()?._id}`, {
+    return this.http.get<{ cartItems: any[] }>(`https://pizzeria-cart.onrender.com/cart/items/${this.authService.sharableData()?._id}`, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
@@ -54,7 +54,7 @@ export class CartService {
       return item;
     });
     this.cartPizzas.set(updatedCart);
-    return this.http.put(`https://pizzeria-gateway.onrender.com/cart/update-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
+    return this.http.put(`https://pizzeria-cart.onrender.com/cart/update-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
       operation
     }, {
       headers: {
@@ -72,7 +72,7 @@ export class CartService {
     const previousCart = this.cartPizzas;
     const updatedCart = this.cartPizzas().filter((item) => item.pizzaId !== pizzaId);
     this.cartPizzas.set(updatedCart);
-    return this.http.delete(`https://pizzeria-gateway.onrender.com/cart/remove-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
+    return this.http.delete(`https://pizzeria-cart.onrender.com/cart/remove-item/${this.authService.sharableData()?._id}/${pizzaId}`, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }

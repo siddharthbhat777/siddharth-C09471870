@@ -15,7 +15,7 @@ export class PizzaService {
   private cartService = inject(CartService);
 
   getPizzaData(): Observable<Pizza[]> {
-    return this.http.get<{ pizzas: Pizza[] }>('https://pizzeria-gateway.onrender.com/pizza/all-pizzas', {
+    return this.http.get<{ pizzas: Pizza[] }>('https://pizzeria-order-pizza.onrender.com/pizza/all-pizzas', {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
@@ -42,7 +42,7 @@ export class PizzaService {
     this.pizzas.update((pizzas) =>
       pizzas.map((pizzaItem) => (pizzaItem._id === pizza._id ? { ...pizzaItem, isAdded: true } : pizzaItem))
     );
-    return this.http.put(`https://pizzeria-gateway.onrender.com/pizza/add-to-cart/${this.authService.sharableData()?._id}/${pizza._id}`, null, {
+    return this.http.put(`https://pizzeria-order-pizza.onrender.com/pizza/add-to-cart/${this.authService.sharableData()?._id}/${pizza._id}`, null, {
       headers: {
         'Authorization': `Bearer ${this.authService.token}`
       }
