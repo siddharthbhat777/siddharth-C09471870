@@ -54,6 +54,7 @@ pipelines:
           - action:
               serviceEndpoint: auth-service 
               changeOrigin: true
+              passThroughHeaders: true
   
   profile:
     apiEndpoints:
@@ -73,6 +74,7 @@ pipelines:
           - action:
               serviceEndpoint: profile-service 
               changeOrigin: true
+              passThroughHeaders: true
   
   order-pizza:
     apiEndpoints:
@@ -92,6 +94,7 @@ pipelines:
           - action:
               serviceEndpoint: order-service 
               changeOrigin: true
+              passThroughHeaders: true
   
   build-pizza:
     apiEndpoints:
@@ -111,6 +114,7 @@ pipelines:
           - action:
               serviceEndpoint: build-service 
               changeOrigin: true
+              passThroughHeaders: true
   
   cart:
     apiEndpoints:
@@ -130,6 +134,8 @@ pipelines:
           - action:
               serviceEndpoint: cart-service 
               changeOrigin: true
+              passThroughHeaders: true
+
   history:
     apiEndpoints:
       - history-api
@@ -148,3 +154,4 @@ pipelines:
           - action:
               serviceEndpoint: history-service 
               changeOrigin: true
+              passThroughHeaders: true
